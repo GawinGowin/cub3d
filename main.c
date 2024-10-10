@@ -14,9 +14,15 @@
 
 int	main(int argc, char **argv)
 {
+	char	*cubfile;
+
 	if (valid_argument(argc, argv))
 		return (1);
-	// ここに処理
+	cubfile = load_file(argv[1]);
+	if (!cubfile)
+		return (printerror("Failed to load file"));
+	printf("%s\n", cubfile);
+	free(cubfile);
 	return (0);
 }
 
