@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_cub_file.c                                    :+:      :+:    :+:   */
+/*   set_array_from_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,8 +15,24 @@
 static char	*read_loop(int fd);
 static char	*allfree(char *s1, char *s2);
 static char	*strjoin_allfree(char *s1, char *s2);
+static char	*load_file(char *filename);
 
-char	*load_file(char *filename)
+char	**set_array_from_file(char *filename)
+{
+	char	*file;
+	char	**array;
+
+	file = load_file(filename);
+	if (!file)
+		return (NULL);
+	array = ft_split(file, '\n');
+	free(file);
+	if (!array)
+		return (NULL);
+	return (array);
+}
+
+static char	*load_file(char *filename)
 {
 	char	*text;
 	int		fd;
