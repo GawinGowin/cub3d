@@ -16,14 +16,20 @@ static int	valid_extention(char *str);
 
 int	printerror(char *str)
 {
-	printf("Error: %s\n", str);
+	int	i;
+
+	i = -1;
+	write(2, ERR_PREFIX, ft_strlen(ERR_PREFIX));
+	while (str[++i])
+		write(2, &str[i], 1);
+	write(2, "\n", 2);
 	return (1);
 }
 
 int	valid_argument(int argc, char **argv)
 {
 	if (argc != 2)
-		return (printerror("Invalid Argument"));
+		return (printerror(ERR_INVALID_ARG));
 	return (valid_extention(argv[1]));
 }
 
@@ -37,7 +43,7 @@ static int	valid_extention(char *str)
 		if (ft_strcmp(ext, ".cub") == 0)
 			return (0);
 		else
-			return (printerror("File extension is not '.cub'"));
+			return (printerror(ERR_WRONG_EXT));
 	}
-	return (printerror("File has no extension"));
+	return (printerror(ERR_NOTHING_EXT));
 }

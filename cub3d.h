@@ -27,6 +27,11 @@
 # ifndef WIN_HEIGHT
 #  define WIN_HEIGHT 600
 # endif
+# define ERR_PREFIX "Error: "
+# define ERR_INVALID_ARG "Invalid Argument"
+# define ERR_WRONG_EXT "File extension is not '.cub'"
+# define ERR_NOTHING_EXT "File has no extension"
+# define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
 
 typedef struct s_cub3d
 {
