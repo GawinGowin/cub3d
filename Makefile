@@ -87,6 +87,9 @@ OBJS := $(SOURCES:.c=.o)
 LIB_SOURCES := $(addprefix $(LIB_SOURCES_PREFIX),$(LIB_SOURCES))
 LIB_OBJS := $(LIB_SOURCES:.c=.o)
 
+MLX_HEADER := $(addprefix $(HEADER_DIR)/,mlx.h)
+MLX_LIB := $(addprefix $(LIBRARY_DIR)/,libmlx.a)
+
 .PHONY: all
 all: init $(NAME)
 
@@ -100,7 +103,13 @@ $(LIB_NAME): $(LIB_OBJS)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 .PHONY: init
-init:
+init: $(MLX_HEADER) $(MLX_LIB)
+
+$(MLX_HEADER): 
+	mkdir -p $(HEADER_DIR)
+	sh install_minilibx.sh
+
+$(MLX_LIB): 
 	mkdir -p $(LIBRARY_DIR)
 	sh install_minilibx.sh
 
