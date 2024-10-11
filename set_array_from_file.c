@@ -28,7 +28,10 @@ char	**set_array_from_file(char *filename)
 	array = ft_split(file, '\n');
 	free(file);
 	if (!array)
+	{
+		printerror(ERR_MALLOC);
 		return (NULL);
+	}
 	return (array);
 }
 

@@ -15,6 +15,7 @@
 
 static int	init_mlx_ptr(t_cub3d *data, char *name);
 static int	destroy_mlx_ptr(t_cub3d *data);
+static int	set_hooks_and_loop(t_cub3d *data);
 
 int	main(int argc, char **argv)
 {
@@ -27,18 +28,19 @@ int	main(int argc, char **argv)
 		return (printerror(ERR_FAILED_INIT_MLX));
 	data.cubfile_array = set_array_from_file(argv[1]);
 	if (!data.cubfile_array)
-		return (1);
+		return (destroy_mlx_ptr(&data));
 	// 確認用
-	sleep(3);
-	i = 0;
-	while (data.cubfile_array[i])
-	{
-		printf("> %s\n", data.cubfile_array[i]);
-		free(data.cubfile_array[i]);
-		i++;
-	}
-	destroy_mlx_ptr(&data);
-	free(data.cubfile_array);
+	// sleep(3);
+	// i = 0;
+	// while (data.cubfile_array[i])
+	// {
+	// 	printf("> %s\n", data.cubfile_array[i]);
+	// 	free(data.cubfile_array[i]);
+	// 	i++;
+	// }
+	// destroy_mlx_ptr(&data);
+	// free(data.cubfile_array);
+	set_hooks_and_loop(&data);
 	return (0);
 }
 
@@ -65,6 +67,13 @@ static int	init_mlx_ptr(t_cub3d *data, char *name)
 	if (!data->addr)
 		return (destroy_mlx_ptr(data));
 	return (0);
+}
+
+static	int	set_hooks_and_loop(t_cub3d *data)
+{
+	// mlx_key_hook(data->win_ptr, detect_keys, data);
+	// mlx_hook(data->win_ptr, 17, 0, detect_close, data);
+	mlx_loop(data->mlx_ptr);
 }
 
 // mlx_get_data_addrはimg_ptr->dataを返すため、mlx_destroy_imageで解放される。

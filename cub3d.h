@@ -32,6 +32,7 @@
 # define ERR_WRONG_EXT "File extension is not '.cub'"
 # define ERR_NOTHING_EXT "File has no extension"
 # define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
+# define ERR_MALLOC "Failed to allocate memory"
 
 typedef struct s_cub3d
 {
