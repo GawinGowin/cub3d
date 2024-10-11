@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx.h"
 
 static int	init_mlx_ptr(t_cub3d *data, char *name);
 static void	destroy_mlx_ptr(t_cub3d *data);
@@ -60,6 +61,9 @@ static void	destroy_mlx_ptr(t_cub3d *data)
 	if (data->mlx_ptr && data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
+	{
 		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+	}
 }
 
