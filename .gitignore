@@ -51,4 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-cub3D
+/cub3D
+!/cub3D/
+
+mlx.h

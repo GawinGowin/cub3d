@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-09 02:50:34 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-09 02:50:34 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/09 02:50:34 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/12 07:12:14 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	set_hooks_and_loop(t_cub3d *data);
 int	main(int argc, char **argv)
 {
 	t_cub3d	data;
-	int		i;
 
 	if (valid_argument(argc, argv))
 		return (1);
