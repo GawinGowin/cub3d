@@ -13,6 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -36,6 +37,9 @@
 
 typedef struct s_cub3d
 {
+	int		pos_x;
+	int		pos_y;
+	int		angle;
 	int		bpp;
 	int		line_byte;
 	int		endian;
@@ -49,6 +53,9 @@ typedef struct s_cub3d
 int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
 char	**set_array_from_file(char *filename);
+int		destroy_mlx_ptr(t_cub3d *data);
+int		detect_close(t_cub3d *data);
+int		detect_keys(int key, t_cub3d *data);
 
 // libftの関数
 char	*ft_strrchr(const char *s, int c);

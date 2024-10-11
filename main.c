@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx.h"
 
 static int	init_mlx_ptr(t_cub3d *data, char *name);
-static int	destroy_mlx_ptr(t_cub3d *data);
-static int	set_hooks_and_loop(t_cub3d *data);
+static void	init_param(t_cub3d *data);
+static void	set_hooks_and_loop(t_cub3d *data);
 
 int	main(int argc, char **argv)
 {
@@ -39,20 +38,30 @@ int	main(int argc, char **argv)
 	// 	i++;
 	// }
 	// destroy_mlx_ptr(&data);
+	// i = -1;
+	// while (data.cubfile_array[++i])
+	// 	free(data.cubfile_array[i]);
 	// free(data.cubfile_array);
 	set_hooks_and_loop(&data);
 	return (0);
 }
 
-static int	init_mlx_ptr(t_cub3d *data, char *name)
+static void	init_param(t_cub3d *data)
 {
+	data->pos_x = 0;
+	data->pos_y = 0;
+	data->angle = 0;
 	data->bpp = 0;
 	data->line_byte = 0;
 	data->endian = 0;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->img_ptr = NULL;
-	data->addr = NULL;
+}
+
+static int	init_mlx_ptr(t_cub3d *data, char *name)
+{
+	init_param(data);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (1);
@@ -69,25 +78,16 @@ static int	init_mlx_ptr(t_cub3d *data, char *name)
 	return (0);
 }
 
-static	int	set_hooks_and_loop(t_cub3d *data)
+// int	test_print(t_cub3d *data)
+// {
+// 	printf("pos_x: %d, pos_y: %d\n", data->pos_x, data->pos_y);
+// 	return (0);
+// }
+
+static	void	set_hooks_and_loop(t_cub3d *data)
 {
-	// mlx_key_hook(data->win_ptr, detect_keys, data);
-	// mlx_hook(data->win_ptr, 17, 0, detect_close, data);
+	mlx_key_hook(data->win_ptr, detect_keys, data);
+	mlx_hook(data->win_ptr, 17, 0, detect_close, data);
+	// mlx_loop_hook(data->mlx_ptr, test_print, data);
 	mlx_loop(data->mlx_ptr);
 }
-
-// mlx_get_data_addrはimg_ptr->dataを返すため、mlx_destroy_imageで解放される。
-static int	destroy_mlx_ptr(t_cub3d *data)
-{
-	if (data->mlx_ptr && data->img_ptr)
-		mlx_destroy_image(data->mlx_ptr, data->img_ptr);
-	if (data->mlx_ptr && data->win_ptr)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	if (data->mlx_ptr)
-	{
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
-	}
-	return (1);
-}
-
