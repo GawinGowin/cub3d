@@ -11,7 +11,6 @@ HEADER += libft.h
 
 # Sources
 SOURCES += detect_event.c
-SOURCES += ft.c
 SOURCES += main.c
 SOURCES += set_array_from_file.c
 SOURCES += valid_argument.c
@@ -74,13 +73,13 @@ HEADER_DIR = include
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
 IFLAGS := -I$(HEADER_DIR)
-LFLAGS := -L$(LIBRARY_DIR) -lft -lmlx_Linux -lXext -lX11 -lm
+LFLAGS := -lmlx_Linux -lXext -lX11 -lm -L$(LIBRARY_DIR) -lft
 DFLAGS := -fdiagnostics-color=always -g3 -fsanitize=address
 
 ifdef DEBUG
 CFLAGS += $(DFLAGS)
 endif
-ALL_FLAGS := $(CFLAGS) $(LFLAGS)
+
 
 SOURCES := $(addprefix $(SOURCES_PREFIX),$(SOURCES))
 OBJS := $(SOURCES:.c=.o)
@@ -93,8 +92,8 @@ MLX_LIB := $(addprefix $(LIBRARY_DIR)/,libmlx.a)
 .PHONY: all
 all: init $(NAME)
 
-$(NAME): $(LIB_NAME) $(OBJS) $(HEADER)
-	$(CC) $(ALL_FLAGS) $(OBJS) -o $@
+$(NAME): $(LIB_NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $@
 
 $(LIB_NAME): $(LIB_OBJS)
 	ar rcs $(LIBRARY_DIR)/$@ $(LIB_OBJS)
@@ -123,7 +122,3 @@ fclean:
 
 .PHONY: re
 re: fclean all
-
-echo:
-	@echo "====================="
-	@echo $(HEADER)
