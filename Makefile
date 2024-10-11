@@ -80,7 +80,6 @@ ifdef DEBUG
 CFLAGS += $(DFLAGS)
 endif
 
-
 SOURCES := $(addprefix $(SOURCES_PREFIX),$(SOURCES))
 OBJS := $(SOURCES:.c=.o)
 LIB_SOURCES := $(addprefix $(LIB_SOURCES_PREFIX),$(LIB_SOURCES))
@@ -114,10 +113,11 @@ $(MLX_LIB):
 
 .PHONY: clean
 clean: 
-	rm -f *.o
+	rm -f $(OBJS) $(LIB_OBJS) $(MLX_HEADER)
+	rm -rf $(LIBRARY_DIR)
 
 .PHONY: fclean
-fclean:
+fclean: clean
 	rm -f cub3D
 
 .PHONY: re
