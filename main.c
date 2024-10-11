@@ -12,24 +12,54 @@
 
 #include "cub3d.h"
 
+static int	init_mlx_ptr(t_cub3d *data, char *name);
+static void	destroy_mlx_ptr(t_cub3d *data);
+
 int	main(int argc, char **argv)
 {
-	char	**cubfile_array;
+	t_cub3d	data;
 	int		i;
 
 	if (valid_argument(argc, argv))
 		return (1);
-	cubfile_array = set_array_from_file(argv[1]);
-	if (!cubfile_array)
+	init_mlx_ptr(&data, argv[1]);
+	data.cubfile_array = set_array_from_file(argv[1]);
+	if (!data.cubfile_array)
 		return (1);
 	// 確認用
-	while (cubfile_array[i])
+	while (data.cubfile_array[i])
 	{
-		printf("> %s\n", cubfile_array[i]);
-		free(cubfile_array[i]);
+		printf("> %s\n", data.cubfile_array[i]);
+		free(data.cubfile_array[i]);
 		i++;
 	}
-	free(cubfile_array);
+	destroy_mlx_ptr(&data);
+	free(data.cubfile_array);
 	return (0);
+}
+
+static int	init_mlx_ptr(t_cub3d *data, char *name)
+{
+	data->bpp = 0;
+	data->line_byte = 0;
+	data->endian = 0;
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		return (1);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, name);
+	data->img_ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	data->addr = mlx_get_data_addr(data->img_ptr, &data->bpp, &data->line_byte, \
+		&data->endian);
+	return (0);
+}
+
+static void	destroy_mlx_ptr(t_cub3d *data)
+{
+	if (data->mlx_ptr && data->img_ptr)
+		mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	if (data->mlx_ptr && data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
+		mlx_destroy_display(data->mlx_ptr);
 }
 
