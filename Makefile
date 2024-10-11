@@ -1,8 +1,9 @@
 NAME := cub3D
+LIB_NAME = libft.a
 
-HEADER =
-SOURCES =
-LIB_SOURCES =
+HEADER :=
+SOURCES :=
+LIB_SOURCES :=
 
 # Header
 HEADER += cub3d.h
@@ -68,26 +69,42 @@ SOURCES_PREFIX = cmd/$(NAME)/
 LIB_SOURCES_PREFIX = pkg/
 
 LIBRARY_DIR = lib
+HEADER_DIR = include
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
-LFLAGS := -Llib -lft -lmlx_Linux -lXext -lX11 -lm
+IFLAGS := -I$(HEADER_DIR)
+LFLAGS := -L$(LIBRARY_DIR) -lft -lmlx_Linux -lXext -lX11 -lm
 DFLAGS := -fdiagnostics-color=always -g3 -fsanitize=address
 
-ifndef DEBUG
-ALL_FLAGS := $(CFLAGS) $(LFLAGS)
-else
-ALL_FLAGS := $(CFLAGS) $(LFLAGS) $(DFLAGS)
+ifdef DEBUG
+CFLAGS += $(DFLAGS)
 endif
+ALL_FLAGS := $(CFLAGS) $(LFLAGS)
+
+SOURCES := $(addprefix $(SOURCES_PREFIX),$(SOURCES))
+OBJS := $(SOURCES:.c=.o)
+LIB_SOURCES := $(addprefix $(LIB_SOURCES_PREFIX),$(LIB_SOURCES))
+LIB_OBJS := $(LIB_SOURCES:.c=.o)
 
 .PHONY: all
-all: $(NAME)
-	$(CC) $(ALL_FLAGS) $(SOURCE) -o $(NAME)
-	
-%.o: %.c $(HEADER)
-	$(CC) $(ALL_FLAGS) -c $< -o $@
+all: init $(NAME)
 
-.PHONY: all
+$(NAME): $(LIB_NAME) $(OBJS) $(HEADER)
+	$(CC) $(ALL_FLAGS) $(OBJS) -o $@
+
+$(LIB_NAME): $(LIB_OBJS)
+	ar rcs $(LIBRARY_DIR)/$@ $(LIB_OBJS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+.PHONY: init
+init:
+	mkdir -p $(LIBRARY_DIR)
+	sh install_minilibx.sh
+
+.PHONY: clean
 clean: 
 	rm -f *.o
 
@@ -97,3 +114,7 @@ fclean:
 
 .PHONY: re
 re: fclean all
+
+echo:
+	@echo "====================="
+	@echo $(HEADER)
