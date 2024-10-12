@@ -88,6 +88,8 @@ LIB_OBJS := $(LIB_SOURCES:.c=.o)
 MLX_HEADER := $(addprefix $(HEADER_DIR)/,mlx.h)
 MLX_LIB := $(addprefix $(LIBRARY_DIR)/,libmlx.a)
 
+LIB_NAME := $(addprefix $(LIBRARY_DIR)/,$(LIB_NAME))
+
 .PHONY: all
 all: init $(NAME)
 
@@ -95,7 +97,7 @@ $(NAME): $(LIB_NAME) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $@
 
 $(LIB_NAME): $(LIB_OBJS)
-	ar rcs $(LIBRARY_DIR)/$@ $(LIB_OBJS)
+	ar rcs $@ $(LIB_OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
