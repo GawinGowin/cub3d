@@ -27,6 +27,12 @@ int	main(int argc, char **argv)
 	cubfile = set_array_from_file(argv[1]);
 	if (!cubfile)
 		return (destroy_mlx_ptr(&data));
+	// 確認用
+	// int i = -1;
+	// while (cubfile[++i])
+	// 	printf("%s", cubfile[i]);
+	// if (!cubfile[i])
+	// 	printf("\n");
 	// cubfile->param変換
 	free_cubfile(cubfile);
 	set_hooks_and_loop(&data);

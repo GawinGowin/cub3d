@@ -25,7 +25,7 @@ char	**set_array_from_file(char *filename)
 	file = load_file(filename);
 	if (!file)
 		return (NULL);
-	array = ft_split(file, '\n');
+	array = split_cub(file);
 	free(file);
 	if (!array)
 	{

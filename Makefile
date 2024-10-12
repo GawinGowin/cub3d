@@ -15,6 +15,8 @@ SOURCES += main.c
 SOURCES += set_array_from_file.c
 SOURCES += valid_argument.c
 SOURCES += init_data.c
+# SOURCES += get_conf_and_map.c
+SOURCES += split_cub.c
 
 # Library
 ## Original Libft
