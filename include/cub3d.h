@@ -83,7 +83,7 @@ int		destroy_mlx_ptr(t_data *data);
 int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
 
-// int		get_conf_and_map(t_data *data, char **array);
+int		get_conf_and_map(t_data *data, char **array);
 char	**split_cub(char *file);
 
 #endif

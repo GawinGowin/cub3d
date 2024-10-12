@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	// if (!cubfile[i])
 	// 	printf("\n");
 	// cubfile->param変換
+	get_conf_and_map(&data, cubfile);
 	free_cubfile(cubfile);
 	set_hooks_and_loop(&data);
 	return (0);
