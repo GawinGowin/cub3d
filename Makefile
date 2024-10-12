@@ -14,6 +14,8 @@ SOURCES += detect_event.c
 SOURCES += main.c
 SOURCES += set_array_from_file.c
 SOURCES += valid_argument.c
+SOURCES += map_validation/map_validation_util.c
+SOURCES += map_validation/map_validation.c
 
 # Library
 ## Original Libft

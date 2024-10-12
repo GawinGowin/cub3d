@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/12 07:15:13 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/12 19:22:17 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@
 # define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
 # define ERR_MALLOC "Failed to allocate memory"
 
+# define WALL '1'
+# define SPACE ' '
+# define PLAYER_NORTH 'N'
+# define PLAYER_SOUTH 'S'
+# define PLAYER_WEST 'W'
+# define PLAYER_EAST 'E'
+
 typedef struct s_cub3d
 {
 	int		pos_x;
@@ -58,5 +65,12 @@ char	**set_array_from_file(char *filename);
 int		destroy_mlx_ptr(t_cub3d *data);
 int		detect_close(t_cub3d *data);
 int		detect_keys(int key, t_cub3d *data);
+
+// map_validation
+int		has_invalid_char(char **map);
+char	**dup_map(char **map);
+void 	free_map(char **map, size_t height);
+size_t	get_height(char **map);
+size_t	get_width(char **map);
 
 #endif
