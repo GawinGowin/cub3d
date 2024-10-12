@@ -25,14 +25,13 @@ char	**split_cub(char *file)
 	int		len;
 
 	size = count_nl(file) + 1;
-	array = (char **)malloc(size * sizeof(char *));
+	array = (char **)malloc((size + 1) * sizeof(char *));
 	if (!array)
 		return (NULL);
 	i = -1;
 	start = 0;
 	while (++i < size)
 	{
-		len = 0;
 		len = get_sprit_len(file + start);
 		array[i] = ft_substr(file, start, len);
 		if (!array[i])
@@ -42,6 +41,7 @@ char	**split_cub(char *file)
 		}
 		start += len;
 	}
+	array[i] = NULL;
 	return (array);
 }
 
