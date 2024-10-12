@@ -37,11 +37,28 @@
 # define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
 # define ERR_MALLOC "Failed to allocate memory"
 
-typedef struct s_cub3d
+typedef struct s_param_cub
 {
-	int		pos_x;
-	int		pos_y;
-	int		angle;
+	void			*img_no;
+	void			*img_so;
+	void			*img_we;
+	void			*img_ea;
+	unsigned int	floor;
+	unsigned int	ceiling;
+	int				map_width;
+	int				map_height;
+	char			**map;
+}					t_param_cub;
+
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+	int	angle;
+}		t_player;
+
+typedef struct s_mlx_val
+{
 	int		bpp;
 	int		line_byte;
 	int		endian;
@@ -49,14 +66,21 @@ typedef struct s_cub3d
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*addr;
-	char	**cubfile_array;
-}			t_cub3d;
+}			t_mlx_val;
 
+typedef struct s_data
+{
+	t_player	player;
+	t_mlx_val	mlx_val;
+	t_param_cub	params;
+}				t_data;
+
+int		init_data(t_data *data, char *name);
 int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
 char	**set_array_from_file(char *filename);
-int		destroy_mlx_ptr(t_cub3d *data);
-int		detect_close(t_cub3d *data);
-int		detect_keys(int key, t_cub3d *data);
+int		destroy_mlx_ptr(t_data *data);
+int		detect_close(t_data *data);
+int		detect_keys(int key, t_data *data);
 
 #endif

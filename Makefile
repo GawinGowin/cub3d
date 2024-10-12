@@ -14,6 +14,7 @@ SOURCES += detect_event.c
 SOURCES += main.c
 SOURCES += set_array_from_file.c
 SOURCES += valid_argument.c
+SOURCES += init_data.c
 
 # Library
 ## Original Libft
