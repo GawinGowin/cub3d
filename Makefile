@@ -19,6 +19,7 @@ SOURCES += parse_cub/set_array_from_file.c
 SOURCES += parse_cub/get_conf_and_map.c
 SOURCES += parse_cub/split_cub.c
 SOURCES += parse_cub/get_color.c
+SOURCES += parse_cub/get_conf.c
 
 # Library
 ## Original Libft

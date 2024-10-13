@@ -79,6 +79,8 @@ int		get_conf_and_map(t_data *data, char **array);
 char	**split_cub(char *file);
 int		get_color(char *str);
 int		splited_length(char **array);
+int		get_conf(t_data *data, char **array);
+int		strlen_ln(char *str);
 
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);

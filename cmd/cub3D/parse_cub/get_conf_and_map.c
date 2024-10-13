@@ -12,89 +12,21 @@
 
 #include "cub3d.h"
 
-// static void	get_size_map(t_data *data, char **array, int i);
-// static int	get_map(t_data *data, char **array, int i);
-static int	detect_identifier(t_data *data, char **array);
-static int	check_conf_complete(t_data *data);
+static int	get_map(t_data *data, char **array, int i);
+static void	get_size_of_map(t_data *data, char **array, int i);
+static int	copy_map(t_data *data, char **array, int i);
 
 int	get_conf_and_map(t_data *data, char **array)
 {
 	int		i;
-	char	**tmp;
 
-	i = -1;
-	// confを取得する用ループ
-	while (array[++i] && array[i][0])
-	{
-		if (array[i][0] == '\n')
-			continue ;
-		if (ft_strchr("NSWEFC", array[i][0]) == NULL)
-			break ;
-		tmp = ft_split(array[i], ' ');
-		if (detect_identifier(data, tmp))
-		{
-			free_2d_array_of_char(tmp);
-			break ;
-		}
-		free_2d_array_of_char(tmp);
-		if (check_conf_complete(data) == 0)
-			break ;
-	}
-	if (check_conf_complete(data) == 1)
-	{
-		printf("KO\n");
+	i = 0;
+	i = get_conf(data, array);
+	if (i < 0)
 		return (1);
-	}
-	return (0);
-}
-
-static int	check_conf_complete(t_data *data)
-{
-	if (!data->params.img_no)
-		return (1);
-	if (!data->params.img_so)
-		return (1);
-	if (!data->params.img_ea)
-		return (1);
-	if (!data->params.img_we)
-		return (1);
-	if (data->params.ceiling < 0)
-		return (1);
-	if (data->params.floor < 0)
-		return (1);
-	return (0);
-}
-
-static int	detect_identifier(t_data *data, char **array)
-{
-	int	w;
-	int	h;
-	char	*str;
-
-	w = XPM_SIZE;
-	h = XPM_SIZE;
-	if (splited_length(array) != 2)
-		return (1);
-	str = ft_strtrim(array[1], "\n");
-	printf("%s %s\n", array[0], str);
-	if (ft_strcmp(array[0], "F") == 0)
-		data->params.floor = get_color(array[1]);
-	else if (ft_strcmp(array[0], "C") == 0)
-		data->params.ceiling = get_color(array[1]);
-	else if (ft_strcmp(array[0], "NO") == 0)
-		data->params.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
-	else if (ft_strcmp(array[0], "SO") == 0)
-		data->params.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
-	else if (ft_strcmp(array[0], "WE") == 0)
-		data->params.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
-	else if (ft_strcmp(array[0], "EA") == 0)
-		data->params.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
-	else
-	{
-		free(str);
-		return (1);
-	}
-	free(str);
+	printf("%d\n", i);
+	// array[i + 1]からmap取得
+	get_map(data, array, i + 1);
 	return (0);
 }
 
@@ -108,35 +40,46 @@ int	splited_length(char **array)
 	return (i);
 }
 
+static int	get_map(t_data *data, char **array, int i)
+{
+	if (!array[i])
+		return (1);
+	while (array[i][0] == '\n')
+		i++;
+	get_size_of_map(data, array, i);
+	copy_map(data, array, i);
+	return (0);
+}
 
-// 1. mapのheight、widthを求める
-// 2. mapをmallocする
-// 3. mapに値をコピーする
-// static int	get_map(t_data *data, char **array, int i)
-// {
-// 	get_size_map(data, array, i);
-// 	printf("w %d, h %d\n", data->params.map_width, data->params.map_height);
-// 	return (data->params.map_height);
-// }
+static int	copy_map(t_data *data, char **array, int i)
+{
+	int	j;
 
-// static void	get_size_map(t_data *data, char **array, int i)
-// {
-// 	int	w;
-// 	int	h;
-// 	int	tmp;
+	data->params.map = (char **)malloc((data->params.map_height + 1) * sizeof(char *));
+	j = -1;
+	while (++j < data->params.map_height)
+	{
+		data->params.map[j] = ft_strtrim(array[j + i], "\n");
+	}
+	return (0);
+}
 
-// 	w = 0;
-// 	h = 0;
-// 	while ((i >= 0 && array[i][0] != '\0'))
-// 	{
-// 		printf("%c", array[i][0]);
-// 		tmp = 0;
-// 		tmp = ft_strlen(array[i]);
-// 		if (tmp > w)
-// 			w = tmp;
-// 		i--;
-// 		h++;
-// 	}
-// 	data->params.map_height = h;
-// 	data->params.map_width = w;
-// }
+static void	get_size_of_map(t_data *data, char **array, int i)
+{
+	int	w;
+	int	h;
+	int	tmp_w;
+
+	w = 0;
+	h = 0;
+	while (array[h + i] && array[h + i][0] != '\n' && array[h + i][0])
+	{
+		tmp_w = 0;
+		tmp_w = strlen_ln(array[h + i]);
+		if (tmp_w > w)
+			w = tmp_w;
+		h++;
+	}
+	data->params.map_height = h;
+	data->params.map_width = w;
+}

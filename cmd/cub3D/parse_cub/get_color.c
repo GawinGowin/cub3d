@@ -14,7 +14,6 @@
 
 static int	validate_rgb(char **array);
 static int	is_str_digit(char *str);
-static int	strlen_ln(char *str);
 
 int	get_color(char *str)
 {
@@ -68,7 +67,7 @@ static int	is_str_digit(char *str)
 	return (1);
 }
 
-static int	strlen_ln(char *str)
+int	strlen_ln(char *str)
 {
 	int	i;
 
