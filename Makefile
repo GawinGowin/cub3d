@@ -20,6 +20,8 @@ SOURCES += parse_cub/get_conf_and_map.c
 SOURCES += parse_cub/split_cub.c
 SOURCES += parse_cub/get_color.c
 SOURCES += parse_cub/get_conf.c
+SOURCES += map_validation/map_validation_util.c
+SOURCES += map_validation/map_validation.c
 
 # Library
 ## Original Libft
@@ -94,6 +96,8 @@ LIB_OBJS := $(LIB_SOURCES:.c=.o)
 MLX_HEADER := $(addprefix $(HEADER_DIR)/,mlx.h)
 MLX_LIB := $(addprefix $(LIBRARY_DIR)/,libmlx.a)
 
+LIB_NAME := $(addprefix $(LIBRARY_DIR)/,$(LIB_NAME))
+
 .PHONY: all
 all: init $(NAME)
 
@@ -101,7 +105,7 @@ $(NAME): $(LIB_NAME) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $@
 
 $(LIB_NAME): $(LIB_OBJS)
-	ar rcs $(LIBRARY_DIR)/$@ $(LIB_OBJS)
+	ar rcs $@ $(LIB_OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
@@ -109,12 +113,8 @@ $(LIB_NAME): $(LIB_OBJS)
 .PHONY: init
 init: $(MLX_HEADER) $(MLX_LIB)
 
-$(MLX_HEADER): 
-	mkdir -p $(HEADER_DIR)
-	sh install_minilibx.sh
-
-$(MLX_LIB): 
-	mkdir -p $(LIBRARY_DIR)
+$(MLX_HEADER) $(MLX_LIB): 
+	mkdir -p $(HEADER_DIR) $(LIBRARY_DIR)
 	sh install_minilibx.sh
 
 .PHONY: clean
