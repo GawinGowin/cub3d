@@ -39,16 +39,16 @@
 
 typedef struct s_param_cub
 {
-	void			*img_no;
-	void			*img_so;
-	void			*img_we;
-	void			*img_ea;
-	unsigned int	floor;
-	unsigned int	ceiling;
-	int				map_width;
-	int				map_height;
-	char			**map;
-}					t_param_cub;
+	void	*img_no;
+	void	*img_so;
+	void	*img_we;
+	void	*img_ea;
+	int		floor;
+	int		ceiling;
+	int		map_width;
+	int		map_height;
+	char	**map;
+}			t_param_cub;
 
 typedef struct s_player
 {

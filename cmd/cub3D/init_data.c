@@ -42,8 +42,8 @@ static void	init_values(t_data *data)
 	data->params.img_so = NULL;
 	data->params.img_we = NULL;
 	data->params.img_ea = NULL;
-	data->params.ceiling = 0;
-	data->params.floor = 0;
+	data->params.ceiling = -1;
+	data->params.floor = -1;
 }
 
 static int	init_mlx_ptr(t_data *data, char *name)
