@@ -24,6 +24,12 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parse_cub(&data, argv[1]))
 		return (destroy_mlx_ptr(&data));
+	// 確認用
+	printf("map_w:%d map_h:%d\n", data.params.map_width, data.params.map_height);
+	printf("floor: %x ceiling:%x\n", data.params.floor, data.params.ceiling);
+	int i = -1;
+	while (data.params.map[++i])
+		printf("%d %s\n", i, data.params.map[i]);
 	set_hooks_and_loop(&data);
 	return (0);
 }

@@ -47,6 +47,8 @@ int	splited_length(char **array)
 
 static int	get_map(t_data *data, char **array, int i)
 {
+	if (!array[i])
+		return (printerror(ERR_FORMAT));
 	while (array[i][0] == '\n')
 		i++;
 	get_size_of_map(data, array, i);
@@ -76,6 +78,7 @@ static int	copy_map(t_data *data, char **array, int i)
 			return (1);
 		}
 	}
+	data->params.map[j] = NULL;
 	return (0);
 }
 

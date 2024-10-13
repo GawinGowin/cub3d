@@ -20,8 +20,8 @@ SOURCES += parse_cub/get_conf_and_map.c
 SOURCES += parse_cub/split_cub.c
 SOURCES += parse_cub/get_color.c
 SOURCES += parse_cub/get_conf.c
-# SOURCES += map_validation/map_validation_util.c
-# SOURCES += map_validation/map_validation.c
+SOURCES += map_validation/map_validation_util.c
+SOURCES += map_validation/map_validation.c
 
 # Library
 ## Original Libft
@@ -79,7 +79,7 @@ LIBRARY_DIR = lib
 HEADER_DIR = include
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror
 IFLAGS := -I$(HEADER_DIR)
 LFLAGS := -lmlx_Linux -lXext -lX11 -lm -L$(LIBRARY_DIR) -lft
 DFLAGS := -fdiagnostics-color=always -g3 -fsanitize=address
