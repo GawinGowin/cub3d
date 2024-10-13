@@ -62,6 +62,9 @@ static int	check_conf_complete(t_data *data)
 	return (0);
 }
 
+// 識別子:0
+// 識別子以外:1
+// malloc失敗:-1
 static int	detect_identifier(t_data *data, char **array)
 {
 	char	*id;
@@ -74,40 +77,36 @@ static int	detect_identifier(t_data *data, char **array)
 		return (1);
 	path = ft_strtrim(array[1], "\n");
 	if (!path)
-	{
-		free(id);
-		return (1);
-	}
+		return (free_double_str(id, NULL, 1));
 	if (ft_strcmp(id, "F") == 0)
 		data->params.floor = get_color(path);
 	else if (ft_strcmp(id, "C") == 0)
 		data->params.ceiling = get_color(path);
-	else if (ft_strcmp(id, "NO") == 0 || (ft_strcmp(id, "SO") == 0) || (ft_strcmp(id, "WE") == 0) || (ft_strcmp(id, "EA") == 0))
+	else if (ft_strcmp(id, "NO") == 0 || (ft_strcmp(id, "SO") == 0)
+		|| (ft_strcmp(id, "WE") == 0) || (ft_strcmp(id, "EA") == 0))
 		get_img(data, path, id);
 	else
-	{
-		free(id);
-		free(path);
-		return (1);
-	}
-	free(id);
-	free(path);
-	return (0);
+		return (free_double_str(id, path, 1));
+	return (free_double_str(id, path, 0));
 }
 
 static void	get_img(t_data *data, char *path, char *id)
 {
-	int		w;
-	int		h;
+	int	w;
+	int	h;
 
 	w = XPM_SIZE;
 	h = XPM_SIZE;
 	if (ft_strcmp(id, "NO") == 0)
-		data->params.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		data->params.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path,
+				&w, &h);
 	else if (ft_strcmp(id, "SO") == 0)
-		data->params.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		data->params.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path,
+				&w, &h);
 	else if (ft_strcmp(id, "WE") == 0)
-		data->params.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		data->params.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path,
+				&w, &h);
 	else if (ft_strcmp(id, "EA") == 0)
-		data->params.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		data->params.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path,
+				&w, &h);
 }

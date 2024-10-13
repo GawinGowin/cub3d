@@ -22,6 +22,7 @@ int	parse_cub(t_data *data, char *filename)
 	if (get_conf_and_map(data, cubfile))
 	{
 		free_2d_array_of_char(cubfile);
+		free_2d_array_of_char(data->params.map);
 		return (1);
 	}
 	free_2d_array_of_char(cubfile);
@@ -36,4 +37,13 @@ void	free_2d_array_of_char(char **array)
 	while (array[++i])
 		free(array[i]);
 	free(array);
+}
+
+int	free_double_str(char *s1, char *s2, int ret)
+{
+	if (s1)
+		free(s1);
+	if (s2)
+		free(s2);
+	return (ret);
 }

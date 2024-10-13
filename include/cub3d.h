@@ -81,6 +81,7 @@ int		get_color(char *str);
 int		splited_length(char **array);
 int		get_conf(t_data *data, char **array);
 int		strlen_ln(char *str);
+int		free_double_str(char *s1, char *s2, int ret);
 
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);
