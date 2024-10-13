@@ -54,6 +54,7 @@ static void	print_pos(int x, int y, int angle)
 
 int	detect_close(t_data *data)
 {
+	free_2d_array_of_char(data->params.map);
 	destroy_mlx_ptr(data);
 	exit (0);
 	return (0);
