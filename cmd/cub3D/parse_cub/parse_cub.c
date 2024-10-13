@@ -19,15 +19,11 @@ int	parse_cub(t_data *data, char *filename)
 	cubfile = set_array_from_file(filename);
 	if (!cubfile)
 		return (1);
-	if (cubfile[0][0] == '\0')
-	{
-		free_2d_array_of_char(cubfile);
-		return (printerror(ERR_FORMAT));
-	}
 	if (get_conf_and_map(data, cubfile))
 	{
 		free_2d_array_of_char(cubfile);
-		free_2d_array_of_char(data->params.map);
+		if (data->params.map)
+			free_2d_array_of_char(data->params.map);
 		return (1);
 	}
 	free_2d_array_of_char(cubfile);
@@ -40,7 +36,9 @@ void	free_2d_array_of_char(char **array)
 
 	i = -1;
 	while (array[++i])
+	{
 		free(array[i]);
+	}
 	free(array);
 }
 

@@ -23,7 +23,7 @@ int	get_conf(t_data *data, char **array)
 	int		code;
 
 	i = -1;
-	while (array[++i] && array[i][0])
+	while (array[++i])
 	{
 		if (array[i][0] == '\n')
 			continue ;

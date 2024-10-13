@@ -18,8 +18,14 @@ static int	copy_map(t_data *data, char **array, int i);
 
 int	get_conf_and_map(t_data *data, char **array)
 {
-	int		i;
+	int	i;
+	int	j;
 
+	j = 0;
+	while (array[j] && array[j][0] == '\n')
+		j++;
+	if (array[j][0] == '\0')
+		return (printerror(ERR_FORMAT));
 	i = 0;
 	i = get_conf(data, array);
 	if (i < 0)
