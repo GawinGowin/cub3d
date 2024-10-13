@@ -21,15 +21,11 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdint.h>
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 600
-# endif
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH 600
-# endif
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 600
-# endif
+
+# define BUFFER_SIZE 600
+# define WIN_WIDTH 600
+# define WIN_HEIGHT 600
+# define XPM_SIZE 100
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"
 # define ERR_WRONG_EXT "File extension is not '.cub'"
@@ -81,6 +77,8 @@ void	free_2d_array_of_char(char **array);
 char	**set_array_from_file(char *filename);
 int		get_conf_and_map(t_data *data, char **array);
 char	**split_cub(char *file);
+int		get_color(char *str);
+int		splited_length(char **array);
 
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);

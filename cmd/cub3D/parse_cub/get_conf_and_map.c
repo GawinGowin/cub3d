@@ -12,12 +12,10 @@
 
 #include "cub3d.h"
 
-static int	splited_length(char **array);
 // static void	get_size_map(t_data *data, char **array, int i);
 // static int	get_map(t_data *data, char **array, int i);
 static int	detect_identifier(t_data *data, char **array);
 static int	check_conf_complete(t_data *data);
-static int	get_color(char *str);
 
 int	get_conf_and_map(t_data *data, char **array)
 {
@@ -43,7 +41,10 @@ int	get_conf_and_map(t_data *data, char **array)
 			break ;
 	}
 	if (check_conf_complete(data) == 1)
+	{
+		printf("KO\n");
 		return (1);
+	}
 	return (0);
 }
 
@@ -64,45 +65,40 @@ static int	check_conf_complete(t_data *data)
 	return (0);
 }
 
-static int	get_color(char *str)
-{
-	char	**tmp;
-	int		rgb[3];
-	int		ret;
-
-	tmp = ft_split(str, ',');
-	if (splited_length(tmp) != 3)
-		return (-1);
-	rgb[0] = ft_atoi(tmp[0]);
-	rgb[1] = ft_atoi(tmp[1]);
-	rgb[2] = ft_atoi(tmp[2]);
-	ret = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
-	return (ret);
-}
-
 static int	detect_identifier(t_data *data, char **array)
 {
+	int	w;
+	int	h;
+	char	*str;
+
+	w = XPM_SIZE;
+	h = XPM_SIZE;
 	if (splited_length(array) != 2)
 		return (1);
-	printf("%s\n", array[0]);
+	str = ft_strtrim(array[1], "\n");
+	printf("%s %s\n", array[0], str);
 	if (ft_strcmp(array[0], "F") == 0)
 		data->params.floor = get_color(array[1]);
 	else if (ft_strcmp(array[0], "C") == 0)
 		data->params.ceiling = get_color(array[1]);
-	// else if (ft_strcmp(array[0], "NO") == 0)
-	// 	a;
-	// else if (ft_strcmp(array[0], "SO") == 0)
-	// 	a;
-	// else if (ft_strcmp(array[0], "WE") == 0)
-	// 	a;
-	// else if (ft_strcmp(array[0], "EA") == 0)
-	// 	a;
-	// else
-	// 	return (1);
+	else if (ft_strcmp(array[0], "NO") == 0)
+		data->params.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
+	else if (ft_strcmp(array[0], "SO") == 0)
+		data->params.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
+	else if (ft_strcmp(array[0], "WE") == 0)
+		data->params.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
+	else if (ft_strcmp(array[0], "EA") == 0)
+		data->params.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, array[1], &w, &h);
+	else
+	{
+		free(str);
+		return (1);
+	}
+	free(str);
 	return (0);
 }
 
-static int	splited_length(char **array)
+int	splited_length(char **array)
 {
 	int	i;
 

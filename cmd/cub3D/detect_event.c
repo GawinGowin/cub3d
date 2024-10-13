@@ -62,6 +62,14 @@ int	detect_close(t_data *data)
 // mlx_get_data_addrはimg_ptr->dataを返すため、mlx_destroy_imageで解放される。
 int	destroy_mlx_ptr(t_data *data)
 {
+	if (data->mlx_val.mlx_ptr && data->params.img_no)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_no);
+	if (data->mlx_val.mlx_ptr && data->params.img_so)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_so);
+	if (data->mlx_val.mlx_ptr && data->params.img_we)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_we);
+	if (data->mlx_val.mlx_ptr && data->params.img_ea)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_ea);
 	if (data->mlx_val.mlx_ptr && data->mlx_val.img_ptr)
 		mlx_destroy_image(data->mlx_val.mlx_ptr, data->mlx_val.img_ptr);
 	if (data->mlx_val.mlx_ptr && data->mlx_val.win_ptr)
