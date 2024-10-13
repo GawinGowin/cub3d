@@ -14,6 +14,8 @@ SOURCES += detect_event.c
 SOURCES += main.c
 SOURCES += set_array_from_file.c
 SOURCES += valid_argument.c
+SOURCES += map_validation/map_validation_util.c
+SOURCES += map_validation/map_validation.c
 
 # Library
 ## Original Libft
@@ -105,12 +107,8 @@ $(LIB_NAME): $(LIB_OBJS)
 .PHONY: init
 init: $(MLX_HEADER) $(MLX_LIB)
 
-$(MLX_HEADER): 
-	mkdir -p $(HEADER_DIR)
-	sh install_minilibx.sh
-
-$(MLX_LIB): 
-	mkdir -p $(LIBRARY_DIR)
+$(MLX_HEADER) $(MLX_LIB): 
+	mkdir -p $(HEADER_DIR) $(LIBRARY_DIR)
 	sh install_minilibx.sh
 
 .PHONY: clean
