@@ -41,13 +41,11 @@ int	splited_length(char **array)
 
 static int	get_map(t_data *data, char **array, int i)
 {
-	if (!array[i])
-		return (1);
 	while (array[i][0] == '\n')
 		i++;
 	get_size_of_map(data, array, i);
 	if (copy_map(data, array, i))
-		return (1);
+		return (printerror(ERR_MALLOC));
 	return (0);
 }
 

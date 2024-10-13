@@ -32,6 +32,7 @@
 # define ERR_NOTHING_EXT "File has no extension"
 # define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
 # define ERR_MALLOC "Failed to allocate memory"
+# define ERR_FORMAT "Invalid .cub file format"
 
 typedef struct s_param_cub
 {

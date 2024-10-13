@@ -15,11 +15,12 @@
 static int	detect_identifier(t_data *data, char **array);
 static int	check_conf_complete(t_data *data);
 static void	get_img(t_data *data, char *path, char *id);
+static int	get_conf_by_str(t_data *data, char *str);
 
 int	get_conf(t_data *data, char **array)
 {
 	int		i;
-	char	**tmp;
+	int		code;
 
 	i = -1;
 	while (array[++i] && array[i][0])
@@ -28,21 +29,38 @@ int	get_conf(t_data *data, char **array)
 			continue ;
 		if (ft_strchr("NSWEFC", array[i][0]) == NULL)
 			break ;
-		tmp = ft_split(array[i], ' ');
-		if (!tmp)
+		code = get_conf_by_str(data, array[i]);
+		if (code < 0)
+			return (-1);
+		else if (code == 1)
 			break ;
-		if (detect_identifier(data, tmp))
-		{
-			free_2d_array_of_char(tmp);
-			break ;
-		}
-		free_2d_array_of_char(tmp);
 		if (check_conf_complete(data) == 0)
 			break ;
 	}
 	if (check_conf_complete(data) == 1)
+	{
+		printerror(ERR_FORMAT);
 		return (-1);
+	}
 	return (i);
+}
+
+static int	get_conf_by_str(t_data *data, char *str)
+{
+	char	**tmp;
+	int		code;
+
+	tmp = ft_split(str, ' ');
+	if (!tmp)
+		return (-1);
+	code = 0;
+	code = detect_identifier(data, tmp);
+	free_2d_array_of_char(tmp);
+	if (code == -2)
+		printerror(ERR_MALLOC);
+	else if (code == -1)
+		printerror(ERR_FORMAT);
+	return (code);
 }
 
 static int	check_conf_complete(t_data *data)
@@ -64,20 +82,21 @@ static int	check_conf_complete(t_data *data)
 
 // 識別子:0
 // 識別子以外:1
-// malloc失敗:-1
+// エラー:-1
+// mallocエラー:-2
 static int	detect_identifier(t_data *data, char **array)
 {
 	char	*id;
 	char	*path;
 
 	if (splited_length(array) != 2)
-		return (1);
+		return (-1);
 	id = ft_strtrim(array[0], "\n");
 	if (!id)
-		return (1);
+		return (-2);
 	path = ft_strtrim(array[1], "\n");
 	if (!path)
-		return (free_double_str(id, NULL, 1));
+		return (free_double_str(id, NULL, -2));
 	if (ft_strcmp(id, "F") == 0)
 		data->params.floor = get_color(path);
 	else if (ft_strcmp(id, "C") == 0)
