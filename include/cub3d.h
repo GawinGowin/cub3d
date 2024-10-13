@@ -75,15 +75,18 @@ typedef struct s_data
 	t_param_cub	params;
 }				t_data;
 
+// parse_cub
+int		parse_cub(t_data *data, char *filename);
+void	free_2d_array_of_char(char **array);
+char	**set_array_from_file(char *filename);
+int		get_conf_and_map(t_data *data, char **array);
+char	**split_cub(char *file);
+
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
-char	**set_array_from_file(char *filename);
 int		destroy_mlx_ptr(t_data *data);
 int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
-
-int		get_conf_and_map(t_data *data, char **array);
-char	**split_cub(char *file);
 
 #endif

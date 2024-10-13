@@ -12,42 +12,20 @@
 
 #include "cub3d.h"
 
-static void	free_cubfile(char **cubfile);
 static void	set_hooks_and_loop(t_data *data);
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	char	**cubfile;
 
 	if (valid_argument(argc, argv))
 		return (1);
 	if (init_data(&data, argv[1]))
 		return (1);
-	cubfile = set_array_from_file(argv[1]);
-	if (!cubfile)
+	if (parse_cub(&data, argv[1]))
 		return (destroy_mlx_ptr(&data));
-	// 確認用
-	// int i = -1;
-	// while (cubfile[++i])
-	// 	printf("%s", cubfile[i]);
-	// if (!cubfile[i])
-	// 	printf("\n");
-	// cubfile->param変換
-	get_conf_and_map(&data, cubfile);
-	free_cubfile(cubfile);
 	set_hooks_and_loop(&data);
 	return (0);
-}
-
-static void	free_cubfile(char **cubfile)
-{
-	int	i;
-
-	i = -1;
-	while (cubfile[++i])
-		free(cubfile[i]);
-	free(cubfile);
 }
 
 // int	test_print(t_data *data)

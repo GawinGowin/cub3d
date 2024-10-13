@@ -19,16 +19,6 @@ static int	detect_identifier(t_data *data, char **array);
 static int	check_conf_complete(t_data *data);
 static int	get_color(char *str);
 
-void	free_array(char **array)
-{
-	int	i;
-
-	i = -1;
-	while (array[++i])
-		free(array[i]);
-	free(array);
-}
-
 int	get_conf_and_map(t_data *data, char **array)
 {
 	int		i;
@@ -45,10 +35,10 @@ int	get_conf_and_map(t_data *data, char **array)
 		tmp = ft_split(array[i], ' ');
 		if (detect_identifier(data, tmp))
 		{
-			free_array(tmp);
+			free_2d_array_of_char(tmp);
 			break ;
 		}
-		free_array(tmp);
+		free_2d_array_of_char(tmp);
 		if (check_conf_complete(data) == 0)
 			break ;
 	}
@@ -83,7 +73,10 @@ static int	get_color(char *str)
 	tmp = ft_split(str, ',');
 	if (splited_length(tmp) != 3)
 		return (-1);
-	// tmp[0-2]をatoiして、得られたRGBを16進数変換してintに入れて返す
+	rgb[0] = ft_atoi(tmp[0]);
+	rgb[1] = ft_atoi(tmp[1]);
+	rgb[2] = ft_atoi(tmp[2]);
+	ret = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 	return (ret);
 }
 
