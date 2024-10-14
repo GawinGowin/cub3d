@@ -25,8 +25,8 @@ int	init_data(t_data *data, char *name)
 
 static void	init_values(t_data *data)
 {
-	data->player.pos_x = 0;
-	data->player.pos_y = 0;
+	data->player.pos_x = 0.0;
+	data->player.pos_y = 0.0;
 	data->player.angle = 0;
 	data->mlx_val.bpp = 0;
 	data->mlx_val.endian = 0;

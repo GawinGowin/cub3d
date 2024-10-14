@@ -47,11 +47,13 @@ typedef struct s_param_cub
 	char	**map;
 }			t_param_cub;
 
+// angle
+// 0 EA, 90 NO, 180 WE, 270 SO
 typedef struct s_player
 {
-	int	pos_x;
-	int	pos_y;
-	int	angle;
+	double	pos_x;
+	double	pos_y;
+	int		angle;
 }		t_player;
 
 typedef struct s_mlx_val
