@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	print_pos(int x, int y, int angle);
+static void	update_angle(t_data *data, int key);
 
 // ESC 65307
 // <-  65361
@@ -35,21 +35,30 @@ int	detect_keys(int key, t_data *data)
 		data->player.pos_x--;
 	else if (key == 100)
 		data->player.pos_x++;
-	else if (key == 65363)
-		data->player.angle++;
-	else if (key == 65361)
-		data->player.angle--;
+	else if (key == 65363 || key == 65361)
+		update_angle(data, key);
 	else
 		return (0);
-	print_pos(data->player.pos_x, data->player.pos_y, data->player.angle);
 	// calculate_and_plot(data);
 	// mlx_put_image_to_window(data->mlx_val.mlx_ptr, data->mlx_val.win_ptr, data->mlx_val.img_ptr, 0, 0);
 	return (0);
 }
 
-static void	print_pos(int x, int y, int angle)
+static void	update_angle(t_data *data, int key)
 {
-	printf("x,y,angle =(%d, %d, %d)\n", x, y, angle);
+	int	now;
+
+	now = data->player.angle;
+	if (key == 65361)
+		now += 10;
+	else if (key == 65363)
+		now -= 10;
+	if (now < 0)
+		now = 360 + now;
+	else if (now >= 360)
+		now = now - 360;
+	data->player.angle = now;
+	printf("angle: %d\n", data->player.angle);
 }
 
 int	detect_close(t_data *data)
