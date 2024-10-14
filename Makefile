@@ -131,6 +131,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: test
-test:
+test: all 
+	ar rcs ./lib/libgtest.a $(LIB_OBJS) $(OBJS)
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR) && cmake .. && make VERBOSE=1
