@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/12 19:22:17 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/14 18:03:20 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,18 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdint.h>
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 600
-# endif
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH 600
-# endif
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 600
-# endif
+
+# define BUFFER_SIZE 600
+# define WIN_WIDTH 600
+# define WIN_HEIGHT 600
+# define XPM_SIZE 100
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"
 # define ERR_WRONG_EXT "File extension is not '.cub'"
 # define ERR_NOTHING_EXT "File has no extension"
 # define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
 # define ERR_MALLOC "Failed to allocate memory"
+# define ERR_FORMAT "Invalid .cub file format"
 
 # define WALL '1'
 # define SPACE ' '
@@ -44,11 +41,28 @@
 # define PLAYER_WEST 'W'
 # define PLAYER_EAST 'E'
 
-typedef struct s_cub3d
+typedef struct s_param_cub
 {
-	int		pos_x;
-	int		pos_y;
-	int		angle;
+	void	*img_no;
+	void	*img_so;
+	void	*img_we;
+	void	*img_ea;
+	int		floor;
+	int		ceiling;
+	int		map_width;
+	int		map_height;
+	char	**map;
+}			t_param_cub;
+
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+	int	angle;
+}		t_player;
+
+typedef struct s_mlx_val
+{
 	int		bpp;
 	int		line_byte;
 	int		endian;
@@ -56,17 +70,37 @@ typedef struct s_cub3d
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*addr;
-	char	**cubfile_array;
-}			t_cub3d;
+}			t_mlx_val;
 
+typedef struct s_data
+{
+	t_player	player;
+	t_mlx_val	mlx_val;
+	t_param_cub	params;
+}				t_data;
+
+// parse_cub
+int		parse_cub(t_data *data, char *filename);
+void	free_2d_array_of_char(char **array);
+char	**set_array_from_file(char *filename);
+int		get_conf_and_map(t_data *data, char **array);
+char	**split_cub(char *file);
+int		get_color(char *str);
+int		splited_length(char **array);
+int		get_conf(t_data *data, char **array);
+int		strlen_ln(char *str);
+int		free_double_str(char *s1, char *s2, int ret);
+
+int		init_data(t_data *data, char *name);
 int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
-char	**set_array_from_file(char *filename);
-int		destroy_mlx_ptr(t_cub3d *data);
-int		detect_close(t_cub3d *data);
-int		detect_keys(int key, t_cub3d *data);
+int		destroy_mlx_ptr(t_data *data);
+int		detect_close(t_data *data);
+int		detect_keys(int key, t_data *data);
 
 // map_validation
+int		is_valid_map(char **map);
+
 int		has_invalid_char(char **map);
 char	**dup_map(char **map);
 void 	free_map(char **map, size_t height);

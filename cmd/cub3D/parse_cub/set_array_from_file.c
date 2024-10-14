@@ -25,7 +25,7 @@ char	**set_array_from_file(char *filename)
 	file = load_file(filename);
 	if (!file)
 		return (NULL);
-	array = ft_split(file, '\n');
+	array = split_cub(file);
 	free(file);
 	if (!array)
 	{
@@ -40,9 +40,16 @@ static char	*load_file(char *filename)
 	char	*text;
 	int		fd;
 
-	fd = open(filename, O_RDONLY);
-	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE < 1)
+	if (BUFFER_SIZE < 1)
 		return (NULL);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	else if (read(fd, 0, 0) < 0)
+	{
+		close(fd);
+		return (NULL);
+	}
 	text = read_loop(fd);
 	close(fd);
 	if (!text)

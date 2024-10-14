@@ -68,4 +68,6 @@ CMakeUserPresets.json
 /cub3D
 !/cub3D/
 
+/build/
+
 mlx.h

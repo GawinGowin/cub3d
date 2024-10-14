@@ -12,8 +12,14 @@ HEADER += libft.h
 # Sources
 SOURCES += detect_event.c
 SOURCES += main.c
-SOURCES += set_array_from_file.c
 SOURCES += valid_argument.c
+SOURCES += init_data.c
+SOURCES += parse_cub/parse_cub.c
+SOURCES += parse_cub/set_array_from_file.c
+SOURCES += parse_cub/get_conf_and_map.c
+SOURCES += parse_cub/split_cub.c
+SOURCES += parse_cub/get_color.c
+SOURCES += parse_cub/get_conf.c
 SOURCES += map_validation/map_validation_util.c
 SOURCES += map_validation/map_validation.c
 
@@ -71,6 +77,7 @@ LIB_SOURCES_PREFIX = pkg/
 
 LIBRARY_DIR = lib
 HEADER_DIR = include
+BUILD_DIR = build
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
@@ -107,18 +114,14 @@ $(LIB_NAME): $(LIB_OBJS)
 .PHONY: init
 init: $(MLX_HEADER) $(MLX_LIB)
 
-$(MLX_HEADER): 
-	mkdir -p $(HEADER_DIR)
-	sh install_minilibx.sh
-
-$(MLX_LIB): 
-	mkdir -p $(LIBRARY_DIR)
+$(MLX_HEADER) $(MLX_LIB): 
+	mkdir -p $(HEADER_DIR) $(LIBRARY_DIR)
 	sh install_minilibx.sh
 
 .PHONY: clean
 clean: 
 	rm -f $(OBJS) $(LIB_OBJS) $(MLX_HEADER)
-	rm -rf $(LIBRARY_DIR)
+	rm -rf $(LIBRARY_DIR) $(BUILD_DIR)
 
 .PHONY: fclean
 fclean: clean
@@ -126,3 +129,8 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: test
+test:
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR) && cmake .. && make VERBOSE=1

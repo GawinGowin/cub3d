@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/12 19:25:58 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/14 15:57:58 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ static int	is_surrounded(
 		while (x < width)
 		{
 			if (map[y][x] == WALL || map[y][x] == SPACE)
+			{
+				x++;
 				continue ;
+			}
 			dfs(map, memory, x, y);
 			x++;
 		}

@@ -1,17 +1,13 @@
-cmake_minimum_required(VERSION 3.10)
-project(cub3D_tests)
+# tests/CMakeLists.txt
 
-# Google Test
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
-include_directories(../include)
+# GoogleTestのインクルードディレクトリを追加
+include_directories(${CMAKE_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-# link directories
-link_directories(../lib)
+# テスト用の実行ファイルを追加
+add_executable(test_valid_argument test_valid_argument.cpp)
 
-# Source files
-file(GLOB TEST_SOURCES "src/**.cpp")
-add_executable(cub3D_tests ${TEST_SOURCES})
+# テスト実行ファイルにgtestライブラリをリンク
+target_link_libraries(test_valid_argument gtest gtest_main)
 
-# Link libraries
-target_link_libraries(cub3D_tests pthread mlx_Linux Xext X11 m ft)
+# テストをCTESTに追加
+add_test(NAME test_valid_argument COMMAND test_valid_argument)
