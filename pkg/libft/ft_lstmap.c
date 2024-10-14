@@ -6,13 +6,13 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 07:31:57 by saraki            #+#    #+#             */
-/*   Updated: 2023/10/30 21:20:34 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/14 19:24:56 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	exit_iter(t_list *new, t_list *initial, void (*del)(void *));
+static int	exit_iter(t_list *new_node, t_list *initial, void (*del)(void *));
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
@@ -37,9 +37,9 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	return (initial_pt);
 }
 
-static int	exit_iter(t_list *new, t_list *initial, void (*del)(void *))
+static int	exit_iter(t_list *new_node, t_list *initial, void (*del)(void *))
 {
-	if (new == NULL)
+	if (new_node == NULL)
 	{
 		ft_lstclear(&initial, del);
 		return (1);
