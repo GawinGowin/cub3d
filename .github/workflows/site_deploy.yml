@@ -39,7 +39,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Run Doxygen from Doxyfile
         run: |
-          cd build
           doxygen Doxyfile
       - name: Setup Pages
         uses: actions/configure-pages@v5
