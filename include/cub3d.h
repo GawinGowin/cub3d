@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/14 18:03:20 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/14 20:18:05 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,8 @@ int		is_valid_map(char **map);
 
 int		has_invalid_char(char **map);
 char	**dup_map(char **map);
-void 	free_map(char **map, size_t height);
+void	free_map(char **map, size_t height);
 size_t	get_height(char **map);
 size_t	get_width(char **map);
-
 
 #endif
