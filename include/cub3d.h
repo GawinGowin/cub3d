@@ -107,4 +107,5 @@ void 	free_map(char **map, size_t height);
 size_t	get_height(char **map);
 size_t	get_width(char **map);
 
+
 #endif
