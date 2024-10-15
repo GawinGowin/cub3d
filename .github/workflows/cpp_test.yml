@@ -16,4 +16,4 @@ jobs:
     - name: make test
       run: make test
     - name: run test
-      run: cd build/tests && .cube3d_unit_test
+      run: cd build/tests && ./cube3d_unit_test
