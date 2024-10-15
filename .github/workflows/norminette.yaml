@@ -2,7 +2,7 @@ name: run Norminette
 
 on:
   pull_request:
-    branches: [ "main", "13-cicdの作成" ]
+    branches: [ "main" ]
 
 jobs:
   run_norminette:
