@@ -77,6 +77,7 @@ LIB_SOURCES_PREFIX = pkg/
 
 LIBRARY_DIR = lib
 HEADER_DIR = include
+BUILD_DIR = build
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
@@ -120,7 +121,7 @@ $(MLX_HEADER) $(MLX_LIB):
 .PHONY: clean
 clean: 
 	rm -f $(OBJS) $(LIB_OBJS) $(MLX_HEADER)
-	rm -rf $(LIBRARY_DIR)
+	rm -rf $(LIBRARY_DIR) $(BUILD_DIR)
 
 .PHONY: fclean
 fclean: clean
@@ -128,3 +129,9 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: test
+test: all 
+	ar rcs ./lib/libgtest.a $(LIB_OBJS) $(OBJS)
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR) && cmake .. && make VERBOSE=1
