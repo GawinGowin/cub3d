@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: make test
-      run: make test
+    - name: build test
+      run: make -s build
     - name: run test
-      run: cd build/tests && ./cube3d_unit_test
+      run: make -s test
