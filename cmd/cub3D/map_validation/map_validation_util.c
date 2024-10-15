@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/12 19:24:17 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/15 19:06:33 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**dup_map(char **map)
 	i = 0;
 	while (i < height)
 	{
-		ret[i] = (char *)ft_calloc(width + 1, sizeof(char));
+		ret[i] = ft_strdup(map[i]);
 		if (!ret[i])
 		{
 			free_map(ret, i);
