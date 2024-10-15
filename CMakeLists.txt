@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(cub3D)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -g3 -fsanitize=address")
 
 add_custom_target(build_libft
     COMMAND make
