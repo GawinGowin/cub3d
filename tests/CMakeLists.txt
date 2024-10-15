@@ -2,12 +2,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 include(GoogleTest)
 
-set(TEST_SOURCES
-  test_example.cpp
-  # 他のテストファイルを追加する場合はここに記述する
-)
+add_executable(example_test test_example.cpp)
+target_link_libraries(example_test testcub3D gtest gtest_main)
 
-add_executable(cube3d_unit_test ${TEST_SOURCES})
-target_link_libraries(cube3d_unit_test testcub3D gtest gtest_main)
-
-add_test(NAME test COMMAND cube3d_unit_test)
+add_test(NAME test_example COMMAND example_test)
