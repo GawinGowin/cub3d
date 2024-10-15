@@ -8,7 +8,9 @@ on:
 
 jobs:
   build:
-
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:
@@ -16,4 +18,20 @@ jobs:
     - name: make test
       run: make test
     - name: run test
-      run: cd build/tests && ./cube3d_unit_test
+      run: cd build/tests && ./cube3d_unit_test > result.txt
+    - name: Generate comment with test result
+      run: |
+        cat << EOF > result.md
+        ### Test Result
+
+        \`\`\`sh
+        $(cat result.txt)
+        \`\`\`
+
+        EOF
+    - name: Create PR comment
+      run: |
+        gh pr comment ${{ github.event.number }} --edit-last --body-file result.md \
+        || gh pr comment ${{ github.event.number }} --body-file result.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
