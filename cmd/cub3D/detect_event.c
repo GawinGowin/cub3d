@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	update_angle(t_data *data, int key);
+static void	update_coordinate(t_data *data, int key);
 
 // ESC 65307
 // <-  65361
@@ -23,18 +23,10 @@ static void	update_angle(t_data *data, int key);
 // d   100
 int	detect_keys(int key, t_data *data)
 {
-	// 移動/視点の処理は適当
-	// オーバーフローや視点が1周したときの角度とかも考慮する
 	if (key == 65307)
 		detect_close(data);
-	else if (key == 119)
-		data->player.pos_y++;
-	else if (key == 115)
-		data->player.pos_y--;
-	else if (key == 97)
-		data->player.pos_x--;
-	else if (key == 100)
-		data->player.pos_x++;
+	else if (key == 119 || key == 115 || key == 97 || key == 100)
+		update_coordinate(data, key);
 	else if (key == 65363 || key == 65361)
 		update_angle(data, key);
 	else
@@ -44,21 +36,47 @@ int	detect_keys(int key, t_data *data)
 	return (0);
 }
 
-static void	update_angle(t_data *data, int key)
-{
-	int	now;
+// int	check_location(t_data *data, double x, double y)
+// {
+// 	if (data->params.map[(int)x][(int)y] == '0')
+// 		return (0);
+// }
 
-	now = data->player.angle;
-	if (key == 65361)
-		now += 10;
-	else if (key == 65363)
-		now -= 10;
-	if (now < 0)
-		now = 360 + now;
-	else if (now >= 360)
-		now = now - 360;
-	data->player.angle = now;
-	printf("angle: %d\n", data->player.angle);
+// 向いているangleで、壁に突き当たるまでの距離計算
+// 向いているangleと、1歩の移動距離から、
+// cos, sinを用いて加算/減算するx, yを求める
+// 移動予定座標までに壁がある場合、壁に接するまでx, yを変化
+static void	update_coordinate(t_data *data, int key)
+{
+	double	dx;
+	double	dy;
+	double	slope;
+	double	sign;
+	int		angle;
+
+	angle = data->player.angle;
+	if (key == 100)
+		angle += 90;
+	else if (key == 97)
+		angle -= 90;
+	else if (key == 115)
+		angle += 180;
+	angle = reset_angle(angle);
+	if ((270 < angle && angle < 360) || (0 < angle && angle < 90))
+		sign = 1.0;
+	else
+		sign = -1.0;
+	// 1. 移動する一次関数の傾きを求める(横方向の移動はangleが90度増減)
+	// 1.1. 横方向への移動だった場合、angleを修正
+	// 右移動: angle+90 左移動:angle-90
+	// 修正後angleで傾きを求めて、移動方向によって値を増減
+	// 2. 一次関数上で、移動方向に向けて増減
+	// 3. 移動中、壁の領域に入ったら戻って壁に接する座標を取得
+	dx = 10 * cos_degree(data->player.angle) - cos_degree(data->player.angle);
+	dy = 10 * sin_degree(data->player.angle) - sin_degree(data->player.angle);
+	// dxかdyが0なら分岐(slopeが発散する)
+	slope = dy / dx;
+	printf("angle %d, sign %f, slope %f \n", angle, sign, slope);
 }
 
 int	detect_close(t_data *data)

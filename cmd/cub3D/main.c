@@ -30,6 +30,10 @@ int	main(int argc, char **argv)
 	int i = -1;
 	while (data.params.map[++i])
 		printf("%d %s\n", i, data.params.map[i]);
+	printf("%d %s\n", i, data.params.map[i]);
+	data.player.pos_x = 1;
+	data.player.pos_y = 1;
+	data.player.angle = 0;
 	set_hooks_and_loop(&data);
 	return (0);
 }
