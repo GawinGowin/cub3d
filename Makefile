@@ -85,9 +85,7 @@ IFLAGS := -I$(HEADER_DIR)
 LFLAGS := -lmlx_Linux -lXext -lX11 -lm -L$(LIBRARY_DIR) -lft
 DFLAGS := -fdiagnostics-color=always -g3 -fsanitize=address
 
-ifdef DEBUG
 CFLAGS += $(DFLAGS)
-endif
 
 SOURCES := $(addprefix $(SOURCES_PREFIX),$(SOURCES))
 OBJS := $(SOURCES:.c=.o)
