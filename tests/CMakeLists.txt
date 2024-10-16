@@ -2,7 +2,6 @@ include_directories(${CMAKE_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 include(GoogleTest)
 
-
 # Add test executables
 ## map_validation_test
 add_executable(map_validation_test test_map_validation.cpp)

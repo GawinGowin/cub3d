@@ -4,23 +4,30 @@ project(cub3D)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -g3 -fsanitize=address")
 
-add_custom_target(build_libft
-    COMMAND make
+add_custom_target(init
+    COMMAND ./install_minilibx.sh
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Generating libmlx_Linux.a by running install_minilibx.sh"
 )
+
+# The cube3D sources
 file(GLOB SOURCES "cmd/cub3D/**/*.c" "cmd/cub3D/*.c")
 list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/cmd/cub3D/main.c")
 
-message(STATUS "VariableName: ${SOURCES}")
-add_library(testcub3D ${SOURCES})
+# The libft sources
+file(GLOB LIBFT_SOURCES "${CMAKE_SOURCE_DIR}/pkg/libft/*.c")
 
-set(LIBFT_PATH
-"${CMAKE_SOURCE_DIR}/lib/libft.a"
-"${CMAKE_SOURCE_DIR}/lib/libmlx_Linux.a"
+# Create the library
+add_library(testcub3D ${SOURCES} ${LIBFT_SOURCES})
+add_dependencies(testcub3D init)
+
+# Link with necessary libraries
+set(LIBRARIES
+  ${CMAKE_SOURCE_DIR}/lib/libmlx_Linux.a
+  pthread Xext X11 m
 )
-target_link_libraries(testcub3D
-${LIBFT_PATH} pthread Xext X11 m
-)
+target_link_libraries(testcub3D ${LIBRARIES})
+
 target_include_directories(testcub3D
   PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
