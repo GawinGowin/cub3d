@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/14 15:57:58 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/16 08:16:56 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	is_surrounded(
 				char **map, char **memory, size_t height, size_t width);
 static int	check_surrounding(
 				char **map, char **memory, size_t height, size_t width);
+static int	is_contains_symbols(
+				char **map, char *symbols, size_t height, size_t width);
 static void	dfs(char **map, char **memory, size_t x, size_t y);
 
 /**
@@ -42,6 +44,8 @@ int	is_valid_map(char **map)
 	size_t	height;
 	size_t	width;
 
+	if (map == NULL || *map == NULL)
+		return (0);
 	height = get_height(map);
 	width = get_width(map);
 	if (has_invalid_char(map))
@@ -76,7 +80,33 @@ static int	is_surrounded(
 		}
 		y++;
 	}
-	return (check_surrounding(map, memory, height, width));
+	return (check_surrounding(map, memory, height, width)
+		&& is_contains_symbols(map, "0", height, width));
+}
+
+static int	is_contains_symbols(
+				char **map, char *symbols, size_t height, size_t width)
+{
+	size_t	x;
+	size_t	y;
+	int		flag;
+
+	y = 0;
+	flag = 0;
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
+		{
+			if (ft_strchr(symbols, map[y][x]))
+				flag = 1;
+			x++;
+		}
+		y++;
+	}
+	if (!flag)
+		return (0);
+	return (1);
 }
 
 static int	check_surrounding(
@@ -91,7 +121,9 @@ static int	check_surrounding(
 		x = 0;
 		while (x < width)
 		{
-			if (map[x][y] == ' ' && memory[x][y] == (char) 1)
+			if ((memory[y][x] == (char) 1
+				&& (map[y][x] == ' ' || x == 0
+				|| x == width - 1 || y == 0 || y == height - 1)))
 				return (0);
 			x++;
 		}
@@ -105,10 +137,10 @@ static void	dfs(char **map, char **memory, size_t x, size_t y)
 	size_t	height;
 	size_t	width;
 
-	if (map[x][y] == WALL)
+	if (map[y][x] == WALL || memory[y][x] == (char) 1)
 		return ;
-	memory[x][y] = (char) 1;
-	width = ft_strlen(map[x]);
+	memory[y][x] = (char) 1;
+	width = get_width(map);
 	height = get_height(map);
 	if (x != 0 && x - 1 < width && y < height)
 		dfs(map, memory, x - 1, y);

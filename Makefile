@@ -137,5 +137,5 @@ build: all
 	@cd $(BUILD_DIR) && cmake .. && make
 
 .PHONY: test
-test:
+test: build
 	cd build/tests && make test

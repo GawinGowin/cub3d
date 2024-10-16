@@ -2,7 +2,11 @@ include_directories(${CMAKE_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 include(GoogleTest)
 
-add_executable(example_test test_example.cpp)
-target_link_libraries(example_test testcub3D gtest gtest_main)
 
-add_test(NAME test_example COMMAND example_test)
+# Add test executables
+## map_validation_test
+add_executable(map_validation_test test_map_validation.cpp)
+target_link_libraries(map_validation_test testcub3D gtest gtest_main)
+
+# Add tests
+gtest_add_tests(TARGET map_validation_test)
