@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/14 15:57:58 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/16 06:32:22 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	check_surrounding(
 		x = 0;
 		while (x < width)
 		{
-			if (map[x][y] == ' ' && memory[x][y] == (char) 1)
+			if ((map[y][x] == ' ' || map[y][x] == WALL) && memory[y][x] == (char) 1)
 				return (0);
 			x++;
 		}
@@ -105,10 +105,10 @@ static void	dfs(char **map, char **memory, size_t x, size_t y)
 	size_t	height;
 	size_t	width;
 
-	if (map[x][y] == WALL)
+	if (map[y][x] == WALL || memory[y][x] == (char) 1)
 		return ;
-	memory[x][y] = (char) 1;
-	width = ft_strlen(map[x]);
+	memory[y][x] = (char) 1;
+	width = get_width(map);
 	height = get_height(map);
 	if (x != 0 && x - 1 < width && y < height)
 		dfs(map, memory, x - 1, y);
