@@ -8,6 +8,5 @@ include(GoogleTest)
 add_executable(map_validation_test test_map_validation.cpp)
 target_link_libraries(map_validation_test testcub3D gtest gtest_main)
 
-
 # Add tests
-add_test(NAME test_map_validation COMMAND map_validation_test)
+gtest_discover_tests(map_validation_test)
