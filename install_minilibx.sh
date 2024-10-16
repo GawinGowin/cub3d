@@ -2,7 +2,7 @@
 
 current_dir=$(pwd)
 
-mkdir temp_____
+mkdir -p lib include temp_____
 cd temp_____ || exit
 git clone https://github.com/42Paris/minilibx-linux.git
 

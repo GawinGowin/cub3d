@@ -115,7 +115,6 @@ $(LIB_NAME): $(LIB_OBJS)
 init: $(MLX_HEADER) $(MLX_LIB)
 
 $(MLX_HEADER) $(MLX_LIB): 
-	mkdir -p $(HEADER_DIR) $(LIBRARY_DIR)
 	sh install_minilibx.sh
 
 .PHONY: clean
