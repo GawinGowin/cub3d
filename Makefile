@@ -85,9 +85,7 @@ IFLAGS := -I$(HEADER_DIR)
 LFLAGS := -lmlx_Linux -lXext -lX11 -lm -L$(LIBRARY_DIR) -lft
 DFLAGS := -fdiagnostics-color=always -g3 -fsanitize=address
 
-ifdef DEBUG
 CFLAGS += $(DFLAGS)
-endif
 
 SOURCES := $(addprefix $(SOURCES_PREFIX),$(SOURCES))
 OBJS := $(SOURCES:.c=.o)
@@ -115,7 +113,6 @@ $(LIB_NAME): $(LIB_OBJS)
 init: $(MLX_HEADER) $(MLX_LIB)
 
 $(MLX_HEADER) $(MLX_LIB): 
-	mkdir -p $(HEADER_DIR) $(LIBRARY_DIR)
 	sh install_minilibx.sh
 
 .PHONY: clean
