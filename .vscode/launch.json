@@ -1,0 +1,35 @@
+{
+	"configurations": [
+		{
+			"name": "(ctest) Launch",
+			"type": "cppdbg",
+			"cwd": "${workspaceFolder}",
+			"request": "launch",
+			"program": "${cmake.testProgram}",
+			"args": [ "${cmake.testArgs}" ],
+			"MIMode": "gdb",
+			"miDebuggerPath": "/usr/bin/gdb",
+		},
+		{
+			"name": "cube3D",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/cub3D",
+			"args": [
+				"./examples/test1.cub"
+			],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"preLaunchTask": "cube3D-make",
+			"linux": {
+				"MIMode": "gdb",
+				"miDebuggerPath": "/usr/bin/gdb"
+			},
+			"osx": {
+				"MIMode": "lldb",
+			},
+		},
+	]
+}

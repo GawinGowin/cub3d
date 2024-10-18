@@ -2,5 +2,8 @@
 	"files.associations": {
 		"mlx.h": "c",
 		"cub3d.h": "c"
-	}
+	},
+	"testMate.cpp.debug.breakOnFailure": true,
+	"cmake.ctest.allowParallelJobs": true,
+	"cmake.ctest.testExplorerIntegrationEnabled": false
 }
