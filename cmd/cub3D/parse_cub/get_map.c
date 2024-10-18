@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:19:23 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/17 15:25:01 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/17 16:35:24 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**get_map(char **raw_map_lines, size_t width, size_t height)
 		map[i] = ft_calloc(width + 1, sizeof(char));
 		if (!map[i])
 		{
-			free_2d_array_of_char(map);
+			free_map(map, i);
 			return (NULL);
 		}
 		org_len = ft_strlcpy(map[i], raw_map_lines[i], width);
@@ -49,7 +49,7 @@ void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height)
 	max_width = 0;
 	if (raw_map_lines == NULL || *raw_map_lines == NULL)
 		return ;
-	*height = ft_strlen(*raw_map_lines);
+	*height = get_height(raw_map_lines);
 	while(raw_map_lines[i] != NULL)
 	{
 		tmp_width = ft_strlen(raw_map_lines[i]);
