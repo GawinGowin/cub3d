@@ -21,12 +21,11 @@ void	update_angle(t_data *data, int key)
 		now -= 5;
 	else if (key == 65363)
 		now += 5;
-	now = reset_angle(now);
+	now = regulate_angle(now);
 	data->player.angle = now;
-	printf("angle: %d\n", data->player.angle);
 }
 
-int	reset_angle(int now)
+int	regulate_angle(int now)
 {
 	if (now < 0)
 		now = 360 + now;

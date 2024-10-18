@@ -20,6 +20,11 @@ SOURCES += parse_cub/get_conf_and_map.c
 SOURCES += parse_cub/split_cub.c
 SOURCES += parse_cub/get_color.c
 SOURCES += parse_cub/get_conf.c
+SOURCES += movement/trig_degree.c
+SOURCES += movement/update_angle.c
+SOURCES += movement/update_coodinate.c
+# SOURCES += movement/detect_wall_by_dda.c
+
 SOURCES += map_validation/map_validation_util.c
 SOURCES += map_validation/map_validation.c
 

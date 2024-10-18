@@ -29,7 +29,7 @@
 # define XPM_SIZE 100
 # define PI 3.1415926535
 
-# define STRIDE 1
+# define STRIDE 1.0
 
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"
@@ -38,6 +38,13 @@
 # define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
 # define ERR_MALLOC "Failed to allocate memory"
 # define ERR_FORMAT "Invalid .cub file format"
+
+typedef struct s_wall
+{
+	double	x;
+	double	y;
+	double	dist;
+}			t_wall;
 
 typedef struct s_param_cub
 {
@@ -95,7 +102,10 @@ int		free_double_str(char *s1, char *s2, int ret);
 double	cos_degree(int angle);
 double	sin_degree(int angle);
 void	update_angle(t_data *data, int key);
-int		reset_angle(int now);
+void	update_coordinate(t_data *data, int key);
+int		regulate_angle(int now);
+
+// t_wall	detect_wall_by_dda(t_data *data, double angle);
 
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);
