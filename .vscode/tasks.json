@@ -22,6 +22,7 @@
 			"command": "norminette",
 			"args": [
 				"--use-gitignore",
+				"${file}"
 			],
 			"group": "build",
 		}
