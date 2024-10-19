@@ -16,7 +16,7 @@ class MapValidationTest : public ::testing::TestWithParam<MapTestData>
 {
 };
 
-TEST_P(MapValidationTest, ValidateMap)
+TEST_P(MapValidationTest, Map)
 {
 	auto param = GetParam();
 	EXPECT_EQ(is_valid_map((char **)param.map), param.expected);

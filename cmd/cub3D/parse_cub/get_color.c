@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-13 05:39:33 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-13 05:39:33 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/13 05:39:33 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/19 22:41:05 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	validate_rgb(char **array);
 static int	is_str_digit(char *str);
 
-int	get_color(char *str)
+int	color_str_to_int(char *str)
 {
 	char	**tmp;
 	int		ret;

@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/14 20:18:05 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 04:15:18 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct s_param_cub
 	void	*img_ea;
 	int		floor;
 	int		ceiling;
-	int		map_width;
-	int		map_height;
+	size_t	map_width;
+	size_t	map_height;
 	char	**map;
 }			t_param_cub;
 
@@ -94,17 +94,35 @@ typedef struct s_data
 	t_param_cub	params;
 }				t_data;
 
+// map_utils
+char	**dup_map(char **map, size_t height);
+void	free_map(char **map, size_t height);
+size_t	get_height(char **map);
+size_t	get_width(char **map);
+
 // parse_cub
-int		parse_cub(t_data *data, char *filename);
+enum e_conf
+{
+	FLAG_NO = 1,
+	FLAG_SO = 2,
+	FLAG_WE = 4,
+	FLAG_EA = 8,
+	FLAG_F = 16,
+	FLAG_C = 32,
+};
+
+int		parse_cub(t_data *params, char *filename);
 void	free_2d_array_of_char(char **array);
 char	**set_array_from_file(char *filename);
-int		get_conf_and_map(t_data *data, char **array);
+int		get_conf_and_map(t_data *params, char **array);
 char	**split_cub(char *file);
-int		get_color(char *str);
+int		color_str_to_int(char *str);
 int		splited_length(char **array);
-int		get_conf(t_data *data, char **array);
+int		get_conf(t_data *data, char **lines);
 int		strlen_ln(char *str);
-int		free_double_str(char *s1, char *s2, int ret);
+
+char	**get_map(char **raw_map_lines, size_t width, size_t height);
+void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height);
 
 // movement
 double	cos_degree(int angle);
@@ -124,11 +142,6 @@ int		detect_keys(int key, t_data *data);
 
 // map_validation
 int		is_valid_map(char **map);
-
 int		has_invalid_char(char **map);
-char	**dup_map(char **map);
-void	free_map(char **map, size_t height);
-size_t	get_height(char **map);
-size_t	get_width(char **map);
 
 #endif

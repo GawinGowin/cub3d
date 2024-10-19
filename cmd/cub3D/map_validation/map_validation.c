@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/16 08:16:56 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/18 11:11:30 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	is_valid_map(char **map)
 	width = get_width(map);
 	if (has_invalid_char(map))
 		return (1);
-	memory = dup_map(map);
+	memory = dup_map(map, height);
 	if (!memory)
 		return (1);
 	ret = is_surrounded(map, memory, height, width);

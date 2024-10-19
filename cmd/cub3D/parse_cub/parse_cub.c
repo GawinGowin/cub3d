@@ -3,30 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-13 05:13:23 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-13 05:13:23 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/13 05:13:23 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/20 05:11:41 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * Parses the cub file and populates the data structure.
+ *
+ * @param data The pointer to the data structure to be populated.
+ * @param filename The path to the cub file to be parsed.
+ * @return Returns an integer indicating the success or failure
+ * of the parsing process.
+ */
 int	parse_cub(t_data *data, char *filename)
 {
-	char	**cubfile;
+	char	**cubfile_as_array;
+	int		status;
 
-	cubfile = set_array_from_file(filename);
-	if (!cubfile)
+	cubfile_as_array = set_array_from_file(filename);
+	if (!cubfile_as_array)
 		return (1);
-	if (get_conf_and_map(data, cubfile))
+	status = get_conf_and_map(data, cubfile_as_array);
+	free_2d_array_of_char(cubfile_as_array);
+	if (status)
 	{
-		free_2d_array_of_char(cubfile);
 		if (data->params.map)
 			free_2d_array_of_char(data->params.map);
 		return (1);
 	}
-	free_2d_array_of_char(cubfile);
 	return (0);
 }
 
@@ -40,13 +49,4 @@ void	free_2d_array_of_char(char **array)
 		free(array[i]);
 	}
 	free(array);
-}
-
-int	free_double_str(char *s1, char *s2, int ret)
-{
-	if (s1)
-		free(s1);
-	if (s2)
-		free(s2);
-	return (ret);
 }

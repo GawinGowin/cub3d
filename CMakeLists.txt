@@ -3,6 +3,7 @@ project(cub3D)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -g3 -fsanitize=address")
+set(CMAKE_C_FLAGS "-Wall -Wextra -Werror -g3 -fsanitize=address")
 
 add_custom_target(init
     COMMAND ./install_minilibx.sh
