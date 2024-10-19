@@ -64,6 +64,10 @@ INSTANTIATE_TEST_SUITE_P(
     ::testing::Values(
         CubTestData{
             .cub_file_path = (char*)"examples/test1.cub",
+			.expected_img_no = (void*)0,
+			.expected_img_so = (void*)0,
+			.expected_img_we = (void*)0,
+			.expected_img_ea = (void*)0,
             .expected_floor = 14443520,
             .expected_ceiling = 14753280,
             .expected_map_width = 33,
