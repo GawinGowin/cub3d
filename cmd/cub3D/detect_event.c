@@ -12,44 +12,18 @@
 
 #include "cub3d.h"
 
-static void	print_pos(int x, int y, int angle);
-
-// ESC 65307
-// <-  65361
-// ->  65363
-// w   119
-// a   97
-// s   115
-// d   100
 int	detect_keys(int key, t_data *data)
 {
-	// 移動/視点の処理は適当
-	// オーバーフローや視点が1周したときの角度とかも考慮する
-	if (key == 65307)
+	if (key == KEY_ESC)
 		detect_close(data);
-	else if (key == 119)
-		data->player.pos_y++;
-	else if (key == 115)
-		data->player.pos_y--;
-	else if (key == 97)
-		data->player.pos_x--;
-	else if (key == 100)
-		data->player.pos_x++;
-	else if (key == 65363)
-		data->player.angle++;
-	else if (key == 65361)
-		data->player.angle--;
+	else if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)
+		update_coordinate(data, key);
+	else if (key == ARROW_R || key == ARROW_L)
+		update_angle(data, key);
 	else
 		return (0);
-	print_pos(data->player.pos_x, data->player.pos_y, data->player.angle);
-	// calculate_and_plot(data);
-	// mlx_put_image_to_window(data->mlx_val.mlx_ptr, data->mlx_val.win_ptr, data->mlx_val.img_ptr, 0, 0);
+	printf("player x %f y %f angle %d\n", data->player.pos_x, data->player.pos_y, data->player.angle);
 	return (0);
-}
-
-static void	print_pos(int x, int y, int angle)
-{
-	printf("x,y,angle =(%d, %d, %d)\n", x, y, angle);
 }
 
 int	detect_close(t_data *data)

@@ -21,11 +21,17 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdint.h>
+# include <math.h>
 
 # define BUFFER_SIZE 600
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 600
 # define XPM_SIZE 100
+# define PI 3.1415926535
+
+// 一歩で進む距離
+# define STRIDE 1.0
+
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"
 # define ERR_WRONG_EXT "File extension is not '.cub'"
@@ -40,6 +46,13 @@
 # define PLAYER_SOUTH 'S'
 # define PLAYER_WEST 'W'
 # define PLAYER_EAST 'E'
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+# define ARROW_R 65363
+# define ARROW_L 65361
 
 typedef struct s_param_cub
 {
@@ -54,11 +67,13 @@ typedef struct s_param_cub
 	char	**map;
 }			t_param_cub;
 
+// angle
+// 0 EA, 90 SO, 180 WE, 270 NO
 typedef struct s_player
 {
-	int	pos_x;
-	int	pos_y;
-	int	angle;
+	double	pos_x;
+	double	pos_y;
+	int		angle;
 }		t_player;
 
 typedef struct s_mlx_val
@@ -108,6 +123,15 @@ int		strlen_ln(char *str);
 
 char	**get_map(char **raw_map_lines, size_t width, size_t height);
 void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height);
+
+// movement
+double	cos_degree(int angle);
+double	sin_degree(int angle);
+void	update_angle(t_data *data, int key);
+void	update_coordinate(t_data *data, int key);
+int		regulate_angle(int now);
+
+// t_wall	detect_wall_by_dda(t_data *data, double angle);
 
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);
