@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:19:23 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/17 16:35:24 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/19 17:23:29 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ char	**get_map(char **raw_map_lines, size_t width, size_t height)
 	size_t	i;
 	size_t	org_len;
 
+	/**
+	 * This function performs a calculation based on the given input parameters.
+	 * It takes two integers as input and returns the result of the calculation.
+	 *
+	 * @param num1 The first integer input for the calculation.
+	 * @param num2 The second integer input for the calculation.
+	 * @return The result of the calculation.
+	 */
 	map = (char **)malloc(sizeof(char *) * (height + 1));
 	if (!map)
 		return (NULL);
@@ -26,12 +34,12 @@ char	**get_map(char **raw_map_lines, size_t width, size_t height)
 	while (i < height)
 	{
 		map[i] = ft_calloc(width + 1, sizeof(char));
-		if (!map[i])
+		if (map[i] == NULL)
 		{
 			free_map(map, i);
 			return (NULL);
 		}
-		org_len = ft_strlcpy(map[i], raw_map_lines[i], width);
+		org_len = ft_strlcpy(map[i], raw_map_lines[i], width + 1);
 		while (org_len < width)
 			map[i][org_len++] = ' ';
 		i++;
@@ -39,6 +47,15 @@ char	**get_map(char **raw_map_lines, size_t width, size_t height)
 	return (map);
 }
 
+/**
+ * @brief Calculates the size of the map.
+ *
+ * This function takes an array of raw map lines and calculates the width and height of the map.
+ *
+ * @param raw_map_lines The array of raw map lines.
+ * @param width A pointer to store the width of the map.
+ * @param height A pointer to store the height of the map.
+ */
 void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height)
 {
 	size_t	max_width;
@@ -59,35 +76,3 @@ void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height)
 	}
 	*width = max_width;
 }
-
-// static int	get_map(t_data *data, char **array, int i)
-// {
-// 	if (!array[i])
-// 		return (printerror(ERR_FORMAT));
-// 	while (array[i][0] == '\n')
-// 		i++;
-// 	get_size_of_map(data, array, i);
-// 	if (copy_map(data, array, i))
-// 		return (printerror(ERR_MALLOC));
-// 	return (0);
-// }
-
-// static void	get_size_of_map(t_data *data, char **array, int i)
-// {
-// 	int	w;
-// 	int	h;
-// 	int	tmp_w;
-
-// 	w = 0;
-// 	h = 0;
-// 	while (array[h + i] && array[h + i][0] != '\n' && array[h + i][0])
-// 	{
-// 		tmp_w = 0;
-// 		tmp_w = strlen_ln(array[h + i]);
-// 		if (tmp_w > w)
-// 			w = tmp_w;
-// 		h++;
-// 	}
-// 	data->params.map_height = h;
-// 	data->params.map_width = w;
-// }
