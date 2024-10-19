@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 04:11:48 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 04:38:25 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 {
 	char	*key;
 	char	*path_or_color;
-	// int		required_flags;
 
-	// required_flags = FLAG_NO | FLAG_SO | FLAG_WE | FLAG_EA | FLAG_F | FLAG_C;
 	if (splited_length(key_value) != 2)
 		return (-1);
 	key = key_value[0];
@@ -113,21 +111,18 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 
 static int	get_img(t_data *data, char *path, char *id, int *flag)
 {
-	int	w;
-	int	h;
+	int			xx;
 	t_param_cub	p;
 
-	w = XPM_SIZE;
-	h = XPM_SIZE;
 	p = data->params;
 	if (ft_strcmp(id, "NO") == 0 && !((*flag) & FLAG_NO))
-		p.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		p.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
 	else if (ft_strcmp(id, "SO") == 0 && !((*flag) & FLAG_SO))
-		p.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		p.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
 	else if (ft_strcmp(id, "WE") == 0 && !((*flag) & FLAG_WE))
-		p.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		p.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
-		p.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+		p.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
 	else
 		return (-1);
 	if (ft_strcmp(id, "NO") == 0)
