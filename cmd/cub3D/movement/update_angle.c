@@ -17,9 +17,9 @@ void	update_angle(t_data *data, int key)
 	int	now;
 
 	now = data->player.angle;
-	if (key == 65361)
+	if (key == ARROW_L)
 		now -= 5;
-	else if (key == 65363)
+	else if (key == ARROW_R)
 		now += 5;
 	now = regulate_angle(now);
 	data->player.angle = now;

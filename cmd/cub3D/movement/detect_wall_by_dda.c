@@ -34,6 +34,13 @@ typedef struct s_dda
 	int		step_y;
 }	t_dda;
 
+typedef struct s_wall
+{
+	double	x;
+	double	y;
+	double	dist;
+}	t_wall;
+
 static void	set_step_side_dist(t_dda *dda, t_data *data)
 {
 	if (dda->ray_dir_x < 0)
@@ -97,7 +104,7 @@ t_wall	detect_wall_by_dda(t_data *data, double angle)
 			dda.map_y += dda.step_y;
 			side = 1;
 		}
-		if (data->params.map[dda.map_x][dda.map_y] == '1')
+		if (data->params.map[dda.map_x][dda.map_y] == WALL)
 			break ;
 	}
 	if (side == 0)
