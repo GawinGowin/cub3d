@@ -19,19 +19,19 @@ void	update_coordinate(t_data *data, int key)
 	double	y;
 
 	angle = data->player.angle;
-	if (key == 100)
+	if (key == KEY_D)
 		angle += 90;
-	else if (key == 97)
+	else if (key == KEY_A)
 		angle -= 90;
-	else if (key == 115)
+	else if (key == KEY_S)
 		angle += 180;
 	angle = regulate_angle(angle);
 	x = data->player.pos_x + STRIDE * cos_degree(angle);
 	y = data->player.pos_y + STRIDE * sin_degree(angle);
 	if (0 <= x && x < data->params.map_width)
-		if (data->params.map[(int)(x + 0.5)][(int)(y + 0.5)] != '1')
+		if (data->params.map[(int)(x + 0.5)][(int)(y + 0.5)] != WALL)
 			data->player.pos_x = x;
 	if (0 <= y && y < data->params.map_height)
-		if (data->params.map[(int)(x + 0.5)][(int)(y + 0.5)] != '1')
+		if (data->params.map[(int)(x + 0.5)][(int)(y + 0.5)] != WALL)
 			data->player.pos_y = y;
 }

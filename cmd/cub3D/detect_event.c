@@ -12,20 +12,13 @@
 
 #include "cub3d.h"
 
-// ESC 65307
-// <-  65361
-// ->  65363
-// w   119
-// a   97
-// s   115
-// d   100
 int	detect_keys(int key, t_data *data)
 {
-	if (key == 65307)
+	if (key == KEY_ESC)
 		detect_close(data);
-	else if (key == 119 || key == 115 || key == 97 || key == 100)
+	else if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)
 		update_coordinate(data, key);
-	else if (key == 65363 || key == 65361)
+	else if (key == ARROW_R || key == ARROW_L)
 		update_angle(data, key);
 	else
 		return (0);

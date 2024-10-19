@@ -29,6 +29,7 @@
 # define XPM_SIZE 100
 # define PI 3.1415926535
 
+// 一歩で進む距離
 # define STRIDE 1.0
 
 # define ERR_PREFIX "Error: "
@@ -45,6 +46,13 @@
 # define PLAYER_SOUTH 'S'
 # define PLAYER_WEST 'W'
 # define PLAYER_EAST 'E'
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+# define ARROW_R 65363
+# define ARROW_L 65361
 
 typedef struct s_param_cub
 {
