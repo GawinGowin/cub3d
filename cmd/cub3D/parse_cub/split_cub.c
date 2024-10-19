@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-12 10:37:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-12 10:37:46 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/12 10:37:46 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/19 21:50:34 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**split_cub(char *file)
 	while (++i < size)
 	{
 		len = get_sprit_len(file + start);
-		array[i] = ft_substr(file, start, len);
+		array[i] = ft_strtrim(ft_substr(file, start, len), "\n");
 		if (!array[i])
 		{
 			free_array(array, i);
