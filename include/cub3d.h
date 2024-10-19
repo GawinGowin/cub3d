@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 01:48:36 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 04:15:18 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int		color_str_to_int(char *str);
 int		splited_length(char **array);
 int		get_conf(t_data *data, char **lines);
 int		strlen_ln(char *str);
-int		free_double_str(char *s1, char *s2, int ret);
 
 char	**get_map(char **raw_map_lines, size_t width, size_t height);
 void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height);

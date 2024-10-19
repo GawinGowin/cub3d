@@ -55,6 +55,7 @@ TEST_P(CubInputTest, CubInput)
 	};
 	parse_cub(&data, param.cub_file_path);
 	EXPECT_EQ(data.params, expected_data);
+	free_2d_array_of_char(data.params.map);
 }
 
 INSTANTIATE_TEST_SUITE_P(
@@ -63,9 +64,9 @@ INSTANTIATE_TEST_SUITE_P(
     ::testing::Values(
         CubTestData{
             .cub_file_path = (char*)"examples/test1.cub",
-            .expected_floor = 0,
-            .expected_ceiling = 0,
-            .expected_map_width = 16,
+            .expected_floor = 14443520,
+            .expected_ceiling = 14753280,
+            .expected_map_width = 33,
             .expected_map_height = 14,
             .expected_map = {
 				"        1111111111111111111111111",
@@ -77,9 +78,9 @@ INSTANTIATE_TEST_SUITE_P(
 				"11110111111111011100000010001    ",
 				"11110111111111011101010010001    ",
 				"11000000110101011100000010001    ",
-				"1000000000000000110000N010001    ",
+				"10000000000000001100000010001    ",
 				"10000000000000001101010010001    ",
-				"1100000111010101111101111000111  ",
+				"11000001110101011111011110N0111  ",
 				"11110111 1110101 101111010001    ",
 				"11111111 1111111 111111111111    ",
 				NULL

@@ -20,11 +20,13 @@ parse_cub/test_main.cpp
 parse_cub/test_parse_cub.cpp
 )
 target_link_libraries(parse_cub_test testcub3D gtest gtest_main)
-set(TEST_DATA_DIR "${CMAKE_SOURCE_DIR}/examples")
+set(TEST_MAP_DIR "${CMAKE_SOURCE_DIR}/examples")
+set(TEST_ASSETS_DIR "${CMAKE_SOURCE_DIR}/examples")
 add_custom_command(
     TARGET parse_cub_test
     POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${TEST_DATA_DIR}" "${CMAKE_BINARY_DIR}/tests/examples"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${TEST_MAP_DIR}" "${CMAKE_BINARY_DIR}/tests/examples"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${TEST_ASSETS_DIR}" "${CMAKE_BINARY_DIR}/tests/assets"
 )
 
 gtest_add_tests(TARGET parse_cub_test)
