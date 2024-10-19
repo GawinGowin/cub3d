@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 04:38:25 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 05:06:10 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	get_conf_by_str(t_data *param, char *str, int *flags);
 static int	detect_identifier(t_data *data, char **key_value, int *flag);
 static int	get_img(t_data *data, char *path, char *id, int *flag);
+static void set_flag(char *id, int *flag);
 
 /**
  * Parses the configuration for the cub3D game.
@@ -111,20 +112,31 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 
 static int	get_img(t_data *data, char *path, char *id, int *flag)
 {
-	int			xx;
-	t_param_cub	p;
+	int	w;
+	int	h;
 
-	p = data->params;
+	w = XPM_SIZE;
+	h = XPM_SIZE;
 	if (ft_strcmp(id, "NO") == 0 && !((*flag) & FLAG_NO))
-		p.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
+		data->params.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &w, &h);
 	else if (ft_strcmp(id, "SO") == 0 && !((*flag) & FLAG_SO))
-		p.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
+		data->params.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &w, &h);
 	else if (ft_strcmp(id, "WE") == 0 && !((*flag) & FLAG_WE))
-		p.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
+		data->params.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &w, &h);
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
-		p.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &xx, &xx);
+		data->params.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &w, &h);
 	else
 		return (-1);
+	set_flag(id, flag);
+	return (0);
+}
+
+static void	set_flag(char *id, int *flag)
+{
 	if (ft_strcmp(id, "NO") == 0)
 		*flag |= FLAG_NO;
 	else if (ft_strcmp(id, "SO") == 0)
@@ -133,5 +145,4 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 		*flag |= FLAG_WE;
 	else if (ft_strcmp(id, "EA") == 0)
 		*flag |= FLAG_EA;
-	return (0);
 }
