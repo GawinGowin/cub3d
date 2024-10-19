@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/19 16:41:34 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 01:48:36 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,30 +86,24 @@ size_t	get_height(char **map);
 size_t	get_width(char **map);
 
 // parse_cub
-/**
- * @struct t_maplines_units
- * @brief Represents the units of a map line in the game.
- * 
- * This structure contains three parts of a map line:
- * - texture_part: A 2D array of characters representing the texture part of the map line.
- * - sky_ground_part: A 2D array of characters representing the sky and ground part of the map line.
- * - map_part: A 2D array of characters representing the map part of the map line.
- */
-typedef struct	s_maplines_units
+enum e_conf
 {
-	char	**texture_part;
-	char	**sky_ground_part;
-	char	**map_part;
-}				t_maplines_units;
+	FLAG_NO = 1,
+	FLAG_SO = 2,
+	FLAG_WE = 4,
+	FLAG_EA = 8,
+	FLAG_F = 16,
+	FLAG_C = 32,
+};
 
-int		parse_cub(t_data *data, char *filename);
+int		parse_cub(t_data *params, char *filename);
 void	free_2d_array_of_char(char **array);
 char	**set_array_from_file(char *filename);
-int		get_conf_and_map(t_data *data, char **array);
+int		get_conf_and_map(t_data *params, char **array);
 char	**split_cub(char *file);
-int		get_color(char *str);
+int		color_str_to_int(char *str);
 int		splited_length(char **array);
-int		get_conf(t_data *data, char **texture_lines, char **color_lines);
+int		get_conf(t_data *data, char **lines);
 int		strlen_ln(char *str);
 int		free_double_str(char *s1, char *s2, int ret);
 
