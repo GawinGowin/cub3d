@@ -49,8 +49,8 @@ typedef struct s_param_cub
 	void	*img_ea;
 	int		floor;
 	int		ceiling;
-	int		map_width;
-	int		map_height;
+	size_t	map_width;
+	size_t	map_height;
 	char	**map;
 }			t_param_cub;
 
@@ -86,6 +86,22 @@ size_t	get_height(char **map);
 size_t	get_width(char **map);
 
 // parse_cub
+/**
+ * @struct t_maplines_units
+ * @brief Represents the units of a map line in the game.
+ * 
+ * This structure contains three parts of a map line:
+ * - texture_part: A 2D array of characters representing the texture part of the map line.
+ * - sky_ground_part: A 2D array of characters representing the sky and ground part of the map line.
+ * - map_part: A 2D array of characters representing the map part of the map line.
+ */
+typedef struct	s_maplines_units
+{
+	char	**texture_part;
+	char	**sky_ground_part;
+	char	**map_part;
+}				t_maplines_units;
+
 int		parse_cub(t_data *data, char *filename);
 void	free_2d_array_of_char(char **array);
 char	**set_array_from_file(char *filename);
@@ -93,7 +109,7 @@ int		get_conf_and_map(t_data *data, char **array);
 char	**split_cub(char *file);
 int		get_color(char *str);
 int		splited_length(char **array);
-int		get_conf(t_data *data, char **array);
+int		get_conf(t_data *data, char **texture_lines, char **color_lines);
 int		strlen_ln(char *str);
 int		free_double_str(char *s1, char *s2, int ret);
 
