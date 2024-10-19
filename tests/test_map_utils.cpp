@@ -7,7 +7,7 @@ extern "C"
 
 TEST(DupMapTest, DuplicateMap)
 {
-	char **originalMap = (char **)malloc(sizeof(char *) * 3);
+	char **originalMap = (char **)calloc(sizeof(char *), (3 + 1));
 	originalMap[0] = strdup("111");
 	originalMap[1] = strdup("010");
 	originalMap[2] = strdup("111");
@@ -24,7 +24,7 @@ TEST(DupMapTest, DuplicateMap)
 
 TEST(FreeMapTest, FreeMap)
 {
-	char **map = (char **)malloc(sizeof(char *) * 3);
+	char **map = (char **)calloc(sizeof(char *), (3 + 1));
 	map[0] = strdup("111");
 	map[1] = strdup("010");
 	map[2] = strdup("111");
@@ -34,7 +34,7 @@ TEST(FreeMapTest, FreeMap)
 
 TEST(GetHeightTest, GetMapHeight)
 {
-	char **map = (char **)malloc(sizeof(char *) * 3);
+	char **map = (char **)calloc(sizeof(char *), (3 + 1));
 	map[0] = strdup("111");
 	map[1] = strdup("010");
 	map[2] = strdup("111");

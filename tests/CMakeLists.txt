@@ -24,7 +24,7 @@ set(TEST_DATA_DIR "${CMAKE_SOURCE_DIR}/examples")
 add_custom_command(
     TARGET parse_cub_test
     POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${TEST_DATA_DIR}" "${CMAKE_BINARY_DIR}/test/examples"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${TEST_DATA_DIR}" "${CMAKE_BINARY_DIR}/tests/examples"
 )
 
 gtest_add_tests(TARGET parse_cub_test)

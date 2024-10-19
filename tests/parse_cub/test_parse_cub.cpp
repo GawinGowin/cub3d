@@ -8,10 +8,32 @@ extern "C"
 struct CubTestData
 {
 	char *cub_file_path;
-	t_param_cub	expected;
+	void *expected_img_no;
+	void *expected_img_so;
+	void *expected_img_we;
+	void *expected_img_ea;
+	int expected_floor;
+	int expected_ceiling;
+	size_t expected_map_width;
+	size_t expected_map_height;
+	const char *expected_map[100];
 };
 
-// テストデータの作成
+bool operator==(const t_param_cub &a, const t_param_cub &b) {
+    if (a.floor != b.floor || a.ceiling != b.ceiling) {
+        return false;
+    }
+    if (a.map_width != b.map_width || a.map_height != b.map_height) {
+        return false;
+    }
+    for (size_t i = 0; i < a.map_height; i++) {
+        if (strcmp(a.map[i], b.map[i]) != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 class CubInputTest : public ::testing::TestWithParam<CubTestData>
 {
 };
@@ -19,84 +41,49 @@ class CubInputTest : public ::testing::TestWithParam<CubTestData>
 TEST_P(CubInputTest, CubInput)
 {
 	auto param = GetParam();
-	t_param_cub data = {};
+	t_data data = {};
+	t_param_cub expected_data = {
+		.img_no = param.expected_img_no,
+		.img_so = param.expected_img_so,
+		.img_we = param.expected_img_we,
+		.img_ea = param.expected_img_ea,
+		.floor = param.expected_floor,
+		.ceiling = param.expected_ceiling,
+		.map_width = param.expected_map_width,
+		.map_height = param.expected_map_height,
+		.map = (char **) param.expected_map,
+	};
 	parse_cub(&data, param.cub_file_path);
-	EXPECT_EQ(data, param.expected);
+	EXPECT_EQ(data.params, expected_data);
 }
 
 INSTANTIATE_TEST_SUITE_P(
-	LoadCubFile,
-	CubInputTest,
-	::testing::Values(
-		CubTestData{"examples/test1.cub",
-					(t_param_cub){
-						.img_we = NULL,
-						.img_ea = NULL,
-						.floor = 0,
-						.ceiling = 0,
-						.map_width = 3,
-						.map_height = 3,
-						.map = (char **)malloc(sizeof(char *) * 3),
-					}},
-		CubTestData{"examples/test2.cub",
-					(t_param_cub){
-						.img_we = NULL,
-						.img_ea = NULL,
-						.floor = 0,
-						.ceiling = 0,
-						.map_width = 3,
-						.map_height = 3,
-						.map = (char **)malloc(sizeof(char *) * 3),
-					}},
-		CubTestData{"examples/test3.cub",
-					(t_param_cub){
-						.img_we = NULL,
-						.img_ea = NULL,
-						.floor = 0,
-						.ceiling = 0,
-						.map_width = 3,
-						.map_height = 3,
-						.map = (char **)malloc(sizeof(char *) * 3),
-					}},
-		CubTestData{"examples/test4.cub",
-					(t_param_cub){
-						.img_we = NULL,
-						.img_ea = NULL,
-						.floor = 0,
-						.ceiling = 0,
-						.map_width = 3,
-						.map_height = 3,
-						.map = (char **)malloc(sizeof(char *) * 3),
-					}},
-		CubTestData{"examples/test5.cub",
-					(t_param_cub){
-						.img_we = NULL,
-						.img_ea = NULL,
-						.floor = 0,
-						.ceiling = 0,
-						.map_width = 3,
-						.map_height = 3,
-						.map = (char **)malloc(sizeof(char *) * 3),
-					}},
-		CubTestData{"examples/test6.cub",
-					(t_param_cub){
-						.img_we = NULL,
-						.img_ea = NULL,
-						.floor = 0,
-						.ceiling = 0,
-						.map_width = 3,
-						.map_height = 3,
-						.map = (char **)malloc(sizeof(char *) * 3),
-					}},
-		CubTestData{"examples/blank.cub",
-					(t_param_cub){
-						.img_we = NULL,
-						.img_ea = NULL,
-						.floor = 0,
-						.ceiling = 0,
-						.map_width = 3,
-						.map_height = 3,
-						.map = (char **)malloc(sizeof(char *) * 3),
-					}}
-	)
+    LoadCubFile,
+    CubInputTest,
+    ::testing::Values(
+        CubTestData{
+            .cub_file_path = (char*)"examples/test1.cub",
+            .expected_floor = 0,
+            .expected_ceiling = 0,
+            .expected_map_width = 16,
+            .expected_map_height = 14,
+            .expected_map = {
+				"        1111111111111111111111111",
+				"        1000000000110000000000001",
+				"        1011000001110000000000001",
+				"        1001000000000000000000001",
+				"111111111011000001110000000000001",
+				"100000000011000001110111111111111",
+				"11110111111111011100000010001    ",
+				"11110111111111011101010010001    ",
+				"11000000110101011100000010001    ",
+				"1000000000000000110000N010001    ",
+				"10000000000000001101010010001    ",
+				"1100000111010101111101111000111  ",
+				"11110111 1110101 101111010001    ",
+				"11111111 1111111 111111111111    ",
+				NULL
+            }
+        }
+    )
 );

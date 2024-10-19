@@ -7,7 +7,7 @@ extern "C"
 
 TEST(GetMapTest, GetMap)
 {
-	char **raw_map_lines = (char **)malloc(sizeof(char *) * 3);
+	char **raw_map_lines = (char **)calloc(sizeof(char *), (3 + 1));
 	raw_map_lines[0] = strdup("111");
 	raw_map_lines[1] = strdup("010");
 	raw_map_lines[2] = strdup("111");
@@ -27,7 +27,7 @@ TEST(GetMapTest, GetMap)
 
 TEST(GetMapTest, GetMapWithEmptyLines)
 {
-	char **raw_map_lines = (char **)malloc(sizeof(char *) * 3);
+	char **raw_map_lines = (char **)calloc(sizeof(char *), (3 + 1));
 	raw_map_lines[0] = strdup("111");
 	raw_map_lines[1] = strdup("");
 	raw_map_lines[2] = strdup("111");
@@ -47,7 +47,7 @@ TEST(GetMapTest, GetMapWithEmptyLines)
 
 TEST(GetMapTest, GetMapWithLongerLines)
 {
-	char **raw_map_lines = (char **)malloc(sizeof(char *) * 3);
+	char **raw_map_lines = (char **)calloc(sizeof(char *), (3 + 1));
 	raw_map_lines[0] = strdup("111");
 	raw_map_lines[1] = strdup("0101");
 	raw_map_lines[2] = strdup("111");
@@ -67,7 +67,7 @@ TEST(GetMapTest, GetMapWithLongerLines)
 
 TEST(GetMapSizeTest, GetMapSize)
 {
-	char **raw_map_lines = (char **)malloc(sizeof(char *) * 3);
+	char **raw_map_lines = (char **)calloc(sizeof(char *), (3 + 1));
 	raw_map_lines[0] = strdup("111");
 	raw_map_lines[1] = strdup("010");
 	raw_map_lines[2] = strdup("111");
@@ -85,7 +85,7 @@ TEST(GetMapSizeTest, GetMapSize)
 
 TEST(GetMapSizeTest, GetMapSizeWithEmptyLines)
 {
-	char **raw_map_lines = (char **)malloc(sizeof(char *) * 3);
+	char **raw_map_lines = (char **)calloc(sizeof(char *), (3 + 1));
 	raw_map_lines[0] = strdup("111");
 	raw_map_lines[1] = strdup("");
 	raw_map_lines[2] = strdup("111");
@@ -103,7 +103,7 @@ TEST(GetMapSizeTest, GetMapSizeWithEmptyLines)
 
 TEST(GetMapSizeTest, GetMapSizeWithLongerLines)
 {
-	char **raw_map_lines = (char **)malloc(sizeof(char *) * 3);
+	char **raw_map_lines = (char **)calloc(sizeof(char *), (3 + 1));
 	raw_map_lines[0] = strdup("111");
 	raw_map_lines[1] = strdup("0101");
 	raw_map_lines[2] = strdup("111");
