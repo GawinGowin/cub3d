@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-13 05:13:23 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-13 05:13:23 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/13 05:13:23 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/20 02:45:23 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * Parses the cub file and populates the data structure.
+ *
+ * @param data The pointer to the data structure to be populated.
+ * @param filename The path to the cub file to be parsed.
+ * @return Returns an integer indicating the success or failure
+ * of the parsing process.
+ */
 int	parse_cub(t_data *data, char *filename)
 {
 	char	**cubfile;

@@ -6,13 +6,13 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 09:55:33 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 01:46:54 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 02:48:57 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void		print_map(char **map);
+// static void		print_map(char **map);
 static size_t	get_lines_cnt(char **lines);
 static char		**drop_vacant_element_and_dup(char **line);
 
@@ -35,17 +35,17 @@ int	get_conf_and_map(t_data *data, char **raw_lines)
 	return (0);
 }
 
-static void	print_map(char **map)
-{
-	int	i;
+// static void	print_map(char **map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
 
 static char	**drop_vacant_element_and_dup(char **lines)
 {

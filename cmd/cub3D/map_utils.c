@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:30:11 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/19 16:35:54 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 02:55:24 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**dup_map(char **map, size_t height)
 	char	**ret;
 	size_t	i;
 
-	if ((!map && !*map) || get_height(map) < height)
+	if (!map || !*map || get_height(map) < height)
 		return (NULL);
 	ret = (char **)ft_calloc(sizeof(char *), (height + 1));
 	if (!ret)
@@ -87,7 +87,7 @@ size_t	get_height(char **map)
 	size_t	i;
 
 	i = 0;
-	while (map && map[i])
+	while (map && *map && map[i])
 		i++;
 	return (i);
 }
