@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/17 15:21:28 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/19 16:41:34 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ typedef struct s_data
 	t_param_cub	params;
 }				t_data;
 
+// map_utils
+char	**dup_map(char **map, size_t height);
+void	free_map(char **map, size_t height);
+size_t	get_height(char **map);
+size_t	get_width(char **map);
+
 // parse_cub
 int		parse_cub(t_data *data, char *filename);
 void	free_2d_array_of_char(char **array);
@@ -103,11 +109,6 @@ int		detect_keys(int key, t_data *data);
 
 // map_validation
 int		is_valid_map(char **map);
-
 int		has_invalid_char(char **map);
-char	**dup_map(char **map);
-void	free_map(char **map, size_t height);
-size_t	get_height(char **map);
-size_t	get_width(char **map);
 
 #endif

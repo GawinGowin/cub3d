@@ -10,8 +10,9 @@ HEADER += cub3d.h
 HEADER += libft.h
 
 # Sources
-SOURCES += detect_event.c
 SOURCES += main.c
+SOURCES += map_utils.c
+SOURCES += detect_event.c
 SOURCES += valid_argument.c
 SOURCES += init_data.c
 SOURCES += parse_cub/parse_cub.c
