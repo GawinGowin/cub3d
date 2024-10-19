@@ -14,7 +14,7 @@ target_link_libraries(map_utils_test testcub3D gtest gtest_main)
 gtest_add_tests(TARGET map_utils_test)
 
 ## parse_cub/get_map_test
-add_executable(parse_cub_test parse_cub/get_map.cpp)
+add_executable(parse_cub_test parse_cub/*.cpp )
 target_link_libraries(parse_cub_test testcub3D gtest gtest_main)
 gtest_add_tests(TARGET parse_cub_test)
 
