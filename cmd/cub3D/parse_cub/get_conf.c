@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 17:05:33 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 19:44:44 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	get_conf_by_str(t_data *param, char *str, int *flags);
 static int	detect_identifier(t_data *data, char **key_value, int *flag);
 static int	get_img(t_data *data, char *path, char *id, int *flag);
-static void set_flag(char *id, int *flag);
+static void	set_flag(char *id, int *flag);
 
 /**
  * Parses the configuration for the cub3D game.
