@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:04:08 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/20 19:44:27 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 19:50:12 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 static int	is_data_satisfies(t_data *data);
 
-int	validation(t_data *data)
+int	is_validate(t_data *data)
 {
-	if (!is_data_satisfies(data))
-		return (printerror(ERR_FORMAT));
-	if (!is_valid_map(data->params.map))
-		return (printerror(ERR_FORMAT));
+	if (is_data_satisfies(data) && is_valid_map(data->params.map))
+		return (1);
+	printerror(ERR_FORMAT);
 	return (0);
 }
 

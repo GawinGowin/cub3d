@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 19:35:49 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 19:50:39 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
 
 // validation
-int		validation(t_data *data);
+int		is_validate(t_data *data);
 int		is_valid_map(char **map);
 
 int		has_invalid_char(char **map, char *available_set);

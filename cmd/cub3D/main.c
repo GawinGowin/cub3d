@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 02:50:34 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 16:59:18 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 19:54:38 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_data(&data, argv[1]))
 		return (1);
-	if (parse_cub(&data, argv[1]) && validation(&data))
+	if (parse_cub(&data, argv[1]) || !is_validate(&data))
 		return (destroy_mlx_ptr(&data));
 	// 確認用
 	printf("map_w:%zu map_h:%zu\n", data.params.map_width, data.params.map_height);
