@@ -8,14 +8,13 @@ extern "C"
 struct CubTestData
 {
 	char *cub_file_path;
-	void *expected_img_no;
-	void *expected_img_so;
-	void *expected_img_we;
-	void *expected_img_ea;
 	int expected_floor;
 	int expected_ceiling;
 	size_t expected_map_width;
 	size_t expected_map_height;
+	double expected_player_pos_x;
+	double expected_player_pos_y;
+	int expected_player_angle;
 	const char *expected_map[100];
 };
 
@@ -34,6 +33,10 @@ bool operator==(const t_param_cub &a, const t_param_cub &b) {
     return true;
 }
 
+bool operator==(const t_player &a, const t_player &b) {
+	return a.pos_x == b.pos_x && a.pos_y == b.pos_y && a.angle == b.angle;
+}
+
 class CubInputTest : public ::testing::TestWithParam<CubTestData>
 {
 };
@@ -43,18 +46,24 @@ TEST_P(CubInputTest, CubInput)
 	auto param = GetParam();
 	t_data data = {};
 	t_param_cub expected_data = {
-		.img_no = param.expected_img_no,
-		.img_so = param.expected_img_so,
-		.img_we = param.expected_img_we,
-		.img_ea = param.expected_img_ea,
+		.img_no = nullptr,
+		.img_so = nullptr,
+		.img_we = nullptr,
+		.img_ea = nullptr,
 		.floor = param.expected_floor,
 		.ceiling = param.expected_ceiling,
 		.map_width = param.expected_map_width,
 		.map_height = param.expected_map_height,
 		.map = (char **) param.expected_map,
 	};
+	t_player expected_player = {
+		.pos_x = param.expected_player_pos_x,
+		.pos_y = param.expected_player_pos_y,
+		.angle = param.expected_player_angle,
+	};
 	parse_cub(&data, param.cub_file_path);
 	EXPECT_EQ(data.params, expected_data);
+	EXPECT_EQ(data.player, expected_player);
 	free_2d_array_of_char(data.params.map);
 }
 
@@ -64,14 +73,13 @@ INSTANTIATE_TEST_SUITE_P(
     ::testing::Values(
         CubTestData{
             .cub_file_path = (char*)"examples/test1.cub",
-			.expected_img_no = (void*)0,
-			.expected_img_so = (void*)0,
-			.expected_img_we = (void*)0,
-			.expected_img_ea = (void*)0,
             .expected_floor = 14443520,
             .expected_ceiling = 14753280,
             .expected_map_width = 33,
             .expected_map_height = 14,
+			.expected_player_pos_x = 26.0,
+			.expected_player_pos_y = 11.0,
+			.expected_player_angle = 270,
             .expected_map = {
 				"        1111111111111111111111111",
 				"        1000000000110000000000001",
