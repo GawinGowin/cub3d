@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/20 18:25:57 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 19:35:29 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int	is_valid_map(char **map)
 		return (0);
 	height = get_height(map);
 	width = get_width(map);
-	if (has_invalid_char(map))
-		return (1);
+	if (has_invalid_char(map, " 01NSEW"))
+		return (0);
 	memory = dup_map(map, height);
 	if (!memory)
-		return (1);
+		return (0);
 	ret = is_surrounded(map, memory, height, width);
 	free_map(memory, height);
 	if (!ret)

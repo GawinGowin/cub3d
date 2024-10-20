@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/20 18:30:01 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 19:36:11 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_contain_only_one_symbol_inline(
 				char *line, char *set, int *flag, size_t width);
 
-int	has_invalid_char(char **map)
+int	has_invalid_char(char **map, char *available_set)
 {
 	size_t	i;
 	size_t	j;
@@ -26,7 +26,7 @@ int	has_invalid_char(char **map)
 		j = 0;
 		while (j < get_width(map))
 		{
-			if (!ft_strchr(" 01NSEW", map[i][j]))
+			if (!ft_strchr(available_set, map[i][j]))
 				return (1);
 			j++;
 		}
@@ -35,7 +35,8 @@ int	has_invalid_char(char **map)
 	return (0);
 }
 
-int	is_contain_only_one_symbol(char **map, char *set, size_t height, size_t width)
+int	is_contain_only_one_symbol(
+		char **map, char *set, size_t height, size_t width)
 {
 	size_t	y;
 	size_t	i;
@@ -76,7 +77,7 @@ static int	is_contain_only_one_symbol_inline(
 		{
 			index = pt - set;
 			if (*flag & (1 << index))
-				(*flag) &= ~(1 << index);
+				(*flag) = 0;
 			else
 				return (0);
 		}
