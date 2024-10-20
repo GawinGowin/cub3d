@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 09:55:33 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 02:48:57 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 15:53:03 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,10 @@ int	get_conf_and_map(t_data *data, char **raw_lines)
 	if (data->params.map == NULL)
 		return (1);
 	free_map(formed_lines, get_lines_cnt(formed_lines));
+	if (get_player(data))
+		return (1);
 	return (0);
 }
-
-// static void	print_map(char **map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		printf("%s\n", map[i]);
-// 		i++;
-// 	}
-// }
 
 static char	**drop_vacant_element_and_dup(char **lines)
 {

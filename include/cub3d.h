@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 19:50:39 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 15:53:29 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ int		color_str_to_int(char *str);
 int		splited_length(char **array);
 int		get_conf(t_data *data, char **lines);
 int		strlen_ln(char *str);
-
 char	**get_map(char **raw_map_lines, size_t width, size_t height);
 void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height);
+int		get_player(t_data *data);
 
 // movement
 double	cos_degree(int angle);
