@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:25:39 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/18 11:11:30 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 18:25:57 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	is_surrounded(
 				char **map, char **memory, size_t height, size_t width);
 static int	check_surrounding(
 				char **map, char **memory, size_t height, size_t width);
-static int	is_contains_symbols(
-				char **map, char *symbols, size_t height, size_t width);
 static void	dfs(char **map, char **memory, size_t x, size_t y);
 
 /**
@@ -55,6 +53,10 @@ int	is_valid_map(char **map)
 		return (1);
 	ret = is_surrounded(map, memory, height, width);
 	free_map(memory, height);
+	if (!ret)
+		return (0);
+	if (!is_contain_only_one_symbol(map, "NSEW", height, width))
+		return (0);
 	return (ret);
 }
 
@@ -63,6 +65,7 @@ static int	is_surrounded(
 {
 	size_t	x;
 	size_t	y;
+	int		ret;
 
 	y = 0;
 	while (y < height)
@@ -80,33 +83,8 @@ static int	is_surrounded(
 		}
 		y++;
 	}
-	return (check_surrounding(map, memory, height, width)
-		&& is_contains_symbols(map, "0", height, width));
-}
-
-static int	is_contains_symbols(
-				char **map, char *symbols, size_t height, size_t width)
-{
-	size_t	x;
-	size_t	y;
-	int		flag;
-
-	y = 0;
-	flag = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (x < width)
-		{
-			if (ft_strchr(symbols, map[y][x]))
-				flag = 1;
-			x++;
-		}
-		y++;
-	}
-	if (!flag)
-		return (0);
-	return (1);
+	ret = check_surrounding(map, memory, height, width);
+	return (ret);
 }
 
 static int	check_surrounding(
