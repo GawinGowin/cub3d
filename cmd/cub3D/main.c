@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 02:50:34 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 19:54:38 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 17:42:11 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ int	main(int argc, char **argv)
 	while (data.params.map[++i])
 		printf("%d %s\n", i, data.params.map[i]);
 	printf("%d %s\n", i, data.params.map[i]);
-	data.player.pos_x = 1.0;
-	data.player.pos_y = 1.0;
-	data.player.angle = 0;
 	set_hooks_and_loop(&data);
 	return (0);
 }
