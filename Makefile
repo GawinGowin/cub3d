@@ -27,8 +27,9 @@ SOURCES += movement/update_angle.c
 SOURCES += movement/update_coodinate.c
 # SOURCES += movement/detect_wall_by_dda.c
 
-SOURCES += map_validation/map_validation_util.c
-SOURCES += map_validation/map_validation.c
+SOURCES += validation/validation.c
+SOURCES += validation/map_validation_util.c
+SOURCES += validation/map_validation.c
 
 # Library
 ## Original Libft

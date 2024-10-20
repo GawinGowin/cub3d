@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 05:06:10 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/20 19:44:44 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	get_conf_by_str(t_data *param, char *str, int *flags);
 static int	detect_identifier(t_data *data, char **key_value, int *flag);
 static int	get_img(t_data *data, char *path, char *id, int *flag);
-static void set_flag(char *id, int *flag);
+static void	set_flag(char *id, int *flag);
 
 /**
  * Parses the configuration for the cub3D game.
@@ -46,13 +46,6 @@ int	get_conf(t_data *data, char **lines)
 		i ++;
 	}
 	return (0);
-	// これらのコードは別に移行すべき：テストのためにmlx関係のメモリallocateが必要で面倒だから
-	// if (data->params.img_no && data->params.img_so && data->params.img_ea
-	// 	&& data->params.img_we && data->params.ceiling >= 0
-	// 	&& data->params.floor >= 0)
-	// 	return (0);
-	// printerror(ERR_FORMAT);
-	// return (-1);
 }
 
 static int	get_conf_by_str(t_data *data, char *str, int *flags)
