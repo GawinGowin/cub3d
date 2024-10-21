@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_coodinate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-18 07:43:41 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-18 07:43:41 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/18 07:43:41 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/21 08:43:02 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	update_coordinate(t_data *data, int key)
 {
 	int		angle;
-	double	x;
-	double	y;
+	double	delta[2];
+	t_dda	dda_ret;
 
 	angle = data->player.angle;
 	if (key == KEY_D)
@@ -26,12 +26,21 @@ void	update_coordinate(t_data *data, int key)
 	else if (key == KEY_S)
 		angle += 180;
 	angle = regulate_angle(angle);
-	x = data->player.pos_x + STRIDE * cos_degree(angle);
-	y = data->player.pos_y + STRIDE * sin_degree(angle);
-	if (0 <= x && x < data->params.map_width)
-		if (data->params.map[(int)(x + 0.5)][(int)(y + 0.5)] != WALL)
-			data->player.pos_x = x;
-	if (0 <= y && y < data->params.map_height)
-		if (data->params.map[(int)(x + 0.5)][(int)(y + 0.5)] != WALL)
-			data->player.pos_y = y;
+	(void) dda_ret;
+	dda_ret = dda(&data->player, data->params.map);
+	if (dda_ret.is_hit == 1)
+		printf("hitblock: (%zu, %zu)/ distance: %f\n", dda_ret.hit_block[0], dda_ret.hit_block[1], dda_ret.distance);
+	delta[0] = STRIDE * cos_degree(angle);
+	delta[1] = STRIDE * sin_degree(angle);
+	if (dda_ret.distance > sqrt((delta[0] * delta[0]) + (delta[1] * delta[1])))
+	{
+		data->player.pos_x += delta[0];
+		data->player.pos_y += delta[1];
+	}
+	// else if ()
+	// {
+	// 	data->player.pos_x += floor(dda_ret.distance * cos_degree(angle));
+	// 	data->player.pos_y += floor(dda_ret.distance * sin_degree(angle));
+	// }
+
 }
