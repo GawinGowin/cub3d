@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:02:53 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/21 08:08:33 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/21 08:16:39 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,32 @@ static t_side_dist	get_side_distination(
 						t_player *player,
 						double ray_distination[2],
 						double delta_dist[2],
-						int pos_int[2]);
+						size_t pos_index[2]);
 static void			ray_cast(
 						t_side_dist side_dist,
-						int pos_int[2],
+						size_t pos_index[2],
 						char **map,
 						t_dda *ret);
 static void			get_distance_and_hitblock(
-						int pos_int[2],
+						size_t pos_index[2],
 						double dist[2],
 						t_dda *ret);
 
 t_dda	dda(t_player *player, char **map)
 {
 	t_dda			ret;
-	int				pos_int[2];
+	size_t			pos_index[2];
 	t_side_dist		side_dist;
 
 	ret.ray_distination[0] = cos_degree(player->angle);
 	ret.ray_distination[1] = sin_degree(player->angle);
 	ret.delta_dist[0] = get_distination_delta(ret.ray_distination[0]);
 	ret.delta_dist[1] = get_distination_delta(ret.ray_distination[1]);
-	pos_int[0] = (int)player->pos_x;
-	pos_int[1] = (int)player->pos_y;
+	pos_index[0] = (size_t)player->pos_x;
+	pos_index[1] = (size_t)player->pos_y;
 	side_dist = get_side_distination(player, ret.ray_distination,
-			ret.delta_dist, pos_int);
-	ray_cast(side_dist, pos_int, map, &ret);
+			ret.delta_dist, pos_index);
+	ray_cast(side_dist, pos_index, map, &ret);
 	return (ret);
 }
 
@@ -58,36 +58,36 @@ static t_side_dist	get_side_distination(
 			t_player *player,
 			double ray_distination[2],
 			double delta_dist[2],
-			int pos_int[2])
+			size_t pos_index[2])
 {
 	t_side_dist	ret;
 
 	if (ray_distination[0] < 0)
 	{
 		ret.step[0] = -1;
-		ret.dist[0] = (player->pos_x - pos_int[0]) * delta_dist[0];
+		ret.dist[0] = (player->pos_x - pos_index[0]) * delta_dist[0];
 	}
 	else
 	{
 		ret.step[0] = 1;
-		ret.dist[0] = (pos_int[0] + 1.0 - player->pos_x) * delta_dist[0];
+		ret.dist[0] = (pos_index[0] + 1.0 - player->pos_x) * delta_dist[0];
 	}
 	if (ray_distination[1] < 0)
 	{
 		ret.step[1] = -1;
-		ret.dist[1] = (player->pos_y - pos_int[1]) * delta_dist[1];
+		ret.dist[1] = (player->pos_y - pos_index[1]) * delta_dist[1];
 	}
 	else
 	{
 		ret.step[1] = 1;
-		ret.dist[1] = (pos_int[1] + 1.0 - player->pos_y) * delta_dist[1];
+		ret.dist[1] = (pos_index[1] + 1.0 - player->pos_y) * delta_dist[1];
 	}
 	return (ret);
 }
 
 static void	ray_cast(
 				t_side_dist side_dist,
-				int pos_int[2],
+				size_t pos_index[2],
 				char **map,
 				t_dda *ret)
 {
@@ -101,28 +101,28 @@ static void	ray_cast(
 		if (ret->is_hit == 0 && distance[0] < distance[1])
 		{
 			distance[0] += ret->delta_dist[0];
-			pos_int[0] += side_dist.step[0];
+			pos_index[0] += side_dist.step[0];
 			ret->side = 0;
 		}
 		else if (ret->is_hit == 0 && distance[0] >= distance[1])
 		{
 			distance[1] += ret->delta_dist[1];
-			pos_int[1] += side_dist.step[1];
+			pos_index[1] += side_dist.step[1];
 			ret->side = 1;
 		}
-		if (map[pos_int[0]][pos_int[1]] == WALL)
+		if (map[pos_index[0]][pos_index[1]] == WALL)
 			ret->is_hit = 1;
 	}
-	get_distance_and_hitblock(pos_int, distance, ret);
+	get_distance_and_hitblock(pos_index, distance, ret);
 }
 
 static void	get_distance_and_hitblock(
-				int pos_int[2],
+				size_t pos_index[2],
 				double dist[2],
 				t_dda *ret)
 {
-	ret->hit_block[0] = pos_int[0];
-	ret->hit_block[1] = pos_int[1];
+	ret->hit_block[0] = pos_index[0];
+	ret->hit_block[1] = pos_index[1];
 	if (ret->side == 0)
 		ret->distance = dist[0];
 	else

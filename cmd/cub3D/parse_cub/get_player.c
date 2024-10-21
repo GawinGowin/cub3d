@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:51:37 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/20 16:08:37 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/21 08:24:23 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_player_from_char(t_data *data, char symbol, int y, int x)
 		data->player.angle = 0;
 	else
 		return (0);
-	data->player.pos_x = x;
-	data->player.pos_y = y;
+	data->player.pos_x = (double) x + 0.5;
+	data->player.pos_y = (double) y + 0.5;
 	return (1);
 }
