@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 18:39:34 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/21 07:54:56 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define PI 3.1415926535
 
 // 一歩で進む距離
-# define STRIDE 1.0
+# define STRIDE 0.4
 
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"
@@ -123,6 +123,39 @@ int		strlen_ln(char *str);
 char	**get_map(char **raw_map_lines, size_t width, size_t height);
 void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height);
 int		get_player(t_data *data);
+
+// algo
+typedef struct s_dda_result
+{
+	int		is_hit;
+	double	distance;
+	size_t	hit_block[2];
+	int		side;
+	double	delta_dist[2];
+	double	ray_distination[2];
+}				t_dda;
+
+typedef struct s_side_distination
+{
+	/**
+	 * @brief Array to store the perpendicular distances to the
+	 * next x and y sides.
+	 * 
+	 * This array holds two double values representing the distances
+	 * to the next x-side and y-side respectively. These distances are used in
+	 * the DDA algorithm to determine the next step in the grid traversal.
+	 */
+	double	dist[2];
+	/**
+	 * @brief Array to store the step increments for the DDA algorithm.
+	 * 
+	 * @var step[0] Step increment in the x direction.
+	 * @var step[1] Step increment in the y direction.
+	 */
+	int		step[2];
+}				t_side_dist;
+
+t_dda	dda(t_player *player, char **map);
 
 // movement
 double	cos_degree(int angle);
