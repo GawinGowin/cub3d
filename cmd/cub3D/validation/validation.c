@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:04:08 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/20 19:50:12 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/22 06:44:21 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,21 @@ static int	is_data_satisfies(t_data *data)
 {
 	if (data == NULL || data->params.map == NULL)
 		return (0);
-	if (!data->params.img_no)
+	if (!data->params.img_no || !data->params.img_so
+		|| !data->params.img_ea || !data->params.img_we)
 		return (0);
-	if (!data->params.img_so)
+	if (data->params.ceiling < 0 || data->params.floor < 0)
 		return (0);
-	if (!data->params.img_ea)
+	if (data->params.map_width == 0 || data->params.map_height == 0
+		|| data->params.map_width > INT_MAX
+		|| data->params.map_height > INT_MAX)
 		return (0);
-	if (!data->params.img_we)
+	if (!(data->player.pos_x > 0) || !(data->player.pos_y > 0)
+		|| !(data->player.pos_x < data->params.map_width - 1)
+		|| !(data->player.pos_y < data->params.map_height - 1))
 		return (0);
-	if (data->params.ceiling < 0)
-		return (0);
-	if (data->params.floor < 0)
-		return (0);
-	if (data->params.map_width == 0 || data->params.map_height == 0)
+	if (!(data->player.angle == 0) || !(data->player.angle == 90)
+		|| !(data->player.angle == 180) || !(data->player.angle == 270))
 		return (0);
 	return (1);
 }
