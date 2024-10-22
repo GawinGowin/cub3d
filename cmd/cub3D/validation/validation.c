@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:04:08 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/22 06:44:21 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/22 07:12:38 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	is_data_satisfies(t_data *data)
 		|| !(data->player.pos_x < data->params.map_width - 1)
 		|| !(data->player.pos_y < data->params.map_height - 1))
 		return (0);
-	if (!(data->player.angle == 0) || !(data->player.angle == 90)
-		|| !(data->player.angle == 180) || !(data->player.angle == 270))
+	if (!(data->player.angle == 0) && !(data->player.angle == 90)
+		&& !(data->player.angle == 180) && !(data->player.angle == 270))
 		return (0);
 	return (1);
 }
