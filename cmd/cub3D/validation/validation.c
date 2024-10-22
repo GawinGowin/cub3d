@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:04:08 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/21 11:29:14 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/22 06:44:21 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ static int	is_data_satisfies(t_data *data)
 		return (0);
 	if (data->params.ceiling < 0 || data->params.floor < 0)
 		return (0);
-	if (data->params.map_width == 0 || data->params.map_height == 0)
+	if (data->params.map_width == 0 || data->params.map_height == 0
+		|| data->params.map_width > INT_MAX
+		|| data->params.map_height > INT_MAX)
 		return (0);
 	if (!(data->player.pos_x > 0) || !(data->player.pos_y > 0)
 		|| !(data->player.pos_x < data->params.map_width - 1)
