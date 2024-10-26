@@ -6,13 +6,17 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:02:53 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/26 23:23:11 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/26 23:52:40 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static double		get_distination_delta(double distination_element);
+static t_side_dist	get_side_distination(
+						t_player *org,
+						double ray_distination[2],
+						double delta_dist[2]);
 static void			ray_cast(
 						int pos_index[2],
 						char **map,
@@ -34,7 +38,7 @@ t_dda	dda(t_player *org, char **map)
 	pos_index[0] = (int)org->pos_x;
 	pos_index[1] = (int)org->pos_y;
 	ret.side_dist = get_side_distination(org,
-						ret.ray_distination, ret.delta_dist);
+			ret.ray_distination, ret.delta_dist);
 	ray_cast(pos_index, map, &ret);
 	return (ret);
 }
@@ -46,7 +50,7 @@ static double	get_distination_delta(double distination_element)
 	return (fabs(1.0 / distination_element));
 }
 
-t_side_dist	get_side_distination(
+static t_side_dist	get_side_distination(
 			t_player *org,
 			double ray_distination[2],
 			double delta_dist[2])

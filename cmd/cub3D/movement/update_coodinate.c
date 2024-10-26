@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 07:43:41 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/26 23:40:01 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/26 23:51:11 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ void	update_coordinate(t_data *data, int key)
 	set_player_to_edge(&dda_ret, data, angle);
 }
 
-static void	set_player_to_edge(t_dda *dda_ret, t_data *d, int mv_angle)
+static void	set_player_to_edge(t_dda *dda, t_data *d, int mv_angle)
 {
 	double		next_distance;
 	double		next[2];
 
 	next[0] = STRIDE * cos_degree(mv_angle);
 	next[1] = STRIDE * sin_degree(mv_angle);
-	if (dda_ret->side == 0)
-		next_distance = dda_ret->dist_option[0] - dda_ret->delta_dist[0] - OFFSET;
+	if (dda->side == 0)
+		next_distance = dda->dist_option[0] - dda->delta_dist[0] - OFFSET;
 	else
-		next_distance = dda_ret->dist_option[1] - dda_ret->delta_dist[1] - OFFSET;
+		next_distance = dda->dist_option[1] - dda->delta_dist[1] - OFFSET;
 	if (next_distance > sqrt(next[0] * next[0] + next[1] * next[1]))
 	{
 		d->player.pos_x += next[0];

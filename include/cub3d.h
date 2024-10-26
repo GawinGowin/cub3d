@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/26 23:03:44 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/26 23:53:44 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define XPM_SIZE 100
 # define PI 3.1415926535
 
-#define EPSILON 1e-6
+# define EPSILON 1e-6
 
 // 一歩で進む距離
 # define STRIDE 0.4
@@ -174,10 +174,6 @@ typedef struct s_dda_result
 }				t_dda;
 
 t_dda	dda(t_player *player, char **map);
-t_side_dist	get_side_distination(
-			t_player *org,
-			double ray_distination[2],
-			double delta_dist[2]);
 
 // movement
 double	cos_degree(int angle);
