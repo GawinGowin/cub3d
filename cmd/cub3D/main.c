@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 02:50:34 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 19:54:38 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 01:03:29 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parse_cub(&data, argv[1]) || !is_validate(&data))
 		return (destroy_mlx_ptr(&data));
-	// 確認用
-	printf("map_w:%zu map_h:%zu\n", data.params.map_width, data.params.map_height);
-	printf("floor: %x ceiling:%x\n", data.params.floor, data.params.ceiling);
-	int i = -1;
-	while (data.params.map[++i])
-		printf("%d %s\n", i, data.params.map[i]);
-	printf("%d %s\n", i, data.params.map[i]);
-	data.player.pos_x = 1.0;
-	data.player.pos_y = 1.0;
-	data.player.angle = 0;
 	set_hooks_and_loop(&data);
 	return (0);
 }
