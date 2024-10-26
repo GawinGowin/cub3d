@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   detect_event.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-11 06:17:26 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-11 06:17:26 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/11 06:17:26 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/27 01:03:06 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	detect_keys(int key, t_data *data)
 		update_angle(data, key);
 	else
 		return (0);
-	printf("player x %f y %f angle %d\n", data->player.pos_x, data->player.pos_y, data->player.angle);
 	return (0);
 }
 
