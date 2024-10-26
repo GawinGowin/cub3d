@@ -6,17 +6,19 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 07:43:41 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/21 08:43:02 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/26 23:40:01 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	set_player_to_edge(t_dda *dda_ret, t_data *data, int mv_angle);
+
 void	update_coordinate(t_data *data, int key)
 {
-	int		angle;
-	double	delta[2];
-	t_dda	dda_ret;
+	int			angle;
+	t_dda		dda_ret;
+	t_player	adjust_player;
 
 	angle = data->player.angle;
 	if (key == KEY_D)
@@ -26,21 +28,38 @@ void	update_coordinate(t_data *data, int key)
 	else if (key == KEY_S)
 		angle += 180;
 	angle = regulate_angle(angle);
-	(void) dda_ret;
-	dda_ret = dda(&data->player, data->params.map);
-	if (dda_ret.is_hit == 1)
-		printf("hitblock: (%zu, %zu)/ distance: %f\n", dda_ret.hit_block[0], dda_ret.hit_block[1], dda_ret.distance);
-	delta[0] = STRIDE * cos_degree(angle);
-	delta[1] = STRIDE * sin_degree(angle);
-	if (dda_ret.distance > sqrt((delta[0] * delta[0]) + (delta[1] * delta[1])))
-	{
-		data->player.pos_x += delta[0];
-		data->player.pos_y += delta[1];
-	}
-	// else if ()
-	// {
-	// 	data->player.pos_x += floor(dda_ret.distance * cos_degree(angle));
-	// 	data->player.pos_y += floor(dda_ret.distance * sin_degree(angle));
-	// }
+	adjust_player.pos_x = data->player.pos_x;
+	adjust_player.pos_y = data->player.pos_y;
+	adjust_player.angle = angle;
+	dda_ret = dda(&adjust_player, data->params.map);
+	if (dda_ret.is_hit)
+		printf("hitblock: (%zu, %zu)/ distance: %f\n",
+			dda_ret.hit_block[0], dda_ret.hit_block[1], dda_ret.distance);
+	else
+		printf("no hitblock\n");
+	set_player_to_edge(&dda_ret, data, angle);
+}
 
+static void	set_player_to_edge(t_dda *dda_ret, t_data *d, int mv_angle)
+{
+	double		next_distance;
+	double		next[2];
+
+	next[0] = STRIDE * cos_degree(mv_angle);
+	next[1] = STRIDE * sin_degree(mv_angle);
+	if (dda_ret->side == 0)
+		next_distance = dda_ret->dist_option[0] - dda_ret->delta_dist[0] - OFFSET;
+	else
+		next_distance = dda_ret->dist_option[1] - dda_ret->delta_dist[1] - OFFSET;
+	if (next_distance > sqrt(next[0] * next[0] + next[1] * next[1]))
+	{
+		d->player.pos_x += next[0];
+		d->player.pos_y += next[1];
+	}
+	else
+	{
+		d->player.pos_x += next_distance * cos_degree(mv_angle);
+		d->player.pos_y += next_distance * sin_degree(mv_angle);
+	}
+	return ;
 }
