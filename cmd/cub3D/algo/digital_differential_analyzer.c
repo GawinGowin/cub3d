@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:02:53 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/26 23:52:40 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 19:18:03 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ t_dda	dda(t_player *org, char **map)
 	ret.side_dist = get_side_distination(org,
 			ret.ray_distination, ret.delta_dist);
 	ray_cast(pos_index, map, &ret);
+	if (ret.side == 0)
+		ret.paperwall_dist = (ret.side_dist.dist[0] - ret.delta_dist[0]);
+	else
+		ret.paperwall_dist = (ret.side_dist.dist[1] - ret.delta_dist[1]);
 	return (ret);
 }
 

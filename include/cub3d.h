@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/27 09:49:14 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 19:16:05 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,14 +164,15 @@ typedef struct s_dda_result
 	size_t		hit_block[2];
 	/**
 	 * @brief Represents the side of a wall hit during raycasting.
-	 * 
-	 * 
+	 * side == 1 : y-side
+	 * side == 0 : x-side
 	 */
 	int			side;
 	double		delta_dist[2];
 	double		ray_distination[2];
 	double		dist_option[2];
 	t_side_dist	side_dist;
+	double		paperwall_dist;
 }				t_dda;
 
 t_dda	dda(t_player *player, char **map);
