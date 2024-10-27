@@ -26,12 +26,14 @@ SOURCES += parse_cub/get_player.c
 SOURCES += movement/trig_degree.c
 SOURCES += movement/update_angle.c
 SOURCES += movement/update_coodinate.c
-# SOURCES += movement/detect_wall_by_dda.c
+
 SOURCES += algo/digital_differential_analyzer.c
 
 SOURCES += validation/validation.c
 SOURCES += validation/map_validation_util.c
 SOURCES += validation/map_validation.c
+
+SOURCES += rendering/mlx_urils.c
 
 # Library
 ## Original Libft
