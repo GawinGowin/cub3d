@@ -57,8 +57,8 @@ TEST_P(CubInputTest, CubInput)
 		.map = (char **) param.expected_map,
 	};
 	t_player expected_player = {
-		.pos_x = param.expected_player_pos_x,
-		.pos_y = param.expected_player_pos_y,
+		.pos_x = param.expected_player_pos_x + INIT_FRAC,
+		.pos_y = param.expected_player_pos_y + INIT_FRAC,
 		.angle = param.expected_player_angle,
 	};
 	parse_cub(&data, param.cub_file_path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trig_degree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-15 04:18:25 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-15 04:18:25 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/15 04:18:25 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/26 22:44:20 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,23 @@
 double	cos_degree(int angle)
 {
 	double	rad;
+	double	ret;
 
 	rad = angle * (PI / 180.0);
-	return (cos(rad));
+	ret = cos(rad);
+	if (fabs(ret) < EPSILON)
+		ret = 0;
+	return (ret);
 }
 
 double	sin_degree(int angle)
 {
 	double	rad;
+	double	ret;
 
 	rad = angle * (PI / 180.0);
-	return (sin(rad));
+	ret = sin(rad);
+	if (fabs(ret) < EPSILON)
+		ret = 0;
+	return (ret);
 }
