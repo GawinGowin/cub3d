@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/27 08:49:39 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 08:55:55 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,8 +182,6 @@ double	sin_degree(int angle);
 void	update_angle(t_data *data, int key);
 void	update_coordinate(t_data *data, int key);
 int		regulate_angle(int now);
-
-// t_wall	detect_wall_by_dda(t_data *data, double angle);
 
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);
