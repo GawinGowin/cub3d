@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/26 23:53:44 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 08:49:39 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 
 // 一歩で進む距離
 # define STRIDE 0.4
+# define INIT_FRAC  0.5
 # define OFFSET 0.01
 
 # define ERR_PREFIX "Error: "
