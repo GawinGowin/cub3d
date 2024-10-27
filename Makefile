@@ -33,8 +33,6 @@ SOURCES += validation/validation.c
 SOURCES += validation/map_validation_util.c
 SOURCES += validation/map_validation.c
 
-SOURCES += rendering/mlx_urils.c
-
 # Library
 ## Original Libft
 LIB_SOURCES += libft/ft_atoi.c

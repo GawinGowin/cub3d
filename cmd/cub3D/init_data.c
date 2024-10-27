@@ -6,12 +6,13 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/27 09:40:42 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 19:48:55 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static int	init_mlx_ptr(t_data *data, char *name);
 static void	init_values(t_data *data);
 
 int	init_data(t_data *data, char *name)
@@ -19,6 +20,27 @@ int	init_data(t_data *data, char *name)
 	init_values(data);
 	if (init_mlx_ptr(data, name))
 		return (printerror(ERR_FAILED_INIT_MLX));
+	return (0);
+}
+
+static int	init_mlx_ptr(t_data *data, char *name)
+{
+	data->mlx_val.mlx_ptr = mlx_init();
+	if (!data->mlx_val.mlx_ptr)
+		return (1);
+	data->mlx_val.win_ptr = mlx_new_window(data->mlx_val.mlx_ptr, WIN_WIDTH, \
+			WIN_HEIGHT, name);
+	if (!data->mlx_val.win_ptr)
+		return (destroy_mlx_ptr(data));
+	data->mlx_val.img_ptr = mlx_new_image(data->mlx_val.mlx_ptr, WIN_WIDTH, \
+			WIN_HEIGHT);
+	if (!data->mlx_val.img_ptr)
+		return (destroy_mlx_ptr(data));
+	data->mlx_val.addr = mlx_get_data_addr(data->mlx_val.img_ptr, \
+			&data->mlx_val.bpp, &data->mlx_val.line_byte, \
+			&data->mlx_val.endian);
+	if (!data->mlx_val.addr)
+		return (destroy_mlx_ptr(data));
 	return (0);
 }
 

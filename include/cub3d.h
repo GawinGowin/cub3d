@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/27 19:40:54 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 19:51:38 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,16 +184,14 @@ void	update_angle(t_data *data, int key);
 void	update_coordinate(t_data *data, int key);
 int		regulate_angle(int now);
 
-// render
-int		init_mlx_ptr(t_data *data, char *name);
-int		destroy_mlx_ptr(t_data *data);
-void	put_color_to_img(t_data *data, int x, int y, int color);
-
 int		init_data(t_data *data, char *name);
 int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
 int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
+
+int		destroy_mlx_ptr(t_data *data);
+void	put_color_to_img(t_data *data, int x, int y, int color);
 
 // validation
 int		is_validate(t_data *data);
