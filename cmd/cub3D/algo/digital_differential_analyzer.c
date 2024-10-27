@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:02:53 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/26 23:52:40 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/27 19:40:09 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static double		get_distination_delta(double distination_element);
 static t_side_dist	get_side_distination(
 						t_player *org,
-						double ray_distination[2],
+						double _ray_distination[2],
 						double delta_dist[2]);
 static void			ray_cast(
 						int pos_index[2],
@@ -31,15 +31,19 @@ t_dda	dda(t_player *org, char **map)
 	int				pos_index[2];
 
 	ret.is_hit = 0;
-	ret.ray_distination[0] = cos_degree(org->angle);
-	ret.ray_distination[1] = sin_degree(org->angle);
-	ret.delta_dist[0] = get_distination_delta(ret.ray_distination[0]);
-	ret.delta_dist[1] = get_distination_delta(ret.ray_distination[1]);
+	ret._ray_distination[0] = cos_degree(org->angle);
+	ret._ray_distination[1] = sin_degree(org->angle);
+	ret.delta_dist[0] = get_distination_delta(ret._ray_distination[0]);
+	ret.delta_dist[1] = get_distination_delta(ret._ray_distination[1]);
 	pos_index[0] = (int)org->pos_x;
 	pos_index[1] = (int)org->pos_y;
-	ret.side_dist = get_side_distination(org,
-			ret.ray_distination, ret.delta_dist);
+	ret._side_dist = get_side_distination(org,
+			ret._ray_distination, ret.delta_dist);
 	ray_cast(pos_index, map, &ret);
+	if (ret.side == 0)
+		ret.paperwall_dist = (ret._side_dist.dist[0] - ret.delta_dist[0]);
+	else
+		ret.paperwall_dist = (ret._side_dist.dist[1] - ret.delta_dist[1]);
 	return (ret);
 }
 
@@ -52,12 +56,12 @@ static double	get_distination_delta(double distination_element)
 
 static t_side_dist	get_side_distination(
 			t_player *org,
-			double ray_distination[2],
+			double _ray_distination[2],
 			double delta_dist[2])
 {
 	t_side_dist	ret;
 
-	if (ray_distination[0] < 0)
+	if (_ray_distination[0] < 0)
 	{
 		ret.step[0] = -1;
 		ret.dist[0] = (org->pos_x - (int)org->pos_x) * delta_dist[0];
@@ -67,7 +71,7 @@ static t_side_dist	get_side_distination(
 		ret.step[0] = 1;
 		ret.dist[0] = ((int)org->pos_x + 1.0 - org->pos_x) * delta_dist[0];
 	}
-	if (ray_distination[1] < 0)
+	if (_ray_distination[1] < 0)
 	{
 		ret.step[1] = -1;
 		ret.dist[1] = (org->pos_y - (int)org->pos_y) * delta_dist[1];
@@ -86,20 +90,20 @@ static void	ray_cast(
 				t_dda *ret)
 {
 	ret->is_hit = 0;
-	ret->dist_option[0] = ret->side_dist.dist[0];
-	ret->dist_option[1] = ret->side_dist.dist[1];
+	ret->dist_option[0] = ret->_side_dist.dist[0];
+	ret->dist_option[1] = ret->_side_dist.dist[1];
 	while (ret->is_hit == 0)
 	{
 		if (ret->is_hit == 0 && ret->dist_option[0] < ret->dist_option[1])
 		{
 			ret->dist_option[0] += ret->delta_dist[0];
-			pos_index[0] += ret->side_dist.step[0];
+			pos_index[0] += ret->_side_dist.step[0];
 			ret->side = 0;
 		}
 		else if (ret->is_hit == 0 && ret->dist_option[0] >= ret->dist_option[1])
 		{
 			ret->dist_option[1] += ret->delta_dist[1];
-			pos_index[1] += ret->side_dist.step[1];
+			pos_index[1] += ret->_side_dist.step[1];
 			ret->side = 1;
 		}
 		if (pos_index[0] < 0 || pos_index[1] < 0)
