@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-12 06:53:37 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/10/27 09:40:42 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	init_values(t_data *data);
-static int	init_mlx_ptr(t_data *data, char *name);
 
 int	init_data(t_data *data, char *name)
 {
@@ -44,25 +43,4 @@ static void	init_values(t_data *data)
 	data->params.img_ea = NULL;
 	data->params.ceiling = -1;
 	data->params.floor = -1;
-}
-
-static int	init_mlx_ptr(t_data *data, char *name)
-{
-	data->mlx_val.mlx_ptr = mlx_init();
-	if (!data->mlx_val.mlx_ptr)
-		return (1);
-	data->mlx_val.win_ptr = mlx_new_window(data->mlx_val.mlx_ptr, WIN_WIDTH, \
-			WIN_HEIGHT, name);
-	if (!data->mlx_val.win_ptr)
-		return (destroy_mlx_ptr(data));
-	data->mlx_val.img_ptr = mlx_new_image(data->mlx_val.mlx_ptr, WIN_WIDTH, \
-			WIN_HEIGHT);
-	if (!data->mlx_val.img_ptr)
-		return (destroy_mlx_ptr(data));
-	data->mlx_val.addr = mlx_get_data_addr(data->mlx_val.img_ptr, \
-			&data->mlx_val.bpp, &data->mlx_val.line_byte, \
-			&data->mlx_val.endian);
-	if (!data->mlx_val.addr)
-		return (destroy_mlx_ptr(data));
-	return (0);
 }
