@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 07:59:10 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 12:30:56 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ typedef struct s_dda_result
 	int			side;
 	double		delta_dist[2];
 	double		dist_option[2];
-	double		paperwall_dist;
+	// double		paperwall_dist;
 	double		_ray_distination[2];
 	t_side_dist	_side_dist;
 }				t_dda;
