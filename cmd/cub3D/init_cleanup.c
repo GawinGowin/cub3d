@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   init_cleanup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/27 19:48:55 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 04:06:42 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,34 @@ static void	init_values(t_data *data)
 	data->params.img_ea = NULL;
 	data->params.ceiling = -1;
 	data->params.floor = -1;
+}
+
+// mlx_get_data_addrはimg_ptr->dataを返すため、mlx_destroy_imageで解放される。
+int	destroy_mlx_ptr(t_data *data)
+{
+	if (data->mlx_val.mlx_ptr && data->params.img_no)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_no);
+	if (data->mlx_val.mlx_ptr && data->params.img_so)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_so);
+	if (data->mlx_val.mlx_ptr && data->params.img_we)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_we);
+	if (data->mlx_val.mlx_ptr && data->params.img_ea)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_ea);
+	if (data->mlx_val.mlx_ptr && data->mlx_val.img_ptr)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->mlx_val.img_ptr);
+	if (data->mlx_val.mlx_ptr && data->mlx_val.win_ptr)
+		mlx_destroy_window(data->mlx_val.mlx_ptr, data->mlx_val.win_ptr);
+	if (data->mlx_val.mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx_val.mlx_ptr);
+		free(data->mlx_val.mlx_ptr);
+	}
+	return (1);
+}
+
+void	deinit_exit(t_data *data, int exit_status)
+{
+	free_map(data->params.map, data->params.map_height);
+	destroy_mlx_ptr(data);
+	exit (1);
 }

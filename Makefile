@@ -14,7 +14,8 @@ SOURCES += main.c
 SOURCES += map_utils.c
 SOURCES += detect_event.c
 SOURCES += valid_argument.c
-SOURCES += init_data.c
+SOURCES += init_cleanup.c
+
 SOURCES += parse_cub/get_map.c
 SOURCES += parse_cub/parse_cub.c
 SOURCES += parse_cub/set_array_from_file.c
@@ -28,6 +29,9 @@ SOURCES += movement/update_angle.c
 SOURCES += movement/update_coodinate.c
 
 SOURCES += algo/digital_differential_analyzer.c
+
+SOURCES += rendering/base_render.c
+SOURCES += rendering/render_background.c
 
 SOURCES += validation/validation.c
 SOURCES += validation/map_validation_util.c
