@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 05:57:20 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 07:59:10 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define WIN_HEIGHT 600
 # define XPM_SIZE 100
 # define PI 3.1415926535
-
+# define FOV 80.0
+# define WALL_HEIGHT 10.0
 # define EPSILON 1e-6
 
 // 一歩で進む距離
@@ -199,6 +200,7 @@ int		regulate_angle(int now);
 int		render_image(t_mlx_val *mlx);
 void	put_color_to_img(t_mlx_val *mlx_val, size_t x, size_t y, int color);
 void	render_bg(t_mlx_val *mlx_val, int sky, int ground);
+void	render_walls(t_mlx_val *mlx, t_player *player, t_param_cub *params);
 
 // validation
 int		is_validate(t_data *data);
