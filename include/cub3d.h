@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 16:03:15 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:46:39 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
-	int		angle;
+	double	angle;
 }		t_player;
 
 typedef struct s_mlx_val
@@ -193,7 +193,7 @@ double	cos_degree(double angle);
 double	sin_degree(double angle);
 void	update_angle(t_data *data, int key);
 void	update_coordinate(t_data *data, int key);
-int		regulate_angle(int now);
+double	regulate_angle(double now);
 
 // rendering
 int		render_image(t_mlx_val *mlx);

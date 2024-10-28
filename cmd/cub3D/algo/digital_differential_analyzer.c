@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:02:53 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/28 16:03:07 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:45:44 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_dda	dda(t_player *org, char **map)
 	int				pos_index[2];
 
 	ret.is_hit = 0;
-	ret._ray_distination[0] = cos_degree((double) org->angle);
-	ret._ray_distination[1] = sin_degree((double) org->angle);
+	ret._ray_distination[0] = cos_degree(org->angle);
+	ret._ray_distination[1] = sin_degree(org->angle);
 	ret.delta_dist[0] = get_distination_delta(ret._ray_distination[0]);
 	ret.delta_dist[1] = get_distination_delta(ret._ray_distination[1]);
 	pos_index[0] = (int)org->pos_x;
