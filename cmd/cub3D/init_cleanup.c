@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 04:06:42 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 04:47:36 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,5 @@ void	deinit_exit(t_data *data, int exit_status)
 {
 	free_map(data->params.map, data->params.map_height);
 	destroy_mlx_ptr(data);
-	exit (1);
+	exit (exit_status);
 }
