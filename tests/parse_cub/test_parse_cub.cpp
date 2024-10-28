@@ -14,7 +14,7 @@ struct CubTestData
 	size_t expected_map_height;
 	double expected_player_pos_x;
 	double expected_player_pos_y;
-	int expected_player_angle;
+	double expected_player_angle;
 	const char *expected_map[100];
 };
 
@@ -79,7 +79,7 @@ INSTANTIATE_TEST_SUITE_P(
             .expected_map_height = 14,
 			.expected_player_pos_x = 26.0,
 			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270,
+			.expected_player_angle = 270.0,
             .expected_map = {
 				"        1111111111111111111111111",
 				"        1000000000110000000000001",

@@ -33,6 +33,7 @@ SOURCES += algo/digital_differential_analyzer.c
 
 SOURCES += rendering/base_render.c
 SOURCES += rendering/render_background.c
+SOURCES += rendering/render_walls.c
 
 SOURCES += validation/validation.c
 SOURCES += validation/map_validation_util.c

@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 05:57:20 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:46:39 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define WIN_HEIGHT 600
 # define XPM_SIZE 100
 # define PI 3.1415926535
-
+# define FOV 80.0
+# define WALL_HEIGHT 10.0
 # define EPSILON 1e-6
 
 // 一歩で進む距離
@@ -78,7 +79,7 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
-	int		angle;
+	double	angle;
 }		t_player;
 
 typedef struct s_mlx_val
@@ -181,7 +182,6 @@ typedef struct s_dda_result
 	int			side;
 	double		delta_dist[2];
 	double		dist_option[2];
-	double		paperwall_dist;
 	double		_ray_distination[2];
 	t_side_dist	_side_dist;
 }				t_dda;
@@ -189,16 +189,17 @@ typedef struct s_dda_result
 t_dda	dda(t_player *player, char **map);
 
 // movement
-double	cos_degree(int angle);
-double	sin_degree(int angle);
+double	cos_degree(double angle);
+double	sin_degree(double angle);
 void	update_angle(t_data *data, int key);
 void	update_coordinate(t_data *data, int key);
-int		regulate_angle(int now);
+double	regulate_angle(double now);
 
 // rendering
 int		render_image(t_mlx_val *mlx);
 void	put_color_to_img(t_mlx_val *mlx_val, size_t x, size_t y, int color);
 void	render_bg(t_mlx_val *mlx_val, int sky, int ground);
+void	render_walls(t_mlx_val *mlx, t_player *player, t_param_cub *params);
 
 // validation
 int		is_validate(t_data *data);

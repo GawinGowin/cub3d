@@ -7,7 +7,9 @@
 		"string_view": "c",
 		"ranges": "c",
 		"span": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"stdlib.h": "c",
+		"cmath": "c"
 	},
 	"testMate.cpp.debug.breakOnFailure": true,
 	"cmake.ctest.allowParallelJobs": true,

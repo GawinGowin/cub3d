@@ -6,13 +6,13 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 04:18:25 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/26 22:44:20 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 14:51:59 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	cos_degree(int angle)
+double	cos_degree(double angle)
 {
 	double	rad;
 	double	ret;
@@ -24,7 +24,7 @@ double	cos_degree(int angle)
 	return (ret);
 }
 
-double	sin_degree(int angle)
+double	sin_degree(double angle)
 {
 	double	rad;
 	double	ret;

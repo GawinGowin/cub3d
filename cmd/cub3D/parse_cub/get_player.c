@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 15:51:37 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/27 08:50:33 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:48:42 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	get_player(t_data *data)
 int	get_player_from_char(t_data *data, char symbol, int y, int x)
 {
 	if (symbol == PLAYER_NORTH)
-		data->player.angle = 270;
+		data->player.angle = 270.0;
 	else if (symbol == PLAYER_SOUTH)
-		data->player.angle = 90;
+		data->player.angle = 90.0;
 	else if (symbol == PLAYER_WEST)
-		data->player.angle = 180;
+		data->player.angle = 180.0;
 	else if (symbol == PLAYER_EAST)
-		data->player.angle = 0;
+		data->player.angle = 0.0;
 	else
 		return (0);
 	data->player.pos_x = (double) x + INIT_FRAC;
