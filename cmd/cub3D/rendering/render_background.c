@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   detect_event.c                                     :+:      :+:    :+:   */
+/*   render_bg.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 06:17:26 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 04:46:50 by saraki           ###   ########.fr       */
+/*   Created: 2024/10/28 03:37:23 by saraki            #+#    #+#             */
+/*   Updated: 2024/10/28 05:01:11 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	detect_keys(int key, t_data *data)
+void	render_bg(t_mlx_val *mlx_val, int sky, int ground)
 {
-	if (key == KEY_ESC)
-		detect_close(data);
-	else if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)
-		update_coordinate(data, key);
-	else if (key == ARROW_R || key == ARROW_L)
-		update_angle(data, key);
-	else
-		return (0);
-	update_screen(data);
-	return (0);
-}
+	size_t	x;
+	size_t	y;
 
-int	detect_close(t_data *data)
-{
-	deinit_exit(data, 0);
-	return (0);
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+		{
+			if (y < WIN_HEIGHT / 2)
+				put_color_to_img(mlx_val, x, y, sky);
+			else
+				put_color_to_img(mlx_val, x, y, ground);
+			x++;
+		}
+		y++;
+	}
 }

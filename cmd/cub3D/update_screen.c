@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   detect_event.c                                     :+:      :+:    :+:   */
+/*   update_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 06:17:26 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 04:46:50 by saraki           ###   ########.fr       */
+/*   Created: 2024/10/28 04:14:23 by saraki            #+#    #+#             */
+/*   Updated: 2024/10/28 05:56:15 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	detect_keys(int key, t_data *data)
+void	update_screen(t_data *data)
 {
-	if (key == KEY_ESC)
-		detect_close(data);
-	else if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)
-		update_coordinate(data, key);
-	else if (key == ARROW_R || key == ARROW_L)
-		update_angle(data, key);
-	else
-		return (0);
-	update_screen(data);
-	return (0);
-}
+	/* renderring calcuration start */
+	render_bg(&(data->mlx_val), data->params.ceiling, data->params.floor);
 
-int	detect_close(t_data *data)
-{
-	deinit_exit(data, 0);
-	return (0);
+	/* renderring calcuration end */
+	if (render_image(&(data->mlx_val)))
+		deinit_exit(data, 1);
+	return ;
 }

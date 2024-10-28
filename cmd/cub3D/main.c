@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 02:50:34 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/27 08:56:35 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 04:43:30 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	while (data.params.map[++i])
 		printf("%d %s\n", i, data.params.map[i]);
 	printf("%d %s\n", i, data.params.map[i]);
+	update_screen(&data);
 	set_hooks_and_loop(&data);
 	return (0);
 }
