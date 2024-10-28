@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 05:01:25 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 05:57:20 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
 void	update_screen(t_data *data);
 
-
 //// map_utils
 char	**dup_map(char **map, size_t height);
 void	free_map(char **map, size_t height);
@@ -199,7 +198,7 @@ int		regulate_angle(int now);
 // rendering
 int		render_image(t_mlx_val *mlx);
 void	put_color_to_img(t_mlx_val *mlx_val, size_t x, size_t y, int color);
-void	render_background(t_mlx_val *mlx_val, int sky, int ground);
+void	render_bg(t_mlx_val *mlx_val, int sky, int ground);
 
 // validation
 int		is_validate(t_data *data);
