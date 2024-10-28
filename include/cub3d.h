@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 12:30:56 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:03:15 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,6 @@ typedef struct s_dda_result
 	int			side;
 	double		delta_dist[2];
 	double		dist_option[2];
-	// double		paperwall_dist;
 	double		_ray_distination[2];
 	t_side_dist	_side_dist;
 }				t_dda;
@@ -190,8 +189,8 @@ typedef struct s_dda_result
 t_dda	dda(t_player *player, char **map);
 
 // movement
-double	cos_degree(int angle);
-double	sin_degree(int angle);
+double	cos_degree(double angle);
+double	sin_degree(double angle);
 void	update_angle(t_data *data, int key);
 void	update_coordinate(t_data *data, int key);
 int		regulate_angle(int now);

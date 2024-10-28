@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 06:27:49 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/28 12:27:27 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:42:01 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	render_a_line(t_mlx_val *mlx,
 
 	(void) params;
 	temp_color = (0 << 16) | (128 << 8) | 0;
-	line_height = abs((int) (WIN_HEIGHT / dda->distance / cos_degree(180 - (2 * x / (double) FOV - (FOV / 2)))));
+	line_height = (int)(WIN_HEIGHT / dda->distance);
 	start = -line_height / 2 + WIN_HEIGHT / 2;
 	if (start < 0)
 		start = 0;
@@ -62,11 +62,25 @@ static void	render_a_line(t_mlx_val *mlx,
 	}
 }
 
-static void	rotate_player(t_player *player, double x)
+static void	rotate_player(t_player *adjusted_player, double x)
 {
-	double		norm;
+	double		dir[2];
+	double		plane[2];
+	double		plane_org[2];
+	double		angle;
+	double		camera_x;
 
-	norm = 2 * x / (double) WIN_WIDTH - (FOV / 2.0);
-	player->angle = regulate_angle(player->angle + norm);
+	camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	angle = (double) adjusted_player->angle;
+	plane_org[0] = 0;
+	plane_org[1] = tan(FOV / 2.0 * (PI / 180.0));
+	dir[0] = cos_degree(angle);
+	dir[1] = sin_degree(angle);
+	plane[0] = plane_org[0] * dir[0] - plane_org[1] * dir[1];
+	plane[1] = plane_org[0] * dir[1] + plane_org[1] * dir[0];
+	dir[0] = dir[0] + plane[0] * camera_x;
+	dir[1] = dir[1] + plane[1] * camera_x;
+	angle = atan2(dir[1], dir[0]) * (180.0 / PI);
+	adjusted_player->angle = regulate_angle(angle + adjusted_player->angle);
 	return ;
 }
