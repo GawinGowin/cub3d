@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 06:27:49 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/28 15:42:01 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/28 17:09:43 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ static void	rotate_player(t_player *adjusted_player, double x)
 	dir[0] = dir[0] + plane[0] * camera_x;
 	dir[1] = dir[1] + plane[1] * camera_x;
 	angle = atan2(dir[1], dir[0]) * (180.0 / PI);
-	adjusted_player->angle = regulate_angle(angle + adjusted_player->angle);
+	adjusted_player->angle = regulate_angle(angle);
 	return ;
 }
