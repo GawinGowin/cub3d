@@ -6,7 +6,7 @@
 /*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:52:48 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/29 22:33:43 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:46:48 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ int	is_id_direction(char *id)
 int	is_id_color(char *id)
 {
 	if (ft_strcmp(id, "F") == 0 || ft_strcmp(id, "C") == 0)
+		return (1);
+	return (0);
+}
+
+int	is_id_in_line(char *str)
+{
+	if (ft_strncmp(str, "NO", 2) == 0 || ft_strncmp(str, "SO", 2) == 0
+		|| ft_strncmp(str, "WE", 2) == 0 || ft_strncmp(str, "EA", 2) == 0
+		|| ft_strncmp(str, "F", 1) == 0 || ft_strncmp(str, "C", 1) == 0)
 		return (1);
 	return (0);
 }

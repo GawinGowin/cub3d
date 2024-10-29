@@ -6,7 +6,7 @@
 /*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/29 22:38:27 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:51:25 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int		splited_length(char **array);
 int		get_conf(t_data *data, char **lines);
 int		is_id_direction(char *id);
 int		is_id_color(char *id);
+int		is_id_in_line(char *str);
 int		is_all_flags(int flags);
 int		strlen_ln(char *str);
 char	**get_map(char **raw_map_lines, size_t width, size_t height);

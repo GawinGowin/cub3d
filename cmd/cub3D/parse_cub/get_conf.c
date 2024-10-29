@@ -6,7 +6,7 @@
 /*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/29 22:38:57 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:48:07 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int	get_conf(t_data *data, char **lines)
 
 	flags = 0;
 	i = 0;
-	while (lines[i] && (!ft_strncmp(lines[i], "NO", 2)
-			|| !ft_strncmp(lines[i], "SO", 2) || !ft_strncmp(lines[i], "WE", 2)
-			|| !ft_strncmp(lines[i], "EA", 2) || !ft_strncmp(lines[i], "F", 1)
-			|| !ft_strncmp(lines[i], "C", 1)))
+	while (lines[i] && is_id_in_line(lines[i]))
 	{
 		code = get_conf_by_str(data, lines[i], &flags);
 		if (code < 0)
@@ -46,7 +43,10 @@ int	get_conf(t_data *data, char **lines)
 		i ++;
 	}
 	if (!is_all_flags(flags))
+	{
+		printerror(ERR_FORMAT);
 		return (-1);
+	}
 	return (0);
 }
 
