@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 16:46:39 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/29 22:09:43 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,11 @@ void	free_2d_array_of_char(char **array);
 char	**set_array_from_file(char *filename);
 int		get_conf_and_map(t_data *params, char **array);
 char	**split_cub(char *file);
-int		color_str_to_int(char *str);
+int		get_color(t_data *data, char *str, char *id, int *flag);
 int		splited_length(char **array);
 int		get_conf(t_data *data, char **lines);
+int		is_id_direction(char *id);
+int		is_id_color(char *id);
 int		strlen_ln(char *str);
 char	**get_map(char **raw_map_lines, size_t width, size_t height);
 void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height);

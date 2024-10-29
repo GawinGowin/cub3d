@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 19:44:44 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/29 22:11:57 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,19 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 {
 	char	*key;
 	char	*path_or_color;
+	int		code;
 
 	if (splited_length(key_value) != 2)
 		return (-1);
 	key = key_value[0];
 	path_or_color = key_value[1];
-	if (ft_strcmp(key, "F") == 0 && !((*flag) & FLAG_F))
-		data->params.floor = color_str_to_int(path_or_color);
-	else if (ft_strcmp(key, "C") == 0 && !((*flag) & FLAG_C))
-		data->params.ceiling = color_str_to_int(path_or_color);
-	else if (ft_strcmp(key, "NO") == 0 || (ft_strcmp(key, "SO") == 0)
-		|| (ft_strcmp(key, "WE") == 0) || (ft_strcmp(key, "EA") == 0))
-		get_img(data, path_or_color, key, flag);
+	if (is_id_color(key))
+		code = get_color(data, path_or_color, key, flag);
+	else if (is_id_direction(key))
+		code = get_img(data, path_or_color, key, flag);
 	else
 		return (-1);
-	if (ft_strcmp(key, "F") == 0)
-		(*flag) |= FLAG_F;
-	else if (ft_strcmp(key, "C") == 0)
-		(*flag) |= FLAG_C;
-	return (0);
+	return (code);
 }
 
 static int	get_img(t_data *data, char *path, char *id, int *flag)

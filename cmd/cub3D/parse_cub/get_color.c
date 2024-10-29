@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 05:39:33 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/19 22:41:05 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/29 22:09:19 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,29 @@
 
 static int	validate_rgb(char **array);
 static int	is_str_digit(char *str);
+static int	color_str_to_int(char *str);
 
-int	color_str_to_int(char *str)
+int	get_color(t_data *data, char *str, char *id, int *flag)
+{
+	int	color;
+
+	color = color_str_to_int(str);
+	if (color == -1)
+		return (-1);
+	if (ft_strcmp(id, "F") == 0 && !((*flag) & FLAG_F))
+		data->params.floor = color;
+	else if (ft_strcmp(id, "C") == 0 && !((*flag) & FLAG_C))
+		data->params.ceiling = color;
+	else
+		return (-1);
+	if (ft_strcmp(id, "F") == 0)
+		(*flag) |= FLAG_F;
+	else if (ft_strcmp(id, "C") == 0)
+		(*flag) |= FLAG_C;
+	return (0);
+}
+
+static int	color_str_to_int(char *str)
 {
 	char	**tmp;
 	int		ret;

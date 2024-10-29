@@ -13,5 +13,6 @@
 	},
 	"testMate.cpp.debug.breakOnFailure": true,
 	"cmake.ctest.allowParallelJobs": true,
-	"cmake.ctest.testExplorerIntegrationEnabled": false
+	"cmake.ctest.testExplorerIntegrationEnabled": false,
+	"C_Cpp.errorSquiggles": "disabled"
 }
