@@ -6,7 +6,7 @@
 /*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/29 22:23:06 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:38:57 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	get_conf(t_data *data, char **lines)
 			break ;
 		i ++;
 	}
+	if (!is_all_flags(flags))
+		return (-1);
 	return (0);
 }
 
