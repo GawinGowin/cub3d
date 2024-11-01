@@ -7,10 +7,10 @@ extern "C"
 
 char** create_test_lines() {
 	char** lines = (char**)malloc(sizeof(char*) * 7);
-	lines[0] = strdup("NO ./assets/north_compass.xpm");
-	lines[1] = strdup("SO ./assets/south_compass.xpm");
-	lines[2] = strdup("WE ./assets/west_compass.xpm");
-	lines[3] = strdup("EA ./assets/east_compass.xpm");
+	lines[0] = strdup("NO ./examples/north_compass.xpm");
+	lines[1] = strdup("SO ./examples/south_compass.xpm");
+	lines[2] = strdup("WE ./examples/west_compass.xpm");
+	lines[3] = strdup("EA ./examples/east_compass.xpm");
 	lines[4] = strdup("F 220,100,0");
 	lines[5] = strdup("C 225,30,0");
 	lines[6] = NULL;
