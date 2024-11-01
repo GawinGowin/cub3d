@@ -62,7 +62,8 @@ TEST_P(CubInputTest, CubInput)
 		.pos_y = param.expected_player_pos_y + INIT_FRAC,
 		.angle = param.expected_player_angle,
 	};
-	parse_cub(&data, param.cub_file_path);
+	int ret =  parse_cub(&data, param.cub_file_path);
+	EXPECT_EQ(ret, 0);
 	EXPECT_EQ(data.params, expected_data);
 	EXPECT_EQ(data.player, expected_player);
 	free_2d_array_of_char(data.params.map);
