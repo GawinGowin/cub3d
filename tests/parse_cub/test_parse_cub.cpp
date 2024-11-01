@@ -45,6 +45,7 @@ TEST_P(CubInputTest, CubInput)
 {
 	auto param = GetParam();
 	t_data data = {};
+	data.mlx_val.mlx_ptr = mlx_init();
 	t_param_cub expected_data = {
 		.img_no = nullptr,
 		.img_so = nullptr,
@@ -65,6 +66,7 @@ TEST_P(CubInputTest, CubInput)
 	EXPECT_EQ(data.params, expected_data);
 	EXPECT_EQ(data.player, expected_player);
 	free_2d_array_of_char(data.params.map);
+	destroy_mlx_ptr(&data);
 }
 
 INSTANTIATE_TEST_SUITE_P(
