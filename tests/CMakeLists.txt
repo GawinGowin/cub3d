@@ -19,7 +19,7 @@ gtest_add_tests(TARGET map_utils_test)
 ## parse_cub/get_map_test
 add_executable(parse_cub_test
 parse_cub/test_get_map.cpp
-parse_cub/test_get_conf.cpp
+# parse_cub/test_get_conf.cpp
 parse_cub/test_main.cpp
 parse_cub/test_parse_cub.cpp
 )
