@@ -37,6 +37,10 @@ bool operator==(const t_player &a, const t_player &b) {
 	return a.pos_x == b.pos_x && a.pos_y == b.pos_y && a.angle == b.angle;
 }
 
+bool operator==(const t_texture &a, const t_texture &b) {
+	return a.img == b.img && a.addr == b.addr && a.width == b.width && a.height == b.height;
+}
+
 class CubInputTest : public ::testing::TestWithParam<CubTestData>
 {
 };
@@ -45,11 +49,12 @@ TEST_P(CubInputTest, CubInput)
 {
 	auto param = GetParam();
 	t_data data = {};
+	t_texture img_void = {};
 	t_param_cub expected_data = {
-		.img_no = nullptr,
-		.img_so = nullptr,
-		.img_we = nullptr,
-		.img_ea = nullptr,
+		.img_no = img_void,
+		.img_so = img_void,
+		.img_we = img_void,
+		.img_ea = img_void,
 		.floor = param.expected_floor,
 		.ceiling = param.expected_ceiling,
 		.map_width = param.expected_map_width,
