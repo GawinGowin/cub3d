@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_conf_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 21:52:48 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/29 22:46:48 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/03 10:13:57 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ int	is_all_flags(int flags)
 	if ((flags & require) == require)
 		return (1);
 	return (0);
+}
+
+void	set_img_stract(t_texture *img, void *img_ptr, int width, int height)
+{
+	img->img = img_ptr;
+	img->width = width;
+	img->height = height;
+	return ;
 }

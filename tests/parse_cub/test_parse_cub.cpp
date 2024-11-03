@@ -45,13 +45,14 @@ TEST_P(CubInputTest, CubInput)
 {
 	auto param = GetParam();
 	t_data data = {};
+	t_texture img_void = {};
 	data.mlx_val.mlx_ptr = mlx_init();
 	if (data.mlx_val.mlx_ptr != NULL) {
 		t_param_cub expected_data = {
-			.img_no = nullptr,
-			.img_so = nullptr,
-			.img_we = nullptr,
-			.img_ea = nullptr,
+			.img_no = img_void,
+			.img_so = img_void,
+			.img_we = img_void,
+			.img_ea = img_void,
 			.floor = param.expected_floor,
 			.ceiling = param.expected_ceiling,
 			.map_width = param.expected_map_width,

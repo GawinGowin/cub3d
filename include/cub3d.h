@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/29 22:51:25 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/03 10:14:23 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@
 # define BUFFER_SIZE 600
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 600
-# define XPM_SIZE 100
+
 # define PI 3.1415926535
 # define FOV 80.0
 # define WALL_HEIGHT 10.0
-# define EPSILON 1e-6
 
-// 一歩で進む距離
+// one step per move
 # define STRIDE 0.4
 # define INIT_FRAC  0.5
 # define OFFSET 0.01
@@ -60,17 +59,25 @@
 # define ARROW_R 65363
 # define ARROW_L 65361
 
+typedef struct s_texture_img
+{
+	void	*img;
+	void	*addr;
+	int		width;
+	int		height;
+}			t_texture;
+
 typedef struct s_param_cub
 {
-	void	*img_no;
-	void	*img_so;
-	void	*img_we;
-	void	*img_ea;
-	int		floor;
-	int		ceiling;
-	size_t	map_width;
-	size_t	map_height;
-	char	**map;
+	t_texture		img_no;
+	t_texture		img_so;
+	t_texture		img_we;
+	t_texture		img_ea;
+	int				floor;
+	int				ceiling;
+	size_t			map_width;
+	size_t			map_height;
+	char			**map;
 }			t_param_cub;
 
 // angle
@@ -139,6 +146,7 @@ int		is_id_direction(char *id);
 int		is_id_color(char *id);
 int		is_id_in_line(char *str);
 int		is_all_flags(int flags);
+void	set_img_stract(t_texture *img, void *img_ptr, int width, int height);
 int		strlen_ln(char *str);
 char	**get_map(char **raw_map_lines, size_t width, size_t height);
 void	get_mapsize(char **raw_map_lines, size_t *width, size_t *height);
@@ -186,7 +194,7 @@ typedef struct s_dda_result
 	int			side;
 	double		delta_dist[2];
 	double		dist_option[2];
-	double		_ray_distination[2];
+	double		ray_distination[2];
 	t_side_dist	_side_dist;
 }				t_dda;
 
@@ -202,8 +210,9 @@ double	regulate_angle(double now);
 // rendering
 int		render_image(t_mlx_val *mlx);
 void	put_color_to_img(t_mlx_val *mlx_val, size_t x, size_t y, int color);
+int		pick_texture_color(t_data *data, t_dda *dda, double texture_y);
 void	render_bg(t_mlx_val *mlx_val, int sky, int ground);
-void	render_walls(t_mlx_val *mlx, t_player *player, t_param_cub *params);
+void	render_walls(t_data *data, t_player *player);
 
 // validation
 int		is_validate(t_data *data);

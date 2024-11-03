@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 09:42:54 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 10:20:33 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 	int		h;
 	void	*img;
 
-	w = XPM_SIZE;
-	h = XPM_SIZE;
 	img = NULL;
 	if (data->mlx_val.mlx_ptr == NULL)
 		return (-1);
@@ -114,13 +112,13 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 	if (!img)
 		return (-1);
 	if (ft_strcmp(id, "NO") == 0 && !((*flag) & FLAG_NO))
-		data->params.img_no = img;
+		set_img_stract(&(data->params.img_no), img, w, h);
 	else if (ft_strcmp(id, "SO") == 0 && !((*flag) & FLAG_SO))
-		data->params.img_so = img;
+		set_img_stract(&(data->params.img_so), img, w, h);
 	else if (ft_strcmp(id, "WE") == 0 && !((*flag) & FLAG_WE))
-		data->params.img_we = img;
+		set_img_stract(&(data->params.img_we), img, w, h);
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
-		data->params.img_ea = img;
+		set_img_stract(&(data->params.img_ea), img, w, h);
 	else
 		return (-1);
 	set_flag(id, flag);

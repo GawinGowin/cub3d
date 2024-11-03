@@ -6,62 +6,63 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 06:27:49 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/28 17:59:39 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 05:37:52 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static double	rotate_player(t_player *adjusted_player, double x);
-static void	render_a_line(t_mlx_val *mlx,
-				t_param_cub *params, size_t x, t_dda *dda);
+static int		render_a_line(t_data *data,
+					size_t x, t_dda *dda, double azimuth_angle);
 
-void	render_walls(t_mlx_val *mlx, t_player *player, t_param_cub *params)
+void	render_walls(t_data *data, t_player *player)
 {
 	size_t		x;
 	t_player	adjusted_player;
 	t_dda		dda_ret;
-	double		elevation_angle;
+	double		azimuth_angle;
 
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
 		adjusted_player = *player;
-		elevation_angle = rotate_player(&adjusted_player, (double) x);
-		dda_ret = dda(&adjusted_player, params->map);
-		dda_ret.distance *= elevation_angle;
-		render_a_line(mlx, params, x, &dda_ret);
+		azimuth_angle = rotate_player(&adjusted_player, (double) x);
+		dda_ret = dda(&adjusted_player, data->params.map);
+		if (render_a_line(data, x, &dda_ret, azimuth_angle))
+			return ;
 		x ++;
 	}
+	return ;
 }
 
-static void	render_a_line(t_mlx_val *mlx,
-				t_param_cub *params, size_t x, t_dda *dda)
+static int	render_a_line(t_data *data,
+				size_t x, t_dda *dda, double azimuth_angle)
 {
-	int		i;
+	size_t	y;
 	int		line_height;
-	int		temp_color;
+	int		color;
 	int		start;
-	int		end;
+	size_t	end;
 
-	(void) params;
-	temp_color = (0 << 16) | (128 << 8) | 0;
-	line_height = (int)(WIN_HEIGHT / dda->distance);
+	line_height = (int)(WIN_HEIGHT / dda->distance / cos_degree(azimuth_angle));
 	start = -line_height / 2 + WIN_HEIGHT / 2;
 	if (start < 0)
 		start = 0;
 	end = line_height / 2 + WIN_HEIGHT / 2;
 	if (end >= WIN_HEIGHT)
 		end = WIN_HEIGHT - 1;
-	i = start;
-	while (i <= end)
+	y = (size_t) start;
+	while (y <= end)
 	{
-		if (dda->side)
-			put_color_to_img(mlx, x, i, temp_color);
-		else
-			put_color_to_img(mlx, x, i, temp_color / 2);
-		i++;
+		color = pick_texture_color(data, dda,
+				((double)y - (double)start) / ((double)end - (double)start));
+		if (color == -1)
+			return (-1);
+		put_color_to_img(&(data->mlx_val), x, y, color);
+		y++;
 	}
+	return (0);
 }
 
 static double	rotate_player(t_player *adjusted_player, double x)
@@ -83,5 +84,5 @@ static double	rotate_player(t_player *adjusted_player, double x)
 	dir[1] = dir[1] + plane[1] * camera_x;
 	angle = adjusted_player->angle;
 	adjusted_player->angle = atan2(dir[1], dir[0]) * (180.0 / PI);
-	return (cos_degree(angle - adjusted_player->angle));
+	return (angle - adjusted_player->angle);
 }

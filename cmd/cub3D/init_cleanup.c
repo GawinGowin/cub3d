@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 04:47:36 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 01:21:36 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,14 @@ static void	init_values(t_data *data)
 	data->params.map_width = 0;
 	data->params.map_height = 0;
 	data->params.map = NULL;
-	data->params.img_no = NULL;
-	data->params.img_so = NULL;
-	data->params.img_we = NULL;
-	data->params.img_ea = NULL;
+	data->params.img_no.img = NULL;
+	data->params.img_so.img = NULL;
+	data->params.img_we.img = NULL;
+	data->params.img_ea.img = NULL;
+	data->params.img_no.addr = NULL;
+	data->params.img_so.addr = NULL;
+	data->params.img_we.addr = NULL;
+	data->params.img_ea.addr = NULL;
 	data->params.ceiling = -1;
 	data->params.floor = -1;
 }
@@ -70,14 +74,14 @@ static void	init_values(t_data *data)
 // mlx_get_data_addrはimg_ptr->dataを返すため、mlx_destroy_imageで解放される。
 int	destroy_mlx_ptr(t_data *data)
 {
-	if (data->mlx_val.mlx_ptr && data->params.img_no)
-		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_no);
-	if (data->mlx_val.mlx_ptr && data->params.img_so)
-		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_so);
-	if (data->mlx_val.mlx_ptr && data->params.img_we)
-		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_we);
-	if (data->mlx_val.mlx_ptr && data->params.img_ea)
-		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_ea);
+	if (data->mlx_val.mlx_ptr && data->params.img_no.img)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_no.img);
+	if (data->mlx_val.mlx_ptr && data->params.img_so.img)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_so.img);
+	if (data->mlx_val.mlx_ptr && data->params.img_we.img)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_we.img);
+	if (data->mlx_val.mlx_ptr && data->params.img_ea.img)
+		mlx_destroy_image(data->mlx_val.mlx_ptr, data->params.img_ea.img);
 	if (data->mlx_val.mlx_ptr && data->mlx_val.img_ptr)
 		mlx_destroy_image(data->mlx_val.mlx_ptr, data->mlx_val.img_ptr);
 	if (data->mlx_val.mlx_ptr && data->mlx_val.win_ptr)
