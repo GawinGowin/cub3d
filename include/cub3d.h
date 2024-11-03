@@ -182,7 +182,7 @@ typedef struct s_dda_result
 	int			side;
 	double		delta_dist[2];
 	double		dist_option[2];
-	double		_ray_distination[2];
+	double		ray_distination[2];
 	t_side_dist	_side_dist;
 }				t_dda;
 
