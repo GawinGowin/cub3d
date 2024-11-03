@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/29 22:48:07 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/03 09:42:54 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 	w = XPM_SIZE;
 	h = XPM_SIZE;
 	img = NULL;
+	if (data->mlx_val.mlx_ptr == NULL)
+		return (-1);
 	img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
 	if (!img)
 		return (-1);
