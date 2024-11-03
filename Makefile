@@ -148,7 +148,7 @@ re: fclean all
 build: all
 	@ar rcs ./lib/libgtest.a $(LIB_OBJS) $(OBJS)
 	@mkdir -p $(BUILD_DIR)
-	@cd $(BUILD_DIR) && cmake .. && make
+	@cd $(BUILD_DIR) && cmake -DCMAKE_VERBOSE_MAKEFILE=ON ..  && make
 
 .PHONY: test
 test: build
