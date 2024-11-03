@@ -45,7 +45,7 @@ TEST_P(CubInputTest, CubInput)
 {
 	auto param = GetParam();
 	t_data data = {};
-	data.mlx_val.mlx_ptr = mlx_init();
+	init_data(&data, param.cub_file_path);
 	t_param_cub expected_data = {
 		.img_no = nullptr,
 		.img_so = nullptr,
