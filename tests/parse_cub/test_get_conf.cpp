@@ -5,8 +5,6 @@ extern "C"
 #include "cub3d.h"
 }
 
-use namespace std;
-
 char** create_test_lines() {
 	char** lines = (char**)malloc(sizeof(char*) * 7);
 	lines[0] = strdup("NO ./assets/north_compass.xpm");
@@ -22,27 +20,27 @@ char** create_test_lines() {
 TEST(GetConfTest, GetConf)
 {
 	t_data data = {};
-	cout << "1" << endl;
+	std::cout << "1" << std::endl;
 	data.mlx_val.mlx_ptr = mlx_init();
-	cout << "2" << endl;
+	std::cout << "2" << std::endl;
 	char** lines = create_test_lines();
-	cout << "3" << endl;
+	std::cout << "3" << std::endl;
 	int ret = get_conf(&data, lines);
-	cout << "4" << endl;
+	std::cout << "4" << std::endl;
 	EXPECT_EQ(ret, 0);
-	cout << "5" << endl;
+	std::cout << "5" << std::endl;
 	EXPECT_EQ(data.params.floor, 0xdc6400);
-	cout << "6" << endl;
+	std::cout << "6" << std::endl;
 	EXPECT_EQ(data.params.ceiling, 0xe11e00);
-	cout << "7" << endl;
+	std::cout << "7" << std::endl;
 	EXPECT_NE(data.params.img_no, nullptr);
-	cout << "8" << endl;
+	std::cout << "8" << std::endl;
 	EXPECT_NE(data.params.img_so, nullptr);
-	cout << "9" << endl;
+	std::cout << "9" << std::endl;
 	EXPECT_NE(data.params.img_we, nullptr);
-	cout << "10" << endl;
+	std::cout << "10" <<std::endl;
 	EXPECT_NE(data.params.img_ea, nullptr);
-	cout << "11" << endl;
+	std::cout << "11" <<std::endl;
 	for (int i = 0; lines[i] != NULL; i++) {
         free(lines[i]);
     }
