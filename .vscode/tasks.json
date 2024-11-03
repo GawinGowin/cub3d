@@ -28,7 +28,7 @@
 		},
 		{
 			"type": "process",
-			"label": "norminette staged",
+			"label": "norminette:staged",
 			"command": "bash",
 			"args": [
 				"-c",
