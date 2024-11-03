@@ -21,7 +21,14 @@
 		"new": "cpp",
 		"*.tcc": "cpp",
 		"cstdint": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"deque": "c",
+		"forward_list": "c",
+		"list": "c",
+		"unordered_map": "c",
+		"unordered_set": "c",
+		"vector": "c",
+		"initializer_list": "c"
 	},
 	"testMate.cpp.debug.breakOnFailure": true,
 	"cmake.ctest.allowParallelJobs": true,
