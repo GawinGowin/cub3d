@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 06:27:49 by saraki            #+#    #+#             */
-/*   Updated: 2024/11/03 17:15:21 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 17:24:21 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int	render_walls(t_data *data, t_player *player)
 		ret = dda(&adjusted_player, data->params.map);
 		line_height = (int)(WIN_HEIGHT / ret.distance / cos_degree(azimuth));
 		if (render_a_line(data, x, &ret, line_height))
-		{
-			
 			return (1);
-		}
 		x ++;
 	}
 	return (0);
