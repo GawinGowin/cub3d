@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 06:27:49 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/28 17:59:39 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 00:42:23 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ static int	render_a_line(t_data *data,
 	y = (size_t) start;
 	while (y <= end)
 	{
-		if (dda->side)
-			put_color_to_img(mlx, x, i, temp_color);
-		else
-			put_color_to_img(mlx, x, i, temp_color / 2);
-		i++;
+		color = pick_texture_color(data, dda, (double) ((y - start) / (double) end));
+		if (color == -1)
+			return (-1);
+		put_color_to_img(&(data->mlx_val), x, y, color);
+		y++;
 	}
 	return (0);
 }

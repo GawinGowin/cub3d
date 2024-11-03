@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 16:46:39 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 00:40:40 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ double	regulate_angle(double now);
 // rendering
 int		render_image(t_mlx_val *mlx);
 void	put_color_to_img(t_mlx_val *mlx_val, size_t x, size_t y, int color);
+int		pick_texture_color(t_data *data, t_dda *dda, double texture_y);
 void	render_bg(t_mlx_val *mlx_val, int sky, int ground);
 void	render_walls(t_data *data, t_player *player);
 
