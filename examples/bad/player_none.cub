@@ -1,0 +1,21 @@
+NO ./assets/north_compass.xpm
+SO ./assets/south_compass.xpm
+WE ./assets/west_compass.xpm
+EA ./assets/east_compass.xpm
+
+F 20,20,20
+C 200,200,200
+
+11111
+10001
+10001
+10001
+10001
+10001
+11001
+10001
+10001
+10001
+10001
+10001
+11111
