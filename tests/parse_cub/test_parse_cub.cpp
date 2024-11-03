@@ -45,26 +45,31 @@ TEST_P(CubInputTest, CubInput)
 {
 	auto param = GetParam();
 	t_data data = {};
-	t_param_cub expected_data = {
-		.img_no = nullptr,
-		.img_so = nullptr,
-		.img_we = nullptr,
-		.img_ea = nullptr,
-		.floor = param.expected_floor,
-		.ceiling = param.expected_ceiling,
-		.map_width = param.expected_map_width,
-		.map_height = param.expected_map_height,
-		.map = (char **) param.expected_map,
-	};
-	t_player expected_player = {
-		.pos_x = param.expected_player_pos_x + INIT_FRAC,
-		.pos_y = param.expected_player_pos_y + INIT_FRAC,
-		.angle = param.expected_player_angle,
-	};
-	parse_cub(&data, param.cub_file_path);
-	EXPECT_EQ(data.params, expected_data);
-	EXPECT_EQ(data.player, expected_player);
-	free_2d_array_of_char(data.params.map);
+	data.mlx_val.mlx_ptr = mlx_init();
+	if (data.mlx_val.mlx_ptr != NULL) {
+		t_param_cub expected_data = {
+			.img_no = nullptr,
+			.img_so = nullptr,
+			.img_we = nullptr,
+			.img_ea = nullptr,
+			.floor = param.expected_floor,
+			.ceiling = param.expected_ceiling,
+			.map_width = param.expected_map_width,
+			.map_height = param.expected_map_height,
+			.map = (char **) param.expected_map,
+		};
+		t_player expected_player = {
+			.pos_x = param.expected_player_pos_x + INIT_FRAC,
+			.pos_y = param.expected_player_pos_y + INIT_FRAC,
+			.angle = param.expected_player_angle,
+		};
+		int ret =  parse_cub(&data, param.cub_file_path);
+		EXPECT_EQ(ret, 0);
+		EXPECT_EQ(data.params, expected_data);
+		EXPECT_EQ(data.player, expected_player);
+		free_2d_array_of_char(data.params.map);
+		destroy_mlx_ptr(&data);
+	}
 }
 
 INSTANTIATE_TEST_SUITE_P(
