@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 01:42:23 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 10:20:33 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int	get_conf(t_data *data, char **lines)
 
 	flags = 0;
 	i = 0;
-	while (lines[i] && (!ft_strncmp(lines[i], "NO", 2)
-			|| !ft_strncmp(lines[i], "SO", 2) || !ft_strncmp(lines[i], "WE", 2)
-			|| !ft_strncmp(lines[i], "EA", 2) || !ft_strncmp(lines[i], "F", 1)
-			|| !ft_strncmp(lines[i], "C", 1)))
+	while (lines[i] && is_id_in_line(lines[i]))
 	{
 		code = get_conf_by_str(data, lines[i], &flags);
 		if (code < 0)
@@ -44,6 +41,11 @@ int	get_conf(t_data *data, char **lines)
 		else if (code == 1)
 			break ;
 		i ++;
+	}
+	if (!is_all_flags(flags))
+	{
+		printerror(ERR_FORMAT);
+		return (-1);
 	}
 	return (0);
 }
@@ -82,25 +84,19 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 {
 	char	*key;
 	char	*path_or_color;
+	int		code;
 
 	if (splited_length(key_value) != 2)
 		return (-1);
 	key = key_value[0];
 	path_or_color = key_value[1];
-	if (ft_strcmp(key, "F") == 0 && !((*flag) & FLAG_F))
-		data->params.floor = color_str_to_int(path_or_color);
-	else if (ft_strcmp(key, "C") == 0 && !((*flag) & FLAG_C))
-		data->params.ceiling = color_str_to_int(path_or_color);
-	else if (ft_strcmp(key, "NO") == 0 || (ft_strcmp(key, "SO") == 0)
-		|| (ft_strcmp(key, "WE") == 0) || (ft_strcmp(key, "EA") == 0))
-		get_img(data, path_or_color, key, flag);
+	if (is_id_color(key))
+		code = get_color(data, path_or_color, key, flag);
+	else if (is_id_direction(key))
+		code = get_img(data, path_or_color, key, flag);
 	else
 		return (-1);
-	if (ft_strcmp(key, "F") == 0)
-		(*flag) |= FLAG_F;
-	else if (ft_strcmp(key, "C") == 0)
-		(*flag) |= FLAG_C;
-	return (0);
+	return (code);
 }
 
 static int	get_img(t_data *data, char *path, char *id, int *flag)
@@ -116,13 +112,13 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 	if (!img)
 		return (-1);
 	if (ft_strcmp(id, "NO") == 0 && !((*flag) & FLAG_NO))
-		data->params.img_no = set_img_stract(img, w, h);
+		set_img_stract(&(data->params.img_no), img, w, h);
 	else if (ft_strcmp(id, "SO") == 0 && !((*flag) & FLAG_SO))
-		data->params.img_so = set_img_stract(img, w, h);
+		set_img_stract(&(data->params.img_so), img, w, h);
 	else if (ft_strcmp(id, "WE") == 0 && !((*flag) & FLAG_WE))
-		data->params.img_we = set_img_stract(img, w, h);
+		set_img_stract(&(data->params.img_we), img, w, h);
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
-		data->params.img_ea = set_img_stract(img, w, h);
+		set_img_stract(&(data->params.img_ea), img, w, h);
 	else
 		return (-1);
 	set_flag(id, flag);

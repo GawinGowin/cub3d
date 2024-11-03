@@ -47,9 +47,10 @@ class CubInputTest : public ::testing::TestWithParam<CubTestData>
 
 TEST_P(CubInputTest, CubInput)
 {
-	auto param = GetParam();
-	t_data data = {};
 	t_texture img_void = {};
+	auto param = GetParam();
+	
+	t_data data = {};
 	t_param_cub expected_data = {
 		.img_no = img_void,
 		.img_so = img_void,

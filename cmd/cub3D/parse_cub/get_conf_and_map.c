@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_conf_and_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 09:55:33 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 15:53:03 by saraki           ###   ########.fr       */
+/*   Updated: 2024/10/31 14:40:00 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,17 @@ int	get_conf_and_map(t_data *data, char **raw_lines)
 	if (!formed_lines)
 		return (printerror(ERR_MALLOC));
 	if (get_conf(data, formed_lines))
+	{
+		free_map(formed_lines, get_lines_cnt(formed_lines));
 		return (1);
+	}
 	get_mapsize(formed_lines + 6,
 		&(data->params.map_width), &(data->params.map_height));
 	data->params.map = get_map(formed_lines + 6, data->params.map_width,
 			data->params.map_height);
+	free_map(formed_lines, get_lines_cnt(formed_lines));
 	if (data->params.map == NULL)
 		return (1);
-	free_map(formed_lines, get_lines_cnt(formed_lines));
 	if (get_player(data))
 		return (1);
 	return (0);

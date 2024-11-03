@@ -24,6 +24,7 @@ SOURCES += parse_cub/get_conf_and_map.c
 SOURCES += parse_cub/split_cub.c
 SOURCES += parse_cub/get_color.c
 SOURCES += parse_cub/get_conf.c
+SOURCES += parse_cub/get_conf_util.c
 SOURCES += parse_cub/get_player.c
 SOURCES += movement/trig_degree.c
 SOURCES += movement/update_angle.c
@@ -148,7 +149,7 @@ re: fclean all
 build: all
 	@ar rcs ./lib/libgtest.a $(LIB_OBJS) $(OBJS)
 	@mkdir -p $(BUILD_DIR)
-	@cd $(BUILD_DIR) && cmake .. && make
+	@cd $(BUILD_DIR) && cmake -DCMAKE_VERBOSE_MAKEFILE=ON ..  && make
 
 .PHONY: test
 test: build

@@ -9,9 +9,22 @@
 		"span": "c",
 		"libft.h": "c",
 		"stdlib.h": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"compare": "cpp",
+		"concepts": "cpp",
+		"cstdarg": "cpp",
+		"cstdio": "cpp",
+		"cstdlib": "cpp",
+		"exception": "cpp",
+		"type_traits": "cpp",
+		"limits": "cpp",
+		"new": "cpp",
+		"*.tcc": "cpp",
+		"cstdint": "cpp",
+		"typeinfo": "cpp"
 	},
 	"testMate.cpp.debug.breakOnFailure": true,
 	"cmake.ctest.allowParallelJobs": true,
-	"cmake.ctest.testExplorerIntegrationEnabled": false
+	"cmake.ctest.testExplorerIntegrationEnabled": false,
+	"C_Cpp.errorSquiggles": "disabled"
 }
