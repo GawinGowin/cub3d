@@ -105,22 +105,24 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 
 static int	get_img(t_data *data, char *path, char *id, int *flag)
 {
+	int		w;
+	int		h;
+	void	*img;
+
+	img = NULL;
+	if (data->mlx_val.mlx_ptr == NULL)
+		return (-1);
+	img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
+	if (!img)
+		return (-1);
 	if (ft_strcmp(id, "NO") == 0 && !((*flag) & FLAG_NO))
-		data->params.img_no.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &(data->params.img_no.width),
-				&(data->params.img_no.height));
+		data->params.img_no = set_img_stract(img, w, h);
 	else if (ft_strcmp(id, "SO") == 0 && !((*flag) & FLAG_SO))
-		data->params.img_so.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &(data->params.img_so.width),
-				&(data->params.img_so.height));
+		data->params.img_so = set_img_stract(img, w, h);
 	else if (ft_strcmp(id, "WE") == 0 && !((*flag) & FLAG_WE))
-		data->params.img_we.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &(data->params.img_we.width),
-				&(data->params.img_we.height));
+		data->params.img_we = set_img_stract(img, w, h);
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
-		data->params.img_ea.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &(data->params.img_ea.width),
-				&(data->params.img_ea.height));
+		data->params.img_ea = set_img_stract(img, w, h);
 	else
 		return (-1);
 	set_flag(id, flag);
