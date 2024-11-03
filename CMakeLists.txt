@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 project(cub3D)
 
+set(CMAKE_CXX_COMPILER "/usr/bin/c++")
+set(CMAKE_C_COMPILER "/usr/bin/cc")
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -g3 -fsanitize=address")
 set(CMAKE_C_FLAGS "-Wall -Wextra -Werror -g3 -fsanitize=address")

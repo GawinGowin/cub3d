@@ -18,5 +18,4 @@ jobs:
     - name: echo
       run: echo ~ && echo $PWD
     - name: run test
-      run: make -s test | cat /home/runner/work/cub3d/cub3d/build/tests/Testing/Temporary/LastTest.log
-
+      run: make -s test
