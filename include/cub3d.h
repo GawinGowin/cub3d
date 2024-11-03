@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 00:40:40 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 01:50:40 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@
 # define BUFFER_SIZE 600
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 600
-# define XPM_SIZE 100
+
 # define PI 3.1415926535
 # define FOV 80.0
 # define WALL_HEIGHT 10.0
-# define EPSILON 1e-6
 
-// 一歩で進む距離
+// one step per move
 # define STRIDE 0.4
 # define INIT_FRAC  0.5
 # define OFFSET 0.01
@@ -60,17 +59,25 @@
 # define ARROW_R 65363
 # define ARROW_L 65361
 
+typedef struct s_texture_img
+{
+	void	*img;
+	void	*addr;
+	int		width;
+	int		height;
+}			t_texture;
+
 typedef struct s_param_cub
 {
-	void	*img_no;
-	void	*img_so;
-	void	*img_we;
-	void	*img_ea;
-	int		floor;
-	int		ceiling;
-	size_t	map_width;
-	size_t	map_height;
-	char	**map;
+	t_texture		img_no;
+	t_texture		img_so;
+	t_texture		img_we;
+	t_texture		img_ea;
+	int				floor;
+	int				ceiling;
+	size_t			map_width;
+	size_t			map_height;
+	char			**map;
 }			t_param_cub;
 
 // angle

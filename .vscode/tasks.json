@@ -25,6 +25,16 @@
 				"${file}"
 			],
 			"group": "build",
+		},
+		{
+			"type": "process",
+			"label": "norminette staged",
+			"command": "bash",
+			"args": [
+				"-c",
+				"git diff --name-only --cached | xargs norminette"
+			],
+			"group": "build",
 		}
 	],
 	"version": "2.0.0"

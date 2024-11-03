@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 19:44:44 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 01:42:23 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,23 +105,22 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 
 static int	get_img(t_data *data, char *path, char *id, int *flag)
 {
-	int	w;
-	int	h;
-
-	w = XPM_SIZE;
-	h = XPM_SIZE;
 	if (ft_strcmp(id, "NO") == 0 && !((*flag) & FLAG_NO))
-		data->params.img_no = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &w, &h);
+		data->params.img_no.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &(data->params.img_no.width),
+				&(data->params.img_no.height));
 	else if (ft_strcmp(id, "SO") == 0 && !((*flag) & FLAG_SO))
-		data->params.img_so = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &w, &h);
+		data->params.img_so.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &(data->params.img_so.width),
+				&(data->params.img_so.height));
 	else if (ft_strcmp(id, "WE") == 0 && !((*flag) & FLAG_WE))
-		data->params.img_we = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &w, &h);
+		data->params.img_we.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &(data->params.img_we.width),
+				&(data->params.img_we.height));
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
-		data->params.img_ea = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
-				path, &w, &h);
+		data->params.img_ea.img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr,
+				path, &(data->params.img_ea.width),
+				&(data->params.img_ea.height));
 	else
 		return (-1);
 	set_flag(id, flag);
