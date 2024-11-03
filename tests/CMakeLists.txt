@@ -21,7 +21,8 @@ add_executable(parse_cub_test
 parse_cub/test_get_map.cpp
 parse_cub/test_get_conf.cpp
 parse_cub/test_main.cpp
-parse_cub/test_parse_cub.cpp
+parse_cub/test_parse_cub_invalid.cpp
+parse_cub/test_parse_cub_valid.cpp
 )
 target_link_libraries(parse_cub_test testcub3D gtest gtest_main)
 set(TEST_MAP_DIR "${CMAKE_SOURCE_DIR}/examples")

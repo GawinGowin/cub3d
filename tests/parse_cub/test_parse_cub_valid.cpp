@@ -2,8 +2,10 @@
 
 extern "C"
 {
-#include "cub3d.h"
+	#include "cub3d.h"
 }
+
+#include "compare_operators.h"
 
 struct CubTestData
 {
@@ -17,25 +19,6 @@ struct CubTestData
 	double expected_player_angle;
 	const char *expected_map[100];
 };
-
-bool operator==(const t_param_cub &a, const t_param_cub &b) {
-    if (a.floor != b.floor || a.ceiling != b.ceiling) {
-        return false;
-    }
-    if (a.map_width != b.map_width || a.map_height != b.map_height) {
-        return false;
-    }
-    for (size_t i = 0; i < a.map_height; i++) {
-        if (strcmp(a.map[i], b.map[i]) != 0) {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool operator==(const t_player &a, const t_player &b) {
-	return a.pos_x == b.pos_x && a.pos_y == b.pos_y && a.angle == b.angle;
-}
 
 class CubInputTest : public ::testing::TestWithParam<CubTestData>
 {
@@ -64,7 +47,7 @@ TEST_P(CubInputTest, CubInput)
 			.pos_y = param.expected_player_pos_y + INIT_FRAC,
 			.angle = param.expected_player_angle,
 		};
-		int ret =  parse_cub(&data, param.cub_file_path);
+		int ret = parse_cub(&data, param.cub_file_path);
 		EXPECT_EQ(ret, 0);
 		EXPECT_EQ(data.params, expected_data);
 		EXPECT_EQ(data.player, expected_player);
@@ -74,7 +57,7 @@ TEST_P(CubInputTest, CubInput)
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    LoadCubFile,
+    VaildCubFiles,
     CubInputTest,
     ::testing::Values(
         CubTestData{

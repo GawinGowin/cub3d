@@ -2,8 +2,10 @@
 
 extern "C"
 {
-#include "cub3d.h"
+	#include "cub3d.h"
 }
+
+#include "compare_operators.h"
 
 char** create_test_lines() {
 	char** lines = (char**)malloc(sizeof(char*) * 7);
@@ -15,10 +17,6 @@ char** create_test_lines() {
 	lines[5] = strdup("C 225,30,0");
 	lines[6] = NULL;
 	return lines;
-}
-
-bool operator!=(const t_texture &a, const t_texture &b) {
-	return a.img != b.img || a.addr != b.addr || a.width != b.width || a.height != b.height;
 }
 
 TEST(GetConfTest, GetConf)
