@@ -6,14 +6,13 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 01:21:36 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 15:44:29 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static int	init_mlx_ptr(t_data *data, char *name);
-static void	init_values(t_data *data);
 
 int	init_data(t_data *data, char *name)
 {
@@ -44,7 +43,7 @@ static int	init_mlx_ptr(t_data *data, char *name)
 	return (0);
 }
 
-static void	init_values(t_data *data)
+void	init_values(t_data *data)
 {
 	data->player.pos_x = 0.0;
 	data->player.pos_y = 0.0;

@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 05:13:23 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/20 05:11:41 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 15:41:48 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ int	parse_cub(t_data *data, char *filename)
 
 	cubfile_as_array = set_array_from_file(filename);
 	if (!cubfile_as_array)
+	{
+		init_values(data);
 		return (1);
+	}
 	status = get_conf_and_map(data, cubfile_as_array);
 	free_2d_array_of_char(cubfile_as_array);
 	if (status)
 	{
 		if (data->params.map)
 			free_2d_array_of_char(data->params.map);
+		init_values(data);
 		return (1);
 	}
 	return (0);
