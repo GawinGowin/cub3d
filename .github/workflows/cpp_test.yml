@@ -19,3 +19,9 @@ jobs:
       run: echo ~ && echo $PWD
     - name: run test
       run: make -s test
+    - name: upload test logs
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: Test-Logs
+        path: /home/runner/work/cub3d/cub3d/build/tests/Testing/Temporary/LastTest.log
