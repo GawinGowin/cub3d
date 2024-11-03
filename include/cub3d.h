@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 10:14:23 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 15:44:40 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_data
 
 // root
 int		init_data(t_data *data, char *name);
+void	init_values(t_data *data);
 int		destroy_mlx_ptr(t_data *data);
 void	deinit_exit(t_data *data, int exit_status);
 int		printerror(char *str);
