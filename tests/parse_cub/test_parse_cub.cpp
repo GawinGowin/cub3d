@@ -45,6 +45,7 @@ TEST_P(CubInputTest, CubInput)
 {
 	auto param = GetParam();
 	t_data data = {};
+	init_data(&data, param.cub_file_path);
 	t_param_cub expected_data = {
 		.img_no = nullptr,
 		.img_so = nullptr,
@@ -61,10 +62,12 @@ TEST_P(CubInputTest, CubInput)
 		.pos_y = param.expected_player_pos_y + INIT_FRAC,
 		.angle = param.expected_player_angle,
 	};
-	parse_cub(&data, param.cub_file_path);
+	int ret =  parse_cub(&data, param.cub_file_path);
+	EXPECT_EQ(ret, 0);
 	EXPECT_EQ(data.params, expected_data);
 	EXPECT_EQ(data.player, expected_player);
 	free_2d_array_of_char(data.params.map);
+	destroy_mlx_ptr(&data);
 }
 
 INSTANTIATE_TEST_SUITE_P(

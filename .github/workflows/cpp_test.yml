@@ -15,5 +15,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: build test
       run: make -s build
+    - name: echo
+      run: echo ~ && echo $PWD
     - name: run test
-      run: make -s test
+      run: make -s test | cat /home/runner/work/cub3d/cub3d/build/tests/Testing/Temporary/LastTest.log
+
