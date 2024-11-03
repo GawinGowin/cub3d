@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 15:44:40 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 17:06:07 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 // one step per move
 # define STRIDE 0.4
 # define INIT_FRAC  0.5
-# define OFFSET 0.01
+# define OFFSET 0.05
 
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"
