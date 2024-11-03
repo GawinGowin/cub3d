@@ -24,6 +24,7 @@ SOURCES += parse_cub/get_conf_and_map.c
 SOURCES += parse_cub/split_cub.c
 SOURCES += parse_cub/get_color.c
 SOURCES += parse_cub/get_conf.c
+SOURCES += parse_cub/get_conf_util.c
 SOURCES += parse_cub/get_player.c
 SOURCES += movement/trig_degree.c
 SOURCES += movement/update_angle.c
