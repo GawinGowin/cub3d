@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 17:06:07 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 17:20:07 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define ERR_NOTHING_EXT "File has no extension"
 # define ERR_FAILED_INIT_MLX "Failed to initialize minilibx"
 # define ERR_FAILED_CREATE_IMG "Failed to create mlx image"
+# define ERR_FAILED_RENDERING "Failed to render image"
 # define ERR_MALLOC "Failed to allocate memory"
 # define ERR_FORMAT "Invalid .cub file format"
 
@@ -213,7 +214,7 @@ int		render_image(t_mlx_val *mlx);
 void	put_color_to_img(t_mlx_val *mlx_val, size_t x, size_t y, int color);
 int		pick_texture_color(t_data *data, t_dda *dda, double texture_y);
 void	render_bg(t_mlx_val *mlx_val, int sky, int ground);
-void	render_walls(t_data *data, t_player *player);
+int		render_walls(t_data *data, t_player *player);
 
 // validation
 int		is_validate(t_data *data);

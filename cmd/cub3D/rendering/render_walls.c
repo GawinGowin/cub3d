@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 06:27:49 by saraki            #+#    #+#             */
-/*   Updated: 2024/11/03 17:14:03 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 17:15:21 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static double	rotate_player(t_player *adjusted_player, double x);
 static int		render_a_line(t_data *data,	size_t x,
 					t_dda *dda, int line_height);
 
-void	render_walls(t_data *data, t_player *player)
+int	render_walls(t_data *data, t_player *player)
 {
 	size_t		x;
 	t_player	adjusted_player;
@@ -32,10 +32,13 @@ void	render_walls(t_data *data, t_player *player)
 		ret = dda(&adjusted_player, data->params.map);
 		line_height = (int)(WIN_HEIGHT / ret.distance / cos_degree(azimuth));
 		if (render_a_line(data, x, &ret, line_height))
-			return ;
+		{
+			
+			return (1);
+		}
 		x ++;
 	}
-	return ;
+	return (0);
 }
 
 static int	render_a_line(t_data *data,	size_t x, t_dda *dda, int line_height)
