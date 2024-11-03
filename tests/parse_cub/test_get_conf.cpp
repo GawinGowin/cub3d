@@ -17,9 +17,14 @@ char** create_test_lines() {
 	return lines;
 }
 
+bool operator!=(const t_texture &a, const t_texture &b) {
+	return a.img != b.img || a.addr != b.addr || a.width != b.width || a.height != b.height;
+}
+
 TEST(GetConfTest, GetConf)
 {
 	t_data data = {};
+	t_texture img_void = {};
 	data.mlx_val.mlx_ptr = mlx_init();
 	if (data.mlx_val.mlx_ptr != NULL)
 	{
@@ -28,10 +33,10 @@ TEST(GetConfTest, GetConf)
 		EXPECT_EQ(ret, 0);
 		EXPECT_EQ(data.params.floor, 0xdc6400);
 		EXPECT_EQ(data.params.ceiling, 0xe11e00);
-		EXPECT_NE(data.params.img_no, nullptr);
-		EXPECT_NE(data.params.img_so, nullptr);
-		EXPECT_NE(data.params.img_we, nullptr);
-		EXPECT_NE(data.params.img_ea, nullptr);
+		EXPECT_NE(data.params.img_no, img_void);
+		EXPECT_NE(data.params.img_so, img_void);
+		EXPECT_NE(data.params.img_we, img_void);
+		EXPECT_NE(data.params.img_ea, img_void);
 		for (int i = 0; lines[i] != NULL; i++) {
 			free(lines[i]);
 		}
