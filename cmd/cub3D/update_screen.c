@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 04:14:23 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/28 06:39:06 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/03 00:43:00 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	update_screen(t_data *data)
 {
 	/* renderring calcuration start */
 	render_bg(&(data->mlx_val), data->params.ceiling, data->params.floor);
-	render_walls(&(data->mlx_val), &(data->player), &(data->params));
+	render_walls(data, &(data->player)); // TODO: error handling
 
 	/* renderring calcuration end */
 	if (render_image(&(data->mlx_val)))

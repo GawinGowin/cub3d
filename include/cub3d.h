@@ -199,7 +199,7 @@ double	regulate_angle(double now);
 int		render_image(t_mlx_val *mlx);
 void	put_color_to_img(t_mlx_val *mlx_val, size_t x, size_t y, int color);
 void	render_bg(t_mlx_val *mlx_val, int sky, int ground);
-void	render_walls(t_mlx_val *mlx, t_player *player, t_param_cub *params);
+void	render_walls(t_data *data, t_player *player);
 
 // validation
 int		is_validate(t_data *data);
