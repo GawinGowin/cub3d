@@ -6,7 +6,7 @@
 /*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 17:53:14 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:55:01 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	deinit_exit(t_data *data, int exit_status);
 int		printerror(char *str);
 void	*printerr_null(char *str);
 int		valid_argument(int argc, char **argv);
-int		detect_keys(int key, t_data *data);
 int		update_screen(t_data *data);
 
 //// map_utils
