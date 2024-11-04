@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 04:25:45 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:04:17 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	destroy_mlx_ptr(t_data *data)
 		mlx_destroy_display(data->mlx_val.mlx_ptr);
 		free(data->mlx_val.mlx_ptr);
 	}
+	init_values(data);
 	return (1);
 }
 
