@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:04:08 by saraki            #+#    #+#             */
-/*   Updated: 2024/11/03 01:27:51 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 09:37:59 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 static int	is_data_satisfies(t_data *data);
 
+/**
+ * @brief Validates the provided data structure.
+ *
+ * This function checks the integrity and correctness of the data contained
+ * within the t_data structure. It ensures that all necessary fields are
+ * properly initialized and meet the required criteria for further processing.
+ *
+ * @param data A pointer to the t_data structure to be validated.
+ * @return An integer indicating the validation result.
+ *         Returns 1 if the data is valid, 0 otherwise.
+ */
 int	is_validate(t_data *data)
 {
 	if (is_data_satisfies(data) && is_valid_map(data->params.map))
