@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 02:50:34 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 04:58:58 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:36:01 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	main(int argc, char **argv)
 	if (init_data(&data, argv[1]))
 		return (1);
 	if (parse_cub(&data, argv[1]) || !is_validate(&data))
-		return (destroy_mlx_ptr(&data));
+	{
+		free_map(data.params.map, data.params.map_height);
+		destroy_mlx_ptr(&data);
+		return (1);
+	}
 	debug_print(&data); // debug print
 	initial_renderring(&data);
 	load_hooks_and_loop(&data);
