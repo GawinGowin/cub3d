@@ -112,123 +112,123 @@ INSTANTIATE_TEST_SUITE_P(
     ::testing::Values(
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_big_height.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 13,
+            .expected_map_height = 1779,
+			.expected_player_pos_x = 6,
+			.expected_player_pos_y = 1,
+			.expected_player_angle = 90
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_big_width.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 1428,
+            .expected_map_height = 7,
+			.expected_player_pos_x = 1.0,
+			.expected_player_pos_y = 3.0,
+			.expected_player_angle = 0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_differ_order.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 19,
+            .expected_map_height = 10,
+			.expected_player_pos_x = 9.0,
+			.expected_player_pos_y = 5.0,
+			.expected_player_angle = 90.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_linebreaks.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 19,
+            .expected_map_height = 10,
+			.expected_player_pos_x = 9.0,
+			.expected_player_pos_y = 5.0,
+			.expected_player_angle = 90.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_mix.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 19,
+            .expected_map_height = 10,
+			.expected_player_pos_x = 9.0,
+			.expected_player_pos_y = 5.0,
+			.expected_player_angle = 90.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_no_linebreak.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 19,
+            .expected_map_height = 10,
+			.expected_player_pos_x = 9.0,
+			.expected_player_pos_y = 5.0,
+			.expected_player_angle = 90.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_pos_bottom.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 3,
+            .expected_map_height = 13,
+			.expected_player_pos_x = 1.0,
 			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+			.expected_player_angle = 90.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_pos_left.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 21,
+            .expected_map_height = 3,
+			.expected_player_pos_x = 1.0,
+			.expected_player_pos_y = 1.0,
+			.expected_player_angle = 180.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_pos_right.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 21,
+            .expected_map_height = 3,
+			.expected_player_pos_x = 19.0,
+			.expected_player_pos_y = 1.0,
+			.expected_player_angle = 0.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_pos_top.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 3,
+            .expected_map_height = 13,
+			.expected_player_pos_x = 1.0,
+			.expected_player_pos_y = 1.0,
 			.expected_player_angle = 270.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_scatter1.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 19,
+            .expected_map_height = 10,
+			.expected_player_pos_x = 9.0,
+			.expected_player_pos_y = 5.0,
+			.expected_player_angle = 90.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_scatter2.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 19,
+            .expected_map_height = 10,
+			.expected_player_pos_x = 9.0,
+			.expected_player_pos_y = 5.0,
+			.expected_player_angle = 90.0
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_subject_map.cub",
@@ -242,13 +242,13 @@ INSTANTIATE_TEST_SUITE_P(
         },
         CubTestData{
             .cub_file_path = (char*)"examples/test/good_with_vacant.cub",
-            .expected_floor = 14443520,
-            .expected_ceiling = 14753280,
-            .expected_map_width = 33,
-            .expected_map_height = 14,
-			.expected_player_pos_x = 26.0,
-			.expected_player_pos_y = 11.0,
-			.expected_player_angle = 270.0
+            .expected_floor = 1315860,
+            .expected_ceiling = 13158600,
+            .expected_map_width = 12,
+            .expected_map_height = 8,
+			.expected_player_pos_x = 2.0,
+			.expected_player_pos_y = 4.0,
+			.expected_player_angle = 90.0
         }
     )
 );
