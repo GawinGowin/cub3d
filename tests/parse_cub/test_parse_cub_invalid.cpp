@@ -139,6 +139,15 @@ INSTANTIATE_TEST_SUITE_P(
         },
         CubErrTestData{
             .cub_file_path = (char*)"examples/bad/wall_none.cub",
+        },
+        CubErrTestData{
+            .cub_file_path = (char*)"examples/bad/textures_not_xpm.cub",
+        },
+        CubErrTestData{
+            .cub_file_path = (char*)"examples/bad/textures_forbidden.cub",
+        },
+        CubErrTestData{
+            .cub_file_path = (char*)"examples/bad/forbidden.cub",
         }
     )
 );
