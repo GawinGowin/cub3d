@@ -12,7 +12,6 @@ HEADER += libft.h
 # Sources
 SOURCES += main.c
 SOURCES += map_utils.c
-SOURCES += detect_event.c
 SOURCES += valid_argument.c
 SOURCES += init_cleanup.c
 SOURCES += update_screen.c

@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 04:20:45 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 16:55:03 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:41:47 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	update_angle(t_data *data, int key)
 	t_dda	dda_ret;
 
 	now = data->player.angle;
-	if (key == ARROW_L)
+	if (key == XK_Left)
 		now -= 5;
-	else if (key == ARROW_R)
+	else if (key == XK_Right)
 		now += 5;
 	now = regulate_angle(now);
 	data->player.angle = now;

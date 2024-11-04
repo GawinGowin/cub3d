@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 04:24:47 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:42:26 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,6 @@
 # define PLAYER_SOUTH 'S'
 # define PLAYER_WEST 'W'
 # define PLAYER_EAST 'E'
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_ESC 65307
-# define ARROW_R 65363
-# define ARROW_L 65361
 
 typedef struct s_texture_img
 {
@@ -119,7 +112,6 @@ int		destroy_mlx_ptr(t_data *data);
 void	deinit_exit(t_data *data, int exit_status);
 int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
-int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
 int		update_screen(t_data *data);
 

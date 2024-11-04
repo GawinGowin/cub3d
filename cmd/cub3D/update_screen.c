@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 04:14:23 by saraki            #+#    #+#             */
-/*   Updated: 2024/11/04 04:20:27 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:30:52 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	update_screen(t_data *data)
 		printerror(ERR_FAILED_RENDERING);
 		deinit_exit(data, 1);
 	}
+	printf("pos_x: %f, pos_y: %f\n", data->player.pos_x, data->player.pos_y);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 07:43:41 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 16:56:12 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:41:18 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	update_coordinate(t_data *data, int key)
 	t_player	adjust_player;
 
 	angle = data->player.angle;
-	if (key == KEY_D)
+	if (key == XK_d)
 		angle += 90.0;
-	else if (key == KEY_A)
+	else if (key == XK_a)
 		angle -= 90.0;
-	else if (key == KEY_S)
+	else if (key == XK_s)
 		angle += 180.0;
 	angle = regulate_angle(angle);
 	adjust_player.pos_x = data->player.pos_x;
