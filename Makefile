@@ -16,6 +16,7 @@ SOURCES += valid_argument.c
 SOURCES += init_cleanup.c
 SOURCES += update_screen.c
 SOURCES += hooks.c
+SOURCES += output_map_info.c
 
 SOURCES += parse_cub/get_map.c
 SOURCES += parse_cub/parse_cub.c
