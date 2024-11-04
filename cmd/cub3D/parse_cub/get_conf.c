@@ -6,7 +6,7 @@
 /*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 16:19:23 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:39:30 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,10 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
 		set_img_stract(&(data->params.img_ea), img, w, h);
 	else
+	{
+		mlx_destroy_image(data->mlx_val.mlx_ptr, img);
 		return (-1);
+	}
 	set_flag(id, flag);
 	return (0);
 }
