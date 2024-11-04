@@ -5,7 +5,7 @@ extern "C"
 	#include "cub3d.h"
 }
 
-#include "compare_operators.h"
+#include "compare_operators.hpp"
 
 struct CubTestData
 {

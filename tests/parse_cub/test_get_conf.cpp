@@ -5,7 +5,7 @@ extern "C"
 	#include "cub3d.h"
 }
 
-#include "compare_operators.h"
+#include "compare_operators.hpp"
 
 char** create_test_lines() {
 	char** lines = (char**)malloc(sizeof(char*) * 7);
