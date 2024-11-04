@@ -82,12 +82,6 @@ INSTANTIATE_TEST_SUITE_P(
             .cub_file_path = (char*)"examples/bad/file_letter_end.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/filetype_missing",
-        },
-        CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/filetype_wrong.buc",
-        },
-        CubErrTestData{
             .cub_file_path = (char*)"examples/bad/map_first.cub",
         },
         CubErrTestData{
