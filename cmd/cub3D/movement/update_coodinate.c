@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 07:43:41 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 16:56:12 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 05:00:52 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,17 @@ void	update_coordinate(t_data *data, int key)
 	t_player	adjust_player;
 
 	angle = data->player.angle;
-	if (key == KEY_D)
+	if (key == XK_d)
 		angle += 90.0;
-	else if (key == KEY_A)
+	else if (key == XK_a)
 		angle -= 90.0;
-	else if (key == KEY_S)
+	else if (key == XK_s)
 		angle += 180.0;
 	angle = regulate_angle(angle);
 	adjust_player.pos_x = data->player.pos_x;
 	adjust_player.pos_y = data->player.pos_y;
 	adjust_player.angle = angle;
 	dda_ret = dda(&adjust_player, data->params.map);
-	if (dda_ret.is_hit)
-		printf("hitblock: (%zu, %zu)/ distance: %f\n",
-			dda_ret.hit_block[0], dda_ret.hit_block[1], dda_ret.distance);
-	else
-		printf("no hitblock\n");
 	set_player_to_edge(&dda_ret, data, angle);
 }
 

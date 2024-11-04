@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 06:53:37 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 15:44:29 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:25:45 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	init_values(t_data *data)
 	data->params.img_ea.addr = NULL;
 	data->params.ceiling = -1;
 	data->params.floor = -1;
+	data->is_moving = 0;
 }
 
 // mlx_get_data_addrはimg_ptr->dataを返すため、mlx_destroy_imageで解放される。

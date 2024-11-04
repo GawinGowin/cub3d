@@ -12,10 +12,10 @@ HEADER += libft.h
 # Sources
 SOURCES += main.c
 SOURCES += map_utils.c
-SOURCES += detect_event.c
 SOURCES += valid_argument.c
 SOURCES += init_cleanup.c
 SOURCES += update_screen.c
+SOURCES += hooks.c
 
 SOURCES += parse_cub/get_map.c
 SOURCES += parse_cub/parse_cub.c
@@ -115,6 +115,8 @@ MLX_LIB := $(addprefix $(LIBRARY_DIR)/,libmlx.a)
 
 LIB_NAME := $(addprefix $(LIBRARY_DIR)/,$(LIB_NAME))
 
+HEADER_FILES := $(addprefix $(HEADER_DIR)/,$(HEADER))
+
 .PHONY: all
 all: init $(NAME)
 
@@ -124,7 +126,7 @@ $(NAME): $(LIB_NAME) $(OBJS)
 $(LIB_NAME): $(LIB_OBJS)
 	ar rcs $@ $(LIB_OBJS)
 
-%.o: %.c
+%.o: %.c $(HEADER_FILES)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 .PHONY: init

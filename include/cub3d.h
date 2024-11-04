@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 17:20:07 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:58:04 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <math.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 # define BUFFER_SIZE 600
 # define WIN_WIDTH 600
@@ -29,12 +31,15 @@
 
 # define PI 3.1415926535
 # define FOV 80.0
-# define WALL_HEIGHT 10.0
 
 // one step per move
-# define STRIDE 0.4
-# define INIT_FRAC  0.5
+# define STRIDE 0.1
+// one step per rotation
+# define ROTATION 1.5
+// offset to avoid collision
 # define OFFSET 0.05
+// initial position fraction of player
+# define INIT_FRAC  0.5
 
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"
@@ -52,13 +57,6 @@
 # define PLAYER_SOUTH 'S'
 # define PLAYER_WEST 'W'
 # define PLAYER_EAST 'E'
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_ESC 65307
-# define ARROW_R 65363
-# define ARROW_L 65361
 
 typedef struct s_texture_img
 {
@@ -106,18 +104,19 @@ typedef struct s_data
 	t_player	player;
 	t_mlx_val	mlx_val;
 	t_param_cub	params;
+	int			is_moving;
 }				t_data;
 
 // root
+void	load_hooks_and_loop(t_data *data);
 int		init_data(t_data *data, char *name);
 void	init_values(t_data *data);
 int		destroy_mlx_ptr(t_data *data);
 void	deinit_exit(t_data *data, int exit_status);
 int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
-int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
-void	update_screen(t_data *data);
+int		update_screen(t_data *data);
 
 //// map_utils
 char	**dup_map(char **map, size_t height);
