@@ -6,13 +6,13 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 04:14:23 by saraki            #+#    #+#             */
-/*   Updated: 2024/11/03 17:25:04 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:20:27 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	update_screen(t_data *data)
+int	update_screen(t_data *data)
 {
 	render_bg(&(data->mlx_val), data->params.ceiling, data->params.floor);
 	if (render_walls(data, &(data->player)))
@@ -25,5 +25,5 @@ void	update_screen(t_data *data)
 		printerror(ERR_FAILED_RENDERING);
 		deinit_exit(data, 1);
 	}
-	return ;
+	return (0);
 }

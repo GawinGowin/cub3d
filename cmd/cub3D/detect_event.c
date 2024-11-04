@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 06:17:26 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/10/28 17:03:38 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 03:51:07 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	detect_keys(int key, t_data *data)
 	else
 		return (0);
 	update_screen(data);
-	printf("pos: (%f, %f)/ angle: %f\n",
-		data->player.pos_x, data->player.pos_y, data->player.angle);
 	return (0);
 }
 

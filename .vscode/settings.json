@@ -28,7 +28,9 @@
 		"unordered_map": "c",
 		"unordered_set": "c",
 		"vector": "c",
-		"initializer_list": "c"
+		"initializer_list": "c",
+		"colors.h": "c",
+		"unistd.h": "c"
 	},
 	"testMate.cpp.debug.breakOnFailure": true,
 	"cmake.ctest.allowParallelJobs": true,

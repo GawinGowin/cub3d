@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 17:20:07 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:24:47 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <math.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 # define BUFFER_SIZE 600
 # define WIN_WIDTH 600
@@ -106,9 +108,11 @@ typedef struct s_data
 	t_player	player;
 	t_mlx_val	mlx_val;
 	t_param_cub	params;
+	int			is_moving;
 }				t_data;
 
 // root
+void	load_hooks_and_loop(t_data *data);
 int		init_data(t_data *data, char *name);
 void	init_values(t_data *data);
 int		destroy_mlx_ptr(t_data *data);
@@ -117,7 +121,7 @@ int		printerror(char *str);
 int		valid_argument(int argc, char **argv);
 int		detect_close(t_data *data);
 int		detect_keys(int key, t_data *data);
-void	update_screen(t_data *data);
+int		update_screen(t_data *data);
 
 //// map_utils
 char	**dup_map(char **map, size_t height);
