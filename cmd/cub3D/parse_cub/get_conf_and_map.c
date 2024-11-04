@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 09:55:33 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 10:54:37 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 13:34:57 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_conf_and_map(t_data *data, char **raw_lines)
 	if (get_conf(data, formed_lines))
 	{
 		free_map(formed_lines, get_lines_cnt(formed_lines));
-		return (printerror(ERR_FORMAT));
+		return (1);
 	}
 	get_mapsize(formed_lines + 6,
 		&(data->params.map_width), &(data->params.map_height));
