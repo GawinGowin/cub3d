@@ -61,82 +61,82 @@ INSTANTIATE_TEST_SUITE_P(
     CubErrInputTest,
     ::testing::Values(
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/color_invalid_rgb.cub",
+            .cub_file_path = (char*)"examples/test/bad_color_invalid_rgb.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/color_missing_ceiling_rgb.cub",
+            .cub_file_path = (char*)"examples/test/bad_color_missing_ceiling_rgb.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/color_missing.cub",
+            .cub_file_path = (char*)"examples/test/bad_color_missing.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/color_missing_floor_rgb.cub",
+            .cub_file_path = (char*)"examples/test/bad_color_missing_floor_rgb.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/color_none.cub",
+            .cub_file_path = (char*)"examples/test/bad_color_none.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/empty.cub",
+            .cub_file_path = (char*)"examples/test/bad_empty.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/file_letter_end.cub",
+            .cub_file_path = (char*)"examples/test/bad_file_letter_end.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/map_first.cub",
+            .cub_file_path = (char*)"examples/test/bad_map_first.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/map_middle.cub",
+            .cub_file_path = (char*)"examples/test/bad_map_middle.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/map_missing.cub",
+            .cub_file_path = (char*)"examples/test/bad_map_missing.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/map_only.cub",
+            .cub_file_path = (char*)"examples/test/bad_map_only.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/map_too_small.cub",
+            .cub_file_path = (char*)"examples/test/bad_map_too_small.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/player_multiple.cub",
+            .cub_file_path = (char*)"examples/test/bad_player_multiple.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/player_none.cub",
+            .cub_file_path = (char*)"examples/test/bad_player_none.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/player_on_edge.cub",
+            .cub_file_path = (char*)"examples/test/bad_player_on_edge.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/textures_dir.cub",
+            .cub_file_path = (char*)"examples/test/bad_textures_dir.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/textures_duplicates.cub",
+            .cub_file_path = (char*)"examples/test/bad_textures_duplicates.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/textures_invalid.cub",
+            .cub_file_path = (char*)"examples/test/bad_textures_invalid.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/textures_missing.cub",
+            .cub_file_path = (char*)"examples/test/bad_textures_missing.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/textures_none.cub",
+            .cub_file_path = (char*)"examples/test/bad_textures_none.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/wall_hole_east.cub",
+            .cub_file_path = (char*)"examples/test/bad_wall_hole_east.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/wall_hole_north.cub",
+            .cub_file_path = (char*)"examples/test/bad_wall_hole_north.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/wall_hole_south.cub",
+            .cub_file_path = (char*)"examples/test/bad_wall_hole_south.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/wall_hole_west.cub",
+            .cub_file_path = (char*)"examples/test/bad_wall_hole_west.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/wall_none.cub",
+            .cub_file_path = (char*)"examples/test/bad_wall_none.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/textures_forbidden.cub",
+            .cub_file_path = (char*)"examples/test/bad_textures_forbidden.cub",
         }
     )
 );
