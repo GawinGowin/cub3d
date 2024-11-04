@@ -20,6 +20,7 @@ SOURCES += hooks.c
 SOURCES += parse_cub/get_map.c
 SOURCES += parse_cub/parse_cub.c
 SOURCES += parse_cub/set_array_from_file.c
+SOURCES += parse_cub/read_loop.c
 SOURCES += parse_cub/get_conf_and_map.c
 SOURCES += parse_cub/split_cub.c
 SOURCES += parse_cub/get_color.c

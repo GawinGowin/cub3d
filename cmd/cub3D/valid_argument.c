@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_argument.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-09 03:53:12 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-09 03:53:12 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/09 03:53:12 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/11/04 17:52:26 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	printerror(char *str)
 		write(2, &str[i], 1);
 	write(2, "\n", 2);
 	return (1);
+}
+
+void	*printerr_null(char *str)
+{
+	printerror(str);
+	return (NULL);
 }
 
 int	valid_argument(int argc, char **argv)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 04:58:04 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 17:53:14 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define ERR_FAILED_RENDERING "Failed to render image"
 # define ERR_MALLOC "Failed to allocate memory"
 # define ERR_FORMAT "Invalid .cub file format"
+# define ERR_LOAD_CUB "Failed to load .cub file"
 
 # define WALL '1'
 # define SPACE ' '
@@ -114,6 +115,7 @@ void	init_values(t_data *data);
 int		destroy_mlx_ptr(t_data *data);
 void	deinit_exit(t_data *data, int exit_status);
 int		printerror(char *str);
+void	*printerr_null(char *str);
 int		valid_argument(int argc, char **argv);
 int		detect_keys(int key, t_data *data);
 int		update_screen(t_data *data);
@@ -138,6 +140,7 @@ enum e_conf
 int		parse_cub(t_data *params, char *filename);
 void	free_2d_array_of_char(char **array);
 char	**set_array_from_file(char *filename);
+char	*read_loop(int fd);
 int		get_conf_and_map(t_data *params, char **array);
 char	**split_cub(char *file);
 int		get_color(t_data *data, char *str, char *id, int *flag);

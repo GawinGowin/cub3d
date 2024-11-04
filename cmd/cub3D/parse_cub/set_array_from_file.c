@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   set_array_from_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          #+#  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-10 09:45:26 by syamasaw          #+#    #+#             */
-/*   Updated: 2024-10-10 09:45:26 by syamasaw         ###   ########.fr       */
+/*   Created: 2024/10/10 09:45:26 by syamasaw          #+#    #+#             */
+/*   Updated: 2024/11/04 17:51:00 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	*read_loop(int fd);
-static char	*allfree(char *s1, char *s2);
-static char	*strjoin_allfree(char *s1, char *s2);
 static char	*load_file(char *filename);
 
 char	**set_array_from_file(char *filename)
@@ -28,10 +25,7 @@ char	**set_array_from_file(char *filename)
 	array = split_cub(file);
 	free(file);
 	if (!array)
-	{
-		printerror(ERR_MALLOC);
-		return (NULL);
-	}
+		return (printerr_null(ERR_MALLOC));
 	return (array);
 }
 
@@ -44,62 +38,16 @@ static char	*load_file(char *filename)
 		return (NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (printerr_null(ERR_LOAD_CUB));
 	else if (read(fd, 0, 0) < 0)
 	{
 		close(fd);
-		return (NULL);
+		return (printerr_null(ERR_LOAD_CUB));
 	}
 	text = read_loop(fd);
 	close(fd);
 	if (!text)
 		return (NULL);
-	return (text);
-}
-
-static char	*allfree(char *s1, char *s2)
-{
-	if (s1)
-		free(s1);
-	if (s2)
-		free(s2);
-	return (NULL);
-}
-
-static char	*strjoin_allfree(char *s1, char *s2)
-{
-	char	*ret;
-
-	ret = ft_strjoin(s1, s2);
-	allfree(s1, s2);
-	return (ret);
-}
-
-static char	*read_loop(int fd)
-{
-	char	*text;
-	char	*buf;
-	int		byte;
-
-	text = (char *)ft_calloc(1, 1);
-	if (!text)
-		return (NULL);
-	byte = 1;
-	while (byte > 0)
-	{
-		buf = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-		if (!buf)
-			return (allfree(text, buf));
-		byte = read(fd, buf, BUFFER_SIZE);
-		if (byte < 0)
-			return (allfree(text, buf));
-		else if (byte == 0)
-			break ;
-		text = strjoin_allfree(text, buf);
-		if (!text)
-			return (NULL);
-	}
-	free(buf);
 	return (text);
 }
 
