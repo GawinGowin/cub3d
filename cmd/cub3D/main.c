@@ -6,7 +6,7 @@
 /*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 02:50:34 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 15:36:01 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:09:15 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_data(&data, argv[1]))
 		return (1);
-	if (parse_cub(&data, argv[1]) || !is_validate(&data))
+	if (parse_cub(&data, argv[1]))
+		return (destroy_mlx_ptr(&data));
+	if (!is_validate(&data))
 	{
-		free_map(data.params.map, data.params.map_height);
-		destroy_mlx_ptr(&data);
-		return (1);
+		free_2d_array_of_char(data.params.map);
+		return (destroy_mlx_ptr(&data));
 	}
 	debug_print(&data); // debug print
 	initial_renderring(&data);
