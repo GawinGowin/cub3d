@@ -6,13 +6,13 @@ NO     ./assets/north_compass.xpm
 
 EA           ./assets/east_compass.xpm
 
-F         69,        222,     199
+F         20,         20,      20
 
 
 WE ./assets/west_compass.xpm
 
 
-C 235,      198,    52
+C 200,      200,   200
 
 111111111111111111111111
 100000000000000000000001
