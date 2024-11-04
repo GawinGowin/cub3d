@@ -6,19 +6,24 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:19:23 by saraki            #+#    #+#             */
-/*   Updated: 2024/10/20 01:46:05 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 10:12:05 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * This function performs a calculation based on the given input parameters.
- * It takes two integers as input and returns the result of the calculation.
+ * @brief Extracts and processes the map from raw map lines.
  *
- * @param num1 The first integer input for the calculation.
- * @param num2 The second integer input for the calculation.
- * @return The result of the calculation.
+ * This function takes raw map lines and processes them to create a 2D array
+ * representing the map.
+ * The map is expected to have a specified width and height.
+ *
+ * @param raw_map_lines A pointer to an array of strings,
+ * each representing a line of the raw map.
+ * @param width The width of the map.
+ * @param height The height of the map.
+ * @return A pointer to a 2D array of characters representing the processed map.
  */
 char	**get_map(char **raw_map_lines, size_t width, size_t height)
 {
