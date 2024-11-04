@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 04:42:26 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:58:04 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@
 
 # define PI 3.1415926535
 # define FOV 80.0
-# define WALL_HEIGHT 10.0
 
 // one step per move
-# define STRIDE 0.4
-# define INIT_FRAC  0.5
+# define STRIDE 0.1
+// one step per rotation
+# define ROTATION 1.5
+// offset to avoid collision
 # define OFFSET 0.05
+// initial position fraction of player
+# define INIT_FRAC  0.5
 
 # define ERR_PREFIX "Error: "
 # define ERR_INVALID_ARG "Invalid Argument"

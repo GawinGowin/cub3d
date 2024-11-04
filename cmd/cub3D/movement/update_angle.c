@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 04:20:45 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 04:41:47 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 04:58:09 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 void	update_angle(t_data *data, int key)
 {
 	double	now;
-	t_dda	dda_ret;
 
 	now = data->player.angle;
 	if (key == XK_Left)
-		now -= 5;
+		now -= ROTATION;
 	else if (key == XK_Right)
-		now += 5;
+		now += ROTATION;
 	now = regulate_angle(now);
 	data->player.angle = now;
-	dda_ret = dda(&data->player, data->params.map);
-	if (dda_ret.is_hit == 1)
-		printf("hitblock: (%zu, %zu)/ distance: %f\n", dda_ret.hit_block[0], dda_ret.hit_block[1], dda_ret.distance);
 }
 
 double	regulate_angle(double now)
