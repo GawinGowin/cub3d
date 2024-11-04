@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_conf_and_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 09:55:33 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 16:20:44 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:54:37 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// static void		print_map(char **map);
+static int		is_only_contains_one_map(char **raw_lines);
 static size_t	get_lines_cnt(char **lines);
 static char		**drop_vacant_element_and_dup(char **line);
 
@@ -26,10 +26,15 @@ int	get_conf_and_map(t_data *data, char **raw_lines)
 	if (get_conf(data, formed_lines))
 	{
 		free_map(formed_lines, get_lines_cnt(formed_lines));
-		return (1);
+		return (printerror(ERR_FORMAT));
 	}
 	get_mapsize(formed_lines + 6,
 		&(data->params.map_width), &(data->params.map_height));
+	if (!is_only_contains_one_map(raw_lines))
+	{
+		free_map(formed_lines, get_lines_cnt(formed_lines));
+		return (printerror(ERR_FORMAT));
+	}
 	data->params.map = get_map(formed_lines + 6, data->params.map_width,
 			data->params.map_height);
 	free_map(formed_lines, get_lines_cnt(formed_lines));
@@ -95,4 +100,24 @@ int	splited_length(char **array)
 	while (array[i])
 		i++;
 	return (i);
+}
+
+static int	is_only_contains_one_map(char **raw_lines)
+{
+	size_t	lines_cnt;
+	size_t	i;
+
+	lines_cnt = get_height(raw_lines);
+	i = lines_cnt - 1;
+	while (i > 0 && raw_lines[i] != NULL && ft_strlen(raw_lines[i]) == 0)
+		i--;
+	while (i > 0 && raw_lines[i] != NULL
+		&& ft_strchr(" 01", raw_lines[i][0]) != NULL
+		&& ft_strlen(raw_lines[i]) != 0)
+		i--;
+	while (i > 0 && raw_lines[i] != NULL && ft_strlen(raw_lines[i]) == 0)
+		i--;
+	if (ft_strchr("NSWEFC", raw_lines[i][0]) == NULL)
+		return (0);
+	return (1);
 }

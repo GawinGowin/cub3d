@@ -30,7 +30,8 @@
 		"vector": "c",
 		"initializer_list": "c",
 		"colors.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"map": "c"
 	},
 	"testMate.cpp.debug.breakOnFailure": true,
 	"cmake.ctest.allowParallelJobs": true,
