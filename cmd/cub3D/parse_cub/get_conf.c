@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/03 10:20:33 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/04 16:39:30 by syamasaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ static int	get_conf_by_str(t_data *data, char *str, int *flags)
 
 	key_value = ft_split(str, ' ');
 	if (!key_value)
-		return (-1);
+	{
+		printerror(ERR_MALLOC);
+		return (-2);
+	}
 	code = detect_identifier(data, key_value, flags);
 	free_2d_array_of_char(key_value);
 	if (code == -2)
@@ -110,7 +113,7 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 		return (-1);
 	img = mlx_xpm_file_to_image(data->mlx_val.mlx_ptr, path, &w, &h);
 	if (!img)
-		return (-1);
+		return (-2);
 	if (ft_strcmp(id, "NO") == 0 && !((*flag) & FLAG_NO))
 		set_img_stract(&(data->params.img_no), img, w, h);
 	else if (ft_strcmp(id, "SO") == 0 && !((*flag) & FLAG_SO))
@@ -120,7 +123,10 @@ static int	get_img(t_data *data, char *path, char *id, int *flag)
 	else if (ft_strcmp(id, "EA") == 0 && !((*flag) & FLAG_EA))
 		set_img_stract(&(data->params.img_ea), img, w, h);
 	else
+	{
+		mlx_destroy_image(data->mlx_val.mlx_ptr, img);
 		return (-1);
+	}
 	set_flag(id, flag);
 	return (0);
 }
