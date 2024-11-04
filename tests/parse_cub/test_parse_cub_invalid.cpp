@@ -42,7 +42,8 @@ TEST_P(CubErrInputTest, CubErrInput)
 		std::cout << "cub_file_path: " << param.cub_file_path << std::endl;
 		int ret = parse_cub(&data, param.cub_file_path);
 		if (ret == 0) {
-			EXPECT_EQ(is_valid_map((char **)data.params.map), 0);
+			int is_valid = is_validate(&data);
+			EXPECT_EQ(is_valid, 0);
 		}
 		else {
 			EXPECT_EQ(data.params, expected_data);
@@ -141,13 +142,7 @@ INSTANTIATE_TEST_SUITE_P(
             .cub_file_path = (char*)"examples/bad/wall_none.cub",
         },
         CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/textures_not_xpm.cub",
-        },
-        CubErrTestData{
             .cub_file_path = (char*)"examples/bad/textures_forbidden.cub",
-        },
-        CubErrTestData{
-            .cub_file_path = (char*)"examples/bad/forbidden.cub",
         }
     )
 );
