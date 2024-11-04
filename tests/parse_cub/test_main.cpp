@@ -20,11 +20,6 @@ bool operator==(const t_param_cub &a, const t_param_cub &b) {
     if (a.map_width != b.map_width || a.map_height != b.map_height) {
         return false;
     }
-    for (size_t i = 0; i < a.map_height; i++) {
-        if (strcmp(a.map[i], b.map[i]) != 0) {
-            return false;
-        }
-    }
     return true;
 }
 
