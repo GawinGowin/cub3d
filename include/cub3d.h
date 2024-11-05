@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 03:25:29 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 19:27:47 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/05 10:49:43 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <X11/X.h>
 
 # define BUFFER_SIZE 600
-# define WIN_WIDTH 600
+# define WIN_WIDTH 1000
 # define WIN_HEIGHT 600
 
 # define PI 3.1415926535

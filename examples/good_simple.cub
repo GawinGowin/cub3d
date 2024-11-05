@@ -3,8 +3,8 @@ SO ./assets/south_compass.xpm
 WE ./assets/west_compass.xpm
 EA ./assets/east_compass.xpm
 
-F 220,100,0
-C 225,30,0
+F 111,175,69
+C 100,170,200
 
 1111111111
 1000000001

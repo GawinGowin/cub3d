@@ -16,7 +16,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/cub3D",
 			"args": [
-				"examples/simple.cub"
+				"examples/test5.cub"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
