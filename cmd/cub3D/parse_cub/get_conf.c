@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_conf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamasaw <syamasaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 08:20:46 by syamasaw          #+#    #+#             */
-/*   Updated: 2024/11/04 16:39:30 by syamasaw         ###   ########.fr       */
+/*   Updated: 2024/11/05 10:39:27 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 	char	*key;
 	char	*path_or_color;
 	int		code;
+	int		fd;
 
 	if (splited_length(key_value) != 2)
 		return (-1);
@@ -96,7 +97,13 @@ static int	detect_identifier(t_data *data, char **key_value, int *flag)
 	if (is_id_color(key))
 		code = get_color(data, path_or_color, key, flag);
 	else if (is_id_direction(key))
+	{
+		fd = open(path_or_color, O_RDONLY);
+		if (fd < 0)
+			return (-1);
+		close(fd);
 		code = get_img(data, path_or_color, key, flag);
+	}
 	else
 		return (-1);
 	return (code);
