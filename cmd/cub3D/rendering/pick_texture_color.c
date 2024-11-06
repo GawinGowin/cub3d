@@ -6,7 +6,7 @@
 /*   By: saraki <saraki@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 22:37:57 by saraki            #+#    #+#             */
-/*   Updated: 2024/11/03 07:04:23 by saraki           ###   ########.fr       */
+/*   Updated: 2024/11/06 02:44:12 by saraki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static double	adjust_texture_x_coodinate(t_dda *dda, t_player *player)
 	else if (dda->side == 0 && dda->ray_distination[0] >= 0)
 		texture_x = dda->distance * cos(angle[0])
 			+ player->pos_y - hit_block_y;
-	else if (dda->side == 0 && dda->ray_distination[0] < 0)
+	else
 		texture_x = (hit_block_y + 1) - (dda->distance * cos(angle[0])
 				+ player->pos_y);
 	return (texture_x);
