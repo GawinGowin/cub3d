@@ -159,21 +159,7 @@ int		get_player(t_data *data);
 // algo
 typedef struct s_side_distination
 {
-	/**
-	 * @brief Array to store the perpendicular distances to the
-	 * next x and y sides.
-	 * 
-	 * This array holds two double values representing the distances
-	 * to the next x-side and y-side respectively. These distances are used in
-	 * the DDA algorithm to determine the next step in the grid traversal.
-	 */
 	double	dist[2];
-	/**
-	 * @brief Array to store the step increments for the DDA algorithm.
-	 * 
-	 * @var step[0] Step increment in the x direction.
-	 * @var step[1] Step increment in the y direction.
-	 */
 	int		step[2];
 }				t_side_dist;
 
